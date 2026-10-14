@@ -67,21 +67,29 @@ powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 
 > **Where do I get the bundle?** The pre-built, ready-to-run Windows bundle is the paid
 > product (one-time): <https://aamsmith3.gumroad.com/l/teos-ai-gateway>. The complete
-> source of this build is right here under **AGPL-3.0**, so you may also build the bundle
-> yourself with `packaging/Build-OfflineBundle.ps1`.
+> source of this build is included with every purchase (inside the bundle as `source/`)
+> and remains available under **AGPL-3.0-only**.
 
 The installer installs the wheel, adds the `teos`, `teos-server` and `teos-doctor`
 commands (plus one `teos-<agent>` command per supported coding agent), creates
 Start-menu and desktop shortcuts, and replaces the automatic updater with a no-op so
 an upstream release can never replace this build.
 
-Developers can install from source instead. The complete corresponding source of this
-exact build is included in every purchase, as
-`source/TEOS-AI-Gateway-Windows-<version>-source.zip`:
+Developers can build from the corresponding source included in the bundle:
 
 ```bash
 uv tool install .
 ```
+
+## FREE TIER INCLUDED — Start coding for $0
+
+No paid API key needed to start:
+
+- **NVIDIA NIM FREE API** — 80+ models included (nemotron, Llama, DeepSeek V3, Qwen, Mistral and more). Get your free key at [build.nvidia.com](https://build.nvidia.com) in 30 seconds, paste in TEOS, and you're ready.
+- **Local models FREE forever** — Ollama, LM Studio, llama.cpp. Run Llama, CodeLlama, Mistral fully offline, no key at all.
+- **Other free tiers** — OpenRouter FREE models, Groq FREE tier, Gemini FREE tier — all from one UI.
+
+> TEOS AI Gateway itself is a one-time purchase ($39 for the first 50 copies, then $99). Using free tiers from providers is subject to each provider's limits and terms.
 
 ### 2. Start TEOS
 
@@ -122,7 +130,13 @@ in Admin.
   <img src="assets/admin-page.png" alt="TEOS AI Gateway Admin UI" width="700">
 </div>
 
-### 4. Run Your Coding Agent
+### 4. Free Tier Quick Start (Recommended)
+
+- **NVIDIA NIM** — Get a free API key at [build.nvidia.com/settings/api-keys](https://build.nvidia.com/settings/api-keys), paste it in Admin → Apply. 80+ models included.
+- **Local models** — Enable Ollama/LM Studio in Admin (or just have them running). No key needed.
+- **Other free tiers** — OpenRouter (free models), Groq (free tier), Gemini (free tier) all work from the same UI.
+
+### 5. Run Your Coding Agent
 
 Claude Code:
 
