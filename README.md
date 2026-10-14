@@ -57,11 +57,17 @@ Free-tier availability and limits are controlled by each provider and may change
 ### 1. Install
 
 TEOS AI Gateway ships as an **offline Windows bundle**, so no internet connection is
-needed to install. Unzip `TEOS-AI-Gateway-Windows-<version>.zip` and run:
+needed to install. Get the ready-to-run bundle, unzip `TEOS-AI-Gateway-Windows-<version>.zip`,
+then run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 ```
+
+> **Where do I get the bundle?** The pre-built, ready-to-run Windows bundle is the paid
+> product (one-time): <https://aamsmith3.gumroad.com/l/teos-ai-gateway>. The complete
+> source of this build is right here under **AGPL-3.0**, so you may also build the bundle
+> yourself with `packaging/Build-OfflineBundle.ps1`.
 
 The installer installs the wheel, adds the `teos` and `fcc-server` commands, creates
 Start-menu and desktop shortcuts, and pins `fcc-update` so the upstream auto-updater
@@ -70,8 +76,8 @@ can never replace this build.
 Developers can install from source instead:
 
 ```bash
-git clone https://github.com/Aymanseif/free-claude-code -b teos-ai-gateway
-cd free-claude-code
+git clone https://github.com/Aymanseif/teos-ai-gateway
+cd teos-ai-gateway
 uv tool install .
 ```
 
