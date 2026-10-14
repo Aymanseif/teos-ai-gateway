@@ -11,8 +11,11 @@ TEOS AI Gateway is a modified version of
 Requires `uv`, `git`, and PowerShell 5.1+. From this `packaging/` folder:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.0.0
+powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -IncludeSource -Version 1.0.0
 ```
+
+`-IncludeSource` is required for a shippable build: the repository is private, so the
+Corresponding Source must travel inside the ZIP (see the release checklist below).
 
 | Parameter | Default | Meaning |
 |---|---|---|
@@ -20,6 +23,8 @@ powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.0.
 | `-Version` | `1.0.0` | product version stamped into the build |
 | `-OutDir` | `.\packaging\dist` | output directory |
 | `-SkipBuild` | — | reuse an existing `dist\build` |
+| `-IncludeSource` | off | bundle the sdist + full source ZIP inside the package |
+| `-SupportEmail` | `AYMAN@TEOSEGYPT.COM` | support address written into the license notices |
 
 The script builds a wheel + sdist with `SETUPTOOLS_SCM_PRETEND_VERSION=<Version>` so the
 sold product carries a clean version instead of the git-derived development version,

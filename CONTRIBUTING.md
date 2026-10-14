@@ -13,15 +13,15 @@ Thanks for helping improve TEOS AI Gateway. Keep changes focused, test the behav
 
 Changes to `assets/`, `scripts/`, `src/`, `pyproject.toml`, or `uv.lock` require a title starting with `patch: `, `minor: `, or `major: ` followed by a description. Use exactly one space after the colon.
 
-PRs without changes to those paths must not use a release prefix. Do not edit version numbers. Publishing calculates the version after merge, creates its Git tag, and publishes to PyPI and GitHub Releases.
+PRs without changes to those paths must not use a release prefix. Do not edit version numbers. Merging calculates the version, which is stamped into the offline bundle built by `packaging/Build-OfflineBundle.ps1`; this fork is distributed only as that bundle, never to PyPI.
 
 ## Development Setup
 
 Install [uv](https://docs.astral.sh/uv/), then run directly from the checkout. uv automatically installs the Python version required by the project.
 
+Work from the corresponding source that ships with the product, or any checkout of this code:
+
 ```bash
-git clone https://github.com/Alishahryar1/free-claude-code.git
-cd free-claude-code
 uv run teos-server
 ```
 

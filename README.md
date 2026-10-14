@@ -56,9 +56,10 @@ Free-tier availability and limits are controlled by each provider and may change
 
 ### 1. Install
 
-TEOS AI Gateway ships as an **offline Windows bundle**, so no internet connection is
-needed to install. Get the ready-to-run bundle, unzip `TEOS-AI-Gateway-Windows-<version>.zip`,
-then run:
+TEOS AI Gateway ships as an **offline Windows bundle**: the app is installed from the
+wheel inside the bundle, never fetched from a package feed (the installer does download
+uv and Python once). Get the ready-to-run bundle, unzip
+`TEOS-AI-Gateway-Windows-<version>.zip`, then run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
@@ -74,11 +75,11 @@ commands (plus one `teos-<agent>` command per supported coding agent), creates
 Start-menu and desktop shortcuts, and replaces the automatic updater with a no-op so
 an upstream release can never replace this build.
 
-Developers can install from source instead:
+Developers can install from source instead. The complete corresponding source of this
+exact build is included in every purchase, as
+`source/TEOS-AI-Gateway-Windows-<version>-source.zip`:
 
 ```bash
-git clone https://github.com/Aymanseif/teos-ai-gateway
-cd teos-ai-gateway
 uv tool install .
 ```
 
@@ -495,7 +496,7 @@ For a problem after installation, run the command below and paste its output int
 teos-doctor
 ```
 
-- [Report bugs or request features](https://github.com/Aymanseif/free-claude-code/issues)
+- Report a bug or request a feature: email `AYMAN@TEOSEGYPT.COM` (include the `teos-doctor` output)
 - [Modification notice](TEOS_MODIFICATIONS.md)
 - [Contributing guide](CONTRIBUTING.md)
 
