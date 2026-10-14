@@ -31,5 +31,4 @@ The following are planned and are **not** part of this build yet:
 
 This project remains licensed under **AGPL-3.0-only** (see `LICENSE`). The LICENSE
 text is unchanged; line 1 only notes the TEOS modification. The complete Corresponding
-Source is shipped with every distribution (bundle `source/`) and published at
-https://github.com/Aymanseif/free-claude-code/tree/teos-ai-gateway
+Source is shipped with every distribution (bundle `source/`).

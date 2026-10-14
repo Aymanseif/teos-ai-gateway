@@ -25,9 +25,8 @@ by the TEOS AI Gateway distributor and include, at minimum:
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 
 The complete Corresponding Source for this build is included in this bundle under
-`source/`, and is also published at:
-
-    https://github.com/Aymanseif/free-claude-code/tree/teos-ai-gateway
+`source/`. Keep it with the software and pass it on to anyone who receives the
+software, as required by AGPL-3.0.
 
 If you run a modified version of this software as a network service, AGPL-3.0 §13
 requires you to offer the Corresponding Source to the users interacting with it.
