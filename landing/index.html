@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEOS AI Gateway — One gateway for every AI provider &amp; coding agent</title>
+  <meta name="description" content="Use OpenAI, Anthropic, Gemini, OpenRouter, Groq and 50+ more — plus Ollama and LM Studio — from one local gateway, with your own keys. Offline Windows installer. One-time purchase." />
+  <meta property="og:title" content="TEOS AI Gateway" />
+  <meta property="og:description" content="One gateway. Every AI provider. Every coding agent. Offline Windows installer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og.png" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: { DEFAULT: '#5B6CFF', light: '#7CA4FF', soft: '#A8B3FF', cyan: '#00D9FF' } }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-[#070A14] text-white antialiased">
+
+  <!-- ============================ NAV ============================ -->
+  <nav class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-[#070A14]/70 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 font-bold tracking-tight">
+        <span class="w-6 h-6 rounded-md bg-brand shadow-[0_0_18px_rgba(91,108,255,0.6)]"></span>
+        <span>TEOS AI Gateway</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#included" class="hover:text-white transition">What's included</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+      </div>
+      <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+         class="px-5 py-2 rounded-full bg-brand text-sm font-semibold hover:bg-brand/90 transition shadow-[0_0_24px_rgba(91,108,255,0.45)]">
+        Buy now
+      </a>
+    </div>
+  </nav>
+
+  <a id="top"></a>
+
+  <!-- ============================ HERO ============================ -->
+  <!-- TEOS AI Gateway - Premium Hero v2 -->
+  <section class="relative min-h-[85vh] flex items-center justify-center bg-[#070A14] overflow-hidden px-6 py-24">
+    <!-- Background Effects -->
+    <div class="absolute inset-0">
+      <div class="absolute -top-32 -left-32 w-[600px] h-[600px] bg-[#5B6CFF]/20 rounded-full blur-[120px]"></div>
+      <div class="absolute top-0 right-0 w-[800px] h-[500px] bg-[#00D9FF]/10 rounded-full blur-[130px]"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#5B6CFF]/50 to-transparent"></div>
+      <!-- Grid -->
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl w-full mx-auto text-center">
+      <!-- Top Pill -->
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-xl shadow-[0_0_20px_rgba(91,108,255,0.15)] mb-10">
+        <svg class="w-4 h-4 text-[#7CA4FF]" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 12l10 10 10-10L12 2z" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+        <span class="text-[13px] tracking-[0.18em] font-semibold text-white/90">TEOS &bull; AI GATEWAY</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-[42px] md:text-[78px] font-black tracking-[-0.04em] leading-[0.9] text-white mb-6">
+        TEOS AI Gateway
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-[18px] md:text-[28px] font-light tracking-[-0.01em] text-[#A8B3FF] leading-[1.3] mb-12 max-w-3xl mx-auto">
+        One gateway. Every AI provider. Every coding agent.
+      </p>
+
+      <!-- Primary CTA -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+           class="px-8 py-4 rounded-full bg-brand font-semibold text-white hover:bg-brand/90 transition shadow-[0_0_40px_rgba(91,108,255,0.55)]">
+          Buy for Windows — $19
+        </a>
+        <a href="#features"
+           class="px-8 py-4 rounded-full border border-white/20 bg-white/[0.04] font-semibold text-white/90 hover:bg-white/[0.08] transition">
+          See what's inside
+        </a>
+      </div>
+
+      <!-- Feature Pills -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
+        <div class="group flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/[0.06] border border-white/20 backdrop-blur-md hover:bg-white/[0.08] transition">
+          <svg class="w-5 h-5 text-[#A8B3FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"/></svg>
+          <span class="text-[15px] font-medium text-white">Windows offline installer</span>
+        </div>
+        <div class="group flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/[0.06] border border-white/20 backdrop-blur-md hover:bg-white/[0.08] transition">
+          <svg class="w-5 h-5 text-[#A8B3FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+          <span class="text-[15px] font-medium text-white">Bring your own keys</span>
+        </div>
+        <div class="group flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/[0.06] border border-white/20 backdrop-blur-md hover:bg-white/[0.08] transition">
+          <svg class="w-5 h-5 text-[#A8B3FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span class="text-[15px] font-medium text-white">AGPL-3.0 + full source</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-[1px] w-full max-w-4xl mx-auto bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12"></div>
+
+      <!-- Agents / Providers -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left md:text-center max-w-4xl mx-auto">
+        <div>
+          <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-3">AGENTS</div>
+          <p class="text-[15px] md:text-[16px] text-white/70 leading-relaxed font-medium">
+            Claude Code &bull; Codex &bull; OpenCode &bull; Cline &bull; Aider
+          </p>
+        </div>
+        <div>
+          <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-3">PROVIDERS</div>
+          <p class="text-[15px] md:text-[16px] text-white/70 leading-relaxed font-medium">
+            OpenAI &bull; Anthropic &bull; Gemini &bull; OpenRouter &bull; Groq &bull; Ollama &bull; +50 more
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURES ============================ -->
+  <section id="features" class="relative px-6 py-24 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-2xl mb-16">
+        <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-4">WHY TEOS</div>
+        <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-5">One endpoint for everything AI</h2>
+        <p class="text-white/60 text-lg">Stop juggling a dozen apps, keys and endpoints. Run one gateway, connect every agent, switch models without touching your workflow.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#8644;</div>
+          <h3 class="font-semibold text-lg mb-2">Automatic failover</h3>
+          <p class="text-white/55 text-sm leading-relaxed">When a provider is down or out of quota, TEOS tries your next configured model automatically — no restart.</p>
+        </div>
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#9881;</div>
+          <h3 class="font-semibold text-lg mb-2">Local models too</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Ollama, LM Studio and llama.cpp work out of the box. Fully offline if you want it to be.</p>
+        </div>
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#9783;</div>
+          <h3 class="font-semibold text-lg mb-2">Admin web UI</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Search models, paste keys, click Apply. Protected by a bearer token if you want.</p>
+        </div>
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#10003;</div>
+          <h3 class="font-semibold text-lg mb-2">Your keys, your accounts</h3>
+          <p class="text-white/55 text-sm leading-relaxed">You bring the keys, so you stay in full control — and there's no subscription or usage markup.</p>
+        </div>
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#9881;</div>
+          <h3 class="font-semibold text-lg mb-2">11 coding agents</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Claude Code, Codex, Pi, OpenCode, Cline, Hermes, DSH, Grok Build, Muse, Aider and VS Code Chat.</p>
+        </div>
+        <div class="p-7 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mb-5 text-brand-light text-xl">&#128274;</div>
+          <h3 class="font-semibold text-lg mb-2">Offline installer</h3>
+          <p class="text-white/55 text-sm leading-relaxed">A single Windows installer. No internet needed to install, no build tools, no dependencies to chase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ INCLUDED ============================ -->
+  <section id="included" class="relative px-6 py-24 border-t border-white/5">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+      <div>
+        <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-4">WHAT'S INCLUDED</div>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-6">Everything in one download</h2>
+        <ul class="space-y-4 text-white/70">
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> Offline Windows installer (<code class="text-brand-soft">Install-TEOS-AI-Gateway.ps1</code>)</li>
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> The full application wheel</li>
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> Complete source code (AGPL-3.0) — as required</li>
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> Step-by-step <code class="text-brand-soft">README-INSTALL.txt</code></li>
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> The <code class="text-brand-soft">teos</code> and <code class="text-brand-soft">fcc-server</code> commands + shortcuts</li>
+          <li class="flex gap-3"><span class="text-brand-light">&#10003;</span> Free updates within the 1.x line</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+        <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-5">HOW IT WORKS</div>
+        <ol class="space-y-5">
+          <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-bold flex items-center justify-center">1</span><span class="text-white/75 text-sm">Unzip the bundle and run <code class="text-brand-soft">Install-TEOS-AI-Gateway.ps1</code>.</span></li>
+          <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-bold flex items-center justify-center">2</span><span class="text-white/75 text-sm">Open the Admin UI and paste your provider API key(s).</span></li>
+          <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-bold flex items-center justify-center">3</span><span class="text-white/75 text-sm">Run your coding agent — it's now connected.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ PRICING ============================ -->
+  <section id="pricing" class="relative px-6 py-24 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-4">PRICING</div>
+        <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-5">One-time purchase</h2>
+        <p class="text-white/60 text-lg">No subscription. No usage markup. You bring your own provider keys.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Standard -->
+        <div class="p-8 rounded-2xl border border-white/10 bg-white/[0.03] flex flex-col">
+          <h3 class="font-semibold text-lg mb-1">Standard</h3>
+          <p class="text-white/50 text-sm mb-6">The bundle, one machine.</p>
+          <div class="text-4xl font-black mb-6">$19</div>
+          <ul class="space-y-3 text-sm text-white/70 mb-8 flex-1">
+            <li>&#10003; Offline Windows installer</li>
+            <li>&#10003; All providers &amp; agents</li>
+            <li>&#10003; Full source (AGPL-3.0)</li>
+            <li>&#10003; 1.x updates</li>
+          </ul>
+          <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+             class="text-center px-6 py-3 rounded-full border border-white/20 bg-white/[0.05] font-semibold hover:bg-white/[0.09] transition">Buy Standard</a>
+        </div>
+        <!-- Pro -->
+        <div class="p-8 rounded-2xl border border-brand/50 bg-brand/[0.08] flex flex-col relative shadow-[0_0_50px_rgba(91,108,255,0.25)]">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand text-xs font-bold tracking-wide">MOST POPULAR</div>
+          <h3 class="font-semibold text-lg mb-1">Pro + Setup</h3>
+          <p class="text-white/50 text-sm mb-6">I install it with you.</p>
+          <div class="text-4xl font-black mb-6">$49</div>
+          <ul class="space-y-3 text-sm text-white/80 mb-8 flex-1">
+            <li>&#10003; Everything in Standard</li>
+            <li>&#10003; Live install + setup (30 min)</li>
+            <li>&#10003; Provider keys configured with you</li>
+            <li>&#10003; Priority email support</li>
+          </ul>
+          <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+             class="text-center px-6 py-3 rounded-full bg-brand font-semibold hover:bg-brand/90 transition shadow-[0_0_30px_rgba(91,108,255,0.45)]">Buy Pro</a>
+        </div>
+        <!-- Team -->
+        <div class="p-8 rounded-2xl border border-white/10 bg-white/[0.03] flex flex-col">
+          <h3 class="font-semibold text-lg mb-1">Team</h3>
+          <p class="text-white/50 text-sm mb-6">Up to 5 machines.</p>
+          <div class="text-4xl font-black mb-6">$99</div>
+          <ul class="space-y-3 text-sm text-white/70 mb-8 flex-1">
+            <li>&#10003; Everything in Standard</li>
+            <li>&#10003; 5 machine licenses</li>
+            <li>&#10003; Setup assistance</li>
+            <li>&#10003; 30 days email support</li>
+          </ul>
+          <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+             class="text-center px-6 py-3 rounded-full border border-white/20 bg-white/[0.05] font-semibold hover:bg-white/[0.09] transition">Buy Team</a>
+        </div>
+      </div>
+      <p class="text-center text-white/40 text-sm mt-8">Secure checkout &amp; instant download via Gumroad. 7-day refund if the installer can't run on a supported Windows version.</p>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section id="faq" class="relative px-6 py-24 border-t border-white/5">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14">
+        <div class="text-[13px] tracking-[0.2em] text-[#7CA4FF] font-semibold mb-4">FAQ</div>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight">Questions</h2>
+      </div>
+      <div class="space-y-4">
+        <details class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6" open>
+          <summary class="cursor-pointer font-semibold marker:content-none flex justify-between items-center">Do I need my own API keys?<span class="text-brand-light group-open:rotate-45 transition">+</span></summary>
+          <p class="text-white/60 text-sm mt-4 leading-relaxed">Yes. You bring your own provider keys (OpenAI, Anthropic, Gemini, OpenRouter, Groq, ...) or use local models with Ollama / LM Studio. That keeps you in control and there's no usage markup.</p>
+        </details>
+        <details class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <summary class="cursor-pointer font-semibold marker:content-none flex justify-between items-center">Does it work offline?<span class="text-brand-light group-open:rotate-45 transition">+</span></summary>
+          <p class="text-white/60 text-sm mt-4 leading-relaxed">The installer is fully offline. For AI responses you need internet for cloud providers, or none at all if you run local models.</p>
+        </details>
+        <details class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <summary class="cursor-pointer font-semibold marker:content-none flex justify-between items-center">Which Windows versions are supported?<span class="text-brand-light group-open:rotate-45 transition">+</span></summary>
+          <p class="text-white/60 text-sm mt-4 leading-relaxed">Windows 10 and 11, 64-bit. About 500 MB of free disk space.</p>
+        </details>
+        <details class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <summary class="cursor-pointer font-semibold marker:content-none flex justify-between items-center">Is this affiliated with Anthropic?<span class="text-brand-light group-open:rotate-45 transition">+</span></summary>
+          <p class="text-white/60 text-sm mt-4 leading-relaxed">No. TEOS AI Gateway is an independent project. "Claude" and "Claude Code" are trademarks of Anthropic. It is a modified distribution of Free Claude Code, licensed under AGPL-3.0-only, with the full source included.</p>
+        </details>
+        <details class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <summary class="cursor-pointer font-semibold marker:content-none flex justify-between items-center">What if it doesn't work for me?<span class="text-brand-light group-open:rotate-45 transition">+</span></summary>
+          <p class="text-white/60 text-sm mt-4 leading-relaxed">Email support is included, and there's a 7-day refund if the installer can't run on a supported Windows version and we can't fix it together.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FINAL CTA ============================ -->
+  <section class="relative px-6 py-28 border-t border-white/5 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute bottom-[-200px] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#5B6CFF]/20 rounded-full blur-[130px]"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-6">Ready to simplify your AI stack?</h2>
+      <p class="text-white/60 text-lg mb-10">Download once. Connect everything. Bring your own keys.</p>
+      <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
+         class="inline-block px-10 py-4 rounded-full bg-brand font-semibold text-white hover:bg-brand/90 transition shadow-[0_0_40px_rgba(91,108,255,0.55)]">
+        Get TEOS AI Gateway — $19
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="px-6 py-12 border-t border-white/5 text-center text-sm text-white/40">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <p class="font-semibold text-white/70">TEOS AI Gateway</p>
+      <p>Independent project. Not affiliated with or endorsed by Anthropic. "Claude" is a trademark of Anthropic.</p>
+      <p>Modified distribution of <a class="text-brand-soft hover:underline" href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">Free Claude Code</a> — AGPL-3.0-only, full source included with every purchase.</p>
+      <p class="pt-2"><a class="text-white/60 hover:text-white" href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener">Buy</a> &middot; <a class="text-white/60 hover:text-white" href="mailto:hello@example.com">Support</a></p>
+      <p class="text-xs text-white/30">&copy; 2026 TEOS AI Gateway.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
