@@ -2,33 +2,37 @@
 
 <h1>
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="assets/free-claude-code-wordmark-light.svg">
-    <img src="assets/free-claude-code-wordmark-dark.svg" alt="Free Claude Code" width="610">
+    <source media="(prefers-color-scheme: light)" srcset="assets/teos-ai-gateway-wordmark-light.svg">
+    <img src="assets/teos-ai-gateway-wordmark-dark.svg" alt="TEOS AI Gateway" width="610">
   </picture>
 </h1>
 
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-2e7d32.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/blob/main/LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-2e7d32.svg?style=for-the-badge)](LICENSE)
 [![Python 3.14](https://img.shields.io/badge/python-3.14-3776ab.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![Package Manager: uv](assets/package-manager-uv.svg)](https://github.com/astral-sh/uv)
-[![Testing: Pytest](https://img.shields.io/badge/Testing-Pytest-ad1457.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/actions/workflows/tests.yml)
-[![Type Checker: Ty](https://img.shields.io/badge/Type%20Checker-ty-fdd835.svg?style=for-the-badge)](https://pypi.org/project/ty/)
-[![Formatter: Ruff](https://img.shields.io/badge/Formatter-ruff-bf4b00.svg?style=for-the-badge)](https://github.com/astral-sh/ruff)
-[![Logging: Loguru](https://img.shields.io/badge/logging-loguru-00695c.svg?style=for-the-badge)](https://github.com/Delgan/loguru)
 
 [Quick Start](#quick-start) · [Providers](#choose-a-provider) · [Clients](#connect-your-client) · [Integrations](#optional-integrations) · [Manage](#manage-your-installation)
 
 </div>
 
 <p align="center">
-  <em>Independent open-source project. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.</em>
+  <em>Unified access to multiple AI providers — one local endpoint for your coding agents.</em>
+</p>
+
+<p align="center">
+  <em>TEOS AI Gateway is a modified distribution of
+  <a href="https://github.com/Alishahryar1/free-claude-code">Free Claude Code</a> by Ali Khokhar,
+  licensed under AGPL-3.0-only. It is an independent project, not affiliated with or endorsed
+  by Anthropic or by the Free Claude Code authors. Claude and Claude Code are trademarks of
+  Anthropic. See <a href="TEOS_MODIFICATIONS.md">TEOS_MODIFICATIONS.md</a> for the list of modifications.</em>
 </p>
 
 ## What You Get
 
-- **56 ToS-friendly providers. 1.3B+ free tokens every month.** Use free, paid, subscription, and local models from one searchable UI without putting your account at risk. FCC follows provider terms and removes integrations if they stop being allowed.
-- **11 coding agents. One model catalog.** Run [Claude Code](https://code.claude.com/docs/en/overview), [Codex](https://github.com/openai/codex), [Pi](https://github.com/earendil-works/pi), [OpenCode](https://github.com/anomalyco/opencode), [Cline](https://github.com/cline/cline), [Hermes](https://github.com/NousResearch/hermes-agent), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [Grok Build](https://github.com/xai-org/grok-build), [Muse Code](https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2/), [Aider](https://aider.chat/), or [VS Code Chat](https://code.visualstudio.com/) with your FCC models.
-- **Keep coding through provider outages.** After retries are exhausted, FCC automatically tries your next configured model without making you restart the turn. This works across every client.
-- **Up to 90% fewer terminal-output tokens.** Optional [RTK](https://github.com/rtk-ai/rtk) filters common command output, while five FCC optimizations handle quota probes, command-prefix detection, titles, suggestions, and filepaths without calling a provider.
+- **56 ToS-friendly providers. One catalog.** Mix free, paid, subscription, and local models from one searchable UI without putting your account at risk. TEOS follows each provider's terms and removes integrations if they stop being allowed.
+- **11 coding agents. One model catalog.** Run [Claude Code](https://code.claude.com/docs/en/overview), [Codex](https://github.com/openai/codex), [Pi](https://github.com/earendil-works/pi), [OpenCode](https://github.com/anomalyco/opencode), [Cline](https://github.com/cline/cline), [Hermes](https://github.com/NousResearch/hermes-agent), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [Grok Build](https://github.com/xai-org/grok-build), [Muse Code](https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2/), [Aider](https://aider.chat/), or [VS Code Chat](https://code.visualstudio.com/) with your TEOS models.
+- **Keep coding through provider outages.** After retries are exhausted, TEOS automatically tries your next configured model without making you restart the turn. This works across every client.
+- **Up to 90% fewer terminal-output tokens.** Optional [RTK](https://github.com/rtk-ai/rtk) filters common command output, while five TEOS optimizations handle quota probes, command-prefix detection, titles, suggestions, and filepaths without calling a provider.
 - **Native Code sessions in your browser.** Choose a folder and run Codex in the browser with real-time and background support. Freely switch providers/models in the same session. Support for switching harnesses in the same session coming soon!
 - **Terminal, desktop, IDE, or phone.** Work through native launchers, [VS Code](https://code.visualstudio.com/), [Codex App](https://learn.chatgpt.com/docs/app), [JetBrains](https://www.jetbrains.com/), [Discord](https://discord.com/), or [Telegram](https://telegram.org/).
 - **Voice notes in. Code out.** Talk to your agent using local [Whisper](https://github.com/openai/whisper) or [NVIDIA NIM](https://docs.nvidia.com/nim/speech/latest/asr/deploy-asr-models/whisper.html) transcription.
@@ -37,13 +41,13 @@
 Free-tier availability and limits are controlled by each provider and may change.
 
 <div align="center">
-  <img src="assets/pic.png" alt="Claude Code running with Free Claude Code" width="700">
-  <p><em>Claude Code running with FCC.</em></p>
+  <img src="assets/pic.png" alt="Claude Code running with TEOS AI Gateway" width="700">
+  <p><em>Claude Code running with TEOS.</em></p>
 </div>
 
 <div align="center">
-  <img src="assets/browser-code-session.png" alt="Native Codex browser session in FCC, showing model controls and a repository exploration" width="700">
-  <p><em>A native Codex session in FCC's browser UI.</em></p>
+  <img src="assets/browser-code-session.png" alt="Native Codex browser session in TEOS, showing model controls and a repository exploration" width="700">
+  <p><em>A native Codex session in TEOS's browser UI.</em></p>
 </div>
 
 ## Quick Start
@@ -52,29 +56,34 @@ Free-tier availability and limits are controlled by each provider and may change
 
 ### 1. Install
 
-macOS/Linux:
-
-```bash
-curl -fsSL "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh" | sh
-```
-
-Windows PowerShell:
+TEOS AI Gateway ships as an **offline Windows bundle**, so no internet connection is
+needed to install. Unzip `TEOS-AI-Gateway-Windows-<version>.zip` and run:
 
 ```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.ps1")))
+powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 ```
 
-When prompted, choose at least one coding agent and optionally RTK. You can review the installers before running them: [install.sh](scripts/install.sh) and [install.ps1](scripts/install.ps1).
+The installer installs the wheel, adds the `teos` and `fcc-server` commands, creates
+Start-menu and desktop shortcuts, and pins `fcc-update` so the upstream auto-updater
+can never replace this build.
 
-### 2. Start FCC
+Developers can install from source instead:
+
+```bash
+git clone https://github.com/Aymanseif/free-claude-code -b teos-ai-gateway
+cd free-claude-code
+uv tool install .
+```
+
+### 2. Start TEOS
 
 #### Windows
 
-Open **Free Claude Code** from your desktop or Start menu.
+Open **TEOS AI Gateway** from your desktop or Start menu.
 
 #### macOS
 
-Open **Free Claude Code** from your desktop or Applications folder.
+Open **TEOS AI Gateway** from your desktop or Applications folder.
 
 #### Linux
 
@@ -84,7 +93,7 @@ Run:
 fcc-server
 ```
 
-FCC opens the Admin UI after starting. On Windows and macOS, use the tray or
+TEOS opens the Admin UI after starting. On Windows and macOS, use the tray or
 menu-bar icon to open Admin, restart, or quit. When using `fcc-server`, keep its
 terminal open.
 
@@ -102,7 +111,7 @@ To protect the local proxy with a bearer token, enable **Proxy Authentication**
 in Admin.
 
 <div align="center">
-  <img src="assets/admin-page.png" alt="Free Claude Code Admin UI" width="700">
+  <img src="assets/admin-page.png" alt="TEOS AI Gateway Admin UI" width="700">
 </div>
 
 ### 4. Run Your Coding Agent
@@ -131,10 +140,10 @@ OpenCode 2:
 fcc-opencode
 ```
 
-To upgrade from OpenCode 1, close OpenCode and rerun the FCC installer with
+To upgrade from OpenCode 1, close OpenCode and rerun the TEOS installer with
 OpenCode selected. For npm or other package-manager installations, follow
 [OpenCode's migration instructions](https://opencode.ai/v2/docs/migrate-v1/)
-first. For npm v1, run `npm uninstall -g opencode-ai`, then rerun the FCC installer.
+first. For npm v1, run `npm uninstall -g opencode-ai`, then rerun the TEOS installer.
 
 RTK integration is temporarily unavailable for OpenCode 2. RTK continues to work
 with the other supported agents.
@@ -181,8 +190,8 @@ fcc-aider
 <a id="model-picker"></a>
 
 <div align="center">
-  <img src="assets/cc-model-picker.png" alt="Claude Code model picker showing FCC models" width="700">
-  <p><em>Select an FCC model from Claude Code's native <code>/model</code> picker.</em></p>
+  <img src="assets/cc-model-picker.png" alt="Claude Code model picker showing TEOS models" width="700">
+  <p><em>Select an TEOS model from Claude Code's native <code>/model</code> picker.</em></p>
 </div>
 
 ## Choose A Provider
@@ -361,20 +370,20 @@ Providers that do not support a selected control retain their own behavior.
 
 ## Connect Your Client
 
-For editor and app integrations, install the client, start FCC, then open
+For editor and app integrations, install the client, start TEOS, then open
 **Admin UI → Integrations** and click **Connect** on its card.
 
 - **Claude Code in VS Code**: Install the [Claude Code extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code).
-- **VS Code Chat**: Install the latest [VS Code](https://code.visualstudio.com/), connect, and select an FCC model in its built-in Chat model picker.
+- **VS Code Chat**: Install the latest [VS Code](https://code.visualstudio.com/), connect, and select an TEOS model in its built-in Chat model picker.
 - **Claude Desktop**: Install [Claude Desktop](https://claude.ai/download). Fully quit it before connecting or disconnecting, then reopen it. Disconnect returns to normal Claude sign-in.
 - **Codex in VS Code and App**: Install the [Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt) or Codex App.
-- **Claude Code in JetBrains ACP**: Install Claude Agent in JetBrains AI Assistant and start it once, then click **Connect** in FCC. Reopen the IDE, select **Claude Code (FCC)**, and start a new chat. After JetBrains updates the agent, restart FCC before starting a new chat. Requires a local IDE in its standard installation locations.
+- **Claude Code in JetBrains ACP**: Install Claude Agent in JetBrains AI Assistant and start it once, then click **Connect** in TEOS. Reopen the IDE, select **Claude Code (TEOS)**, and start a new chat. After JetBrains updates the agent, restart TEOS before starting a new chat. Requires a local IDE in its standard installation locations.
 
-Reload VS Code or restart the app/IDE after connecting. In Codex and Claude Desktop, select an FCC
-model from the model picker. Reload or restart the client when FCC reports updated settings. Use
+Reload VS Code or restart the app/IDE after connecting. In Codex and Claude Desktop, select an TEOS
+model from the model picker. Reload or restart the client when TEOS reports updated settings. Use
 **Disconnect** on the same card to remove the integration.
 
-Run FCC on the same computer and in the same user environment as the client you
+Run TEOS on the same computer and in the same user environment as the client you
 are configuring.
 
 <a id="optional-integrations"></a>
@@ -415,7 +424,7 @@ Configure integrations from **Admin UI → Messaging**, then click **Apply**.
 | `/stats` | Show session state. |
 | Standalone `/stop` | Cancel all work. |
 | Reply with `/stop` | Cancel only the selected request while other queued requests continue. |
-| Standalone `/clear` | Clear all FCC conversations and their messages in this chat. |
+| Standalone `/clear` | Clear all TEOS conversations and their messages in this chat. |
 | Reply with `/clear` | Delete the selected message and the chain of replies to it. Keep other conversations. |
 
 <details>
@@ -423,35 +432,14 @@ Configure integrations from **Admin UI → Messaging**, then click **Apply**.
 
 NVIDIA NIM transcription support is included in every installation. In **Admin UI → Messaging → Voice**, enable voice notes, select `nvidia_nim`, and choose a supported model. Configure your **NVIDIA NIM API key** on the Providers page.
 
-For local Whisper on CPU or CUDA, re-run the installer with the local voice option:
-
-macOS/Linux:
-
-Local Whisper on CPU or CUDA:
+For local Whisper on CPU or CUDA, reinstall the tool with the local voice extra:
 
 ```bash
-curl -fsSL "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh" | sh -s -- --voice-local
+uv tool install --force "free-claude-code[voice_local]"
 ```
 
-Local Whisper with CUDA 13.0:
-
-```bash
-curl -fsSL "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh" | sh -s -- --voice-local --torch-backend cu130
-```
-
-Windows PowerShell:
-
-Local Whisper on CPU or CUDA:
-
-```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.ps1"))) -VoiceLocal
-```
-
-Local Whisper with CUDA 13.0:
-
-```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.ps1"))) -VoiceLocal -TorchBackend cu130
-```
+Add `--torch-backend cu130` for CUDA 13.0. For a bundled install, pass the bundled
+wheel path instead of the package name.
 
 After installing local support, restart `fcc-server`. In **Admin UI → Messaging → Voice**, enable voice notes, select `cpu` or `cuda`, and choose the Whisper model. Local gated models need `HUGGINGFACE_API_KEY`.
 
@@ -459,65 +447,35 @@ After installing local support, restart `fcc-server`. In **Admin UI → Messagin
 
 ## Manage Your Installation
 
-Run `fcc-server --version` to check the installed version without starting FCC.
+Run `fcc-server --version` to check the installed version without starting TEOS.
 
 ### Update
 
-Stop all running FCC commands, then run:
-
-```sh
-fcc-update
-```
-
-If FCC is already up to date, the command stops without running the installer. Otherwise, it shows the installed and available versions before updating. If the version check fails, retry the command.
-
-To reinstall FCC or change optional components while already up to date, run the [installer](#install) directly.
-
-For local voice support, include `--voice-local` (macOS/Linux) or `-VoiceLocal` (Windows), plus your `--torch-backend` or `-TorchBackend` option if used.
-
-If your installation does not have `fcc-update` yet, run the [installer](#install) once to add it.
-
-### Muse Code on native Windows
-
-To install or update only Muse Code:
+TEOS AI Gateway is distributed as an **offline bundle**. To update, stop all running
+TEOS commands, then run the installer from a newer bundle:
 
 ```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install-muse.ps1")))
+powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 ```
 
-To remove the Muse Code copy installed by FCC, keeping its data:
-
-```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/uninstall-muse.ps1")))
-```
-
-Uninstalling FCC leaves Muse Code installed.
+`fcc-update` is intentionally a no-op stub in this build, so the upstream Free Claude
+Code auto-updater can never replace it.
 
 ### Uninstall
 
-Stop every running FCC command before uninstalling.
+Stop every running TEOS command, then remove the tool and its data:
 
-**Removes**
+```powershell
+uv tool uninstall free-claude-code
+Remove-Item -Recurse -Force "$env:USERPROFILE\.fcc"
+```
 
-- Free Claude Code, including its desktop launcher and commands
-- `~/.fcc/`
+Then delete the **TEOS AI Gateway** Desktop and Start-menu shortcuts if you created them.
 
 **Keeps**
 
 - uv and Python
 - Your coding agents and RTK
-
-macOS/Linux:
-
-```bash
-curl -fsSL "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/uninstall.sh" | sh
-```
-
-Windows PowerShell:
-
-```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/uninstall.ps1")))
-```
 
 ## Project Links
 
@@ -527,7 +485,8 @@ For a problem after installation, run the command below and paste its output int
 fcc-doctor
 ```
 
-- [Report bugs or request features](https://github.com/Alishahryar1/free-claude-code/issues)
+- [Report bugs or request features](https://github.com/Aymanseif/free-claude-code/issues)
+- [Modification notice](TEOS_MODIFICATIONS.md)
 - [Contributing guide](CONTRIBUTING.md)
 
 ## License

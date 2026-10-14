@@ -1,11 +1,11 @@
 <#
 .SYNOPSIS
-    Builds the TEOS Free AI offline Windows distribution bundle.
+    Builds the TEOS AI Gateway offline Windows distribution bundle.
 
 .DESCRIPTION
     Builds a wheel + sdist from the (rebranded) free-claude-code checkout, then
     assembles a self-contained ZIP containing:
-      - Install-TEOSFreeAI.ps1   (offline installer)
+      - Install-TEOS-AI-Gateway.ps1   (offline installer)
       - dist\<wheel>, dist\<sdist>
       - source\<name>-source.zip (full Corresponding Source, AGPL-3.0 §4/§6)
       - LICENSE (AGPL-3.0-only, verbatim)
@@ -57,13 +57,13 @@ function Write-Step { param([string] $Message) Write-Host "==> $Message" -Foregr
 function Write-Ok { param([string] $Message) Write-Host "    $Message" -ForegroundColor Green }
 function Write-Warn { param([string] $Message) Write-Host "    $Message" -ForegroundColor Yellow }
 
-$ProductSlug = "TEOS-Free-AI-Windows"
+$ProductSlug = "TEOS-AI-Gateway-Windows"
 $InstallerDir = Join-Path $PSScriptRoot "installer"
 
 if (-not (Test-Path -LiteralPath (Join-Path $RepoPath "pyproject.toml"))) {
     throw "RepoPath does not look like the free-claude-code checkout: $RepoPath"
 }
-foreach ($required in @("Install-TEOSFreeAI.ps1", "NOTICE.md", "README-INSTALL.txt")) {
+foreach ($required in @("Install-TEOS-AI-Gateway.ps1", "NOTICE.md", "README-INSTALL.txt")) {
     if (-not (Test-Path -LiteralPath (Join-Path $InstallerDir $required))) {
         throw "Missing installer asset: $required"
     }
@@ -122,7 +122,7 @@ Write-Ok "Wheel: $($wheel.Name)"
 
 # --- Assemble ---------------------------------------------------------------
 Write-Step "Assembling bundle contents"
-Copy-Item -LiteralPath (Join-Path $InstallerDir "Install-TEOSFreeAI.ps1") -Destination $stage
+Copy-Item -LiteralPath (Join-Path $InstallerDir "Install-TEOS-AI-Gateway.ps1") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $InstallerDir "NOTICE.md") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $InstallerDir "README-INSTALL.txt") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $RepoPath "LICENSE") -Destination $stage
@@ -151,4 +151,4 @@ Write-Ok "Bundle:  $zipPath"
 Write-Ok "Size:    $sizeMb MB"
 Write-Ok "Version: $Version"
 Write-Host ""
-Write-Host "Ship this ZIP. Buyers extract it and run Install-TEOSFreeAI.ps1." -ForegroundColor DarkGray
+Write-Host "Ship this ZIP. Buyers extract it and run Install-TEOS-AI-Gateway.ps1." -ForegroundColor DarkGray

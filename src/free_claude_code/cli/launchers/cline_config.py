@@ -73,7 +73,7 @@ def build_cline_config(
             "providers": {
                 CLINE_PROVIDER_ID: {
                     "provider": {
-                        "name": "TEOS Free AI",
+                        "name": "TEOS AI Gateway",
                         "baseUrl": proxy_v1_url(proxy_root_url),
                         "defaultModelId": default_model_id,
                         "protocol": "openai-responses",

@@ -1,14 +1,14 @@
 <#
 .SYNOPSIS
-    Offline Windows installer for TEOS Free AI.
+    Offline Windows installer for TEOS AI Gateway.
 
 .DESCRIPTION
-    Installs TEOS Free AI from the wheel bundled with this package, using uv.
+    Installs TEOS AI Gateway from the wheel bundled with this package, using uv.
     Disables the upstream (Free Claude Code) auto-update mechanism so this build
-    is never silently replaced by an upstream release, adds a `teosfreeai`
+    is never silently replaced by an upstream release, adds a `teos`
     command, and creates Desktop / Start Menu shortcuts.
 
-    TEOS Free AI is a modified version of Free Claude Code (AGPL-3.0-only).
+    TEOS AI Gateway is a modified version of Free Claude Code (AGPL-3.0-only).
     See NOTICE.md and LICENSE in this bundle.
 
 .PARAMETER Startup
@@ -24,7 +24,7 @@
     Print the planned actions without changing the machine.
 
 .EXAMPLE
-    powershell -ExecutionPolicy Bypass -File .\Install-TEOSFreeAI.ps1
+    powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 #>
 #Requires -Version 5.1
 [CmdletBinding()]
@@ -41,9 +41,9 @@ $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
 # The internal distribution name is the upstream AGPL package name and is
-# intentionally NOT renamed (see NOTICE.md). The product name is TEOS Free AI.
+# intentionally NOT renamed (see NOTICE.md). The product name is TEOS AI Gateway.
 $ToolName = "free-claude-code"
-$ProductName = "TEOS Free AI"
+$ProductName = "TEOS AI Gateway"
 $PythonRequest = "cpython-3.14.7-windows-x86_64-none"
 $UvInstallUrl = "https://astral.sh/uv/install.ps1"
 
@@ -57,7 +57,7 @@ function Show-Usage {
 $ProductName - offline Windows installer
 
 Usage:
-  powershell -ExecutionPolicy Bypass -File .\Install-TEOSFreeAI.ps1 [options]
+  powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1 [options]
 
 Options:
   -Startup        Also launch $ProductName at sign-in
@@ -181,11 +181,11 @@ exit 0
     }
 }
 
-# --- 6. Add the `teosfreeai` command ---------------------------------------
-Write-Step "Adding the 'teosfreeai' command"
+# --- 6. Add the `teos` command ---------------------------------------
+Write-Step "Adding the 'teos' command"
 $shims = @{
-    "teosfreeai.cmd" = "@echo off`r`n`"%~dp0fcc-desktop.exe`" %*`r`n"
-    "teosfreeai-server.cmd" = "@echo off`r`n`"%~dp0fcc-server.exe`" %*`r`n"
+    "teos.cmd" = "@echo off`r`n`"%~dp0fcc-desktop.exe`" %*`r`n"
+    "teos-server.cmd" = "@echo off`r`n`"%~dp0fcc-server.exe`" %*`r`n"
 }
 if ($DryRun) {
     foreach ($name in $shims.Keys) { Write-Plain "write: $(Join-Path $binDir $name)" }
@@ -194,7 +194,7 @@ else {
     foreach ($name in $shims.Keys) {
         Set-Content -LiteralPath (Join-Path $binDir $name) -Value $shims[$name] -Encoding ASCII
     }
-    Write-Ok "Commands: teosfreeai, teosfreeai-server"
+    Write-Ok "Commands: teos, teos-server"
 }
 
 # --- 7. Shortcuts ----------------------------------------------------------
@@ -231,7 +231,7 @@ if (-not $NoShortcuts) {
 # --- 8. Summary ------------------------------------------------------------
 Write-Host ""
 Write-Step "Done"
-Write-Plain "Launch $ProductName from the Desktop shortcut, or run: teosfreeai"
+Write-Plain "Launch $ProductName from the Desktop shortcut, or run: teos"
 Write-Plain "The Admin UI opens automatically; add your provider API keys there."
 Write-Host ""
 Write-Host "  License: AGPL-3.0-only (see LICENSE and NOTICE.md in this bundle)." -ForegroundColor DarkGray

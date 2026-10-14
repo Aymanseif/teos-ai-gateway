@@ -114,7 +114,7 @@ class CodexAppServer:
                 {
                     "clientInfo": {
                         "name": "free_claude_code",
-                        "title": "TEOS Free AI",
+                        "title": "TEOS AI Gateway",
                         "version": package_version(),
                     },
                     "capabilities": {

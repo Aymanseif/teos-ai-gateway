@@ -294,7 +294,7 @@ def render_managed_config(
     canonical = dict(values)
     canonical[FCC_CONFIG_SCHEMA_ENV] = CONFIG_SCHEMA_VERSION
     lines = [
-        "# Managed by TEOS Free AI.",
+        "# Managed by TEOS AI Gateway.",
         "# Edit settings in /admin when possible.",
         f"{FCC_CONFIG_SCHEMA_ENV}={CONFIG_SCHEMA_VERSION}",
     ]

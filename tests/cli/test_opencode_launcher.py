@@ -87,7 +87,7 @@ def test_opencode_config_uses_native_responses_and_model_budgets() -> None:
         "compaction": {"buffer": 16384},
         "providers": {
             "free-claude-code": {
-                "name": "TEOS Free AI",
+                "name": "TEOS AI Gateway",
                 "package": "@opencode/ai/providers/openai/responses",
                 "settings": {
                     "baseURL": "http://127.0.0.1:9191/v1",

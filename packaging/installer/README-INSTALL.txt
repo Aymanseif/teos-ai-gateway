@@ -1,7 +1,7 @@
-TEOS Free AI - Windows Installation
+TEOS AI Gateway - Windows Installation
 ===================================
 
-TEOS Free AI is a local AI proxy that connects coding agents (Claude Code, Codex,
+TEOS AI Gateway is a local AI proxy that connects coding agents (Claude Code, Codex,
 OpenCode, Cline, and others) to OpenAI-compatible AI providers.
 
 It is a modified version of Free Claude Code (AGPL-3.0-only). See NOTICE.md and LICENSE.
@@ -17,19 +17,19 @@ REQUIREMENTS
 
 INSTALL
 -------
-1. Extract this ZIP somewhere permanent, e.g. C:\TEOS-Free-AI\
+1. Extract this ZIP somewhere permanent, e.g. C:\TEOS-AI-Gateway\
 2. Open PowerShell in that folder.
 3. Run:
 
-     powershell -ExecutionPolicy Bypass -File .\Install-TEOSFreeAI.ps1
+     powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 
    Useful options:
-     -Startup       Also launch TEOS Free AI when you sign in to Windows
+     -Startup       Also launch TEOS AI Gateway when you sign in to Windows
      -NoShortcuts   Skip Desktop / Start Menu shortcuts
      -DryRun        Show what would happen without changing anything
 
-4. When it finishes, launch TEOS Free AI from the Desktop shortcut (or run
-   `teosfreeai` in a terminal). The Admin UI opens automatically.
+4. When it finishes, launch TEOS AI Gateway from the Desktop shortcut (or run
+   `teos` in a terminal). The Admin UI opens automatically.
 
 5. In the Admin UI, paste your provider API key (for example NVIDIA NIM, Groq or
    Mistral) and click Apply.
@@ -47,8 +47,8 @@ FIRST RUN
 UPDATING
 --------
 Upstream auto-update is disabled on purpose (it would overwrite this build with the
-original Free Claude Code release). To update, obtain a newer TEOS Free AI bundle and
-re-run Install-TEOSFreeAI.ps1.
+original Free Claude Code release). To update, obtain a newer TEOS AI Gateway bundle and
+re-run Install-TEOS-AI-Gateway.ps1.
 
 
 UNINSTALL

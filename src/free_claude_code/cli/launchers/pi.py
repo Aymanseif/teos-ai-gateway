@@ -30,7 +30,7 @@ def _configure(
     extension_path = pi_extension_path()
     if not extension_path.is_file():
         raise ValueError(
-            "TEOS Free AI's bundled Pi extension is missing. Reinstall TEOS Free AI."
+            "TEOS AI Gateway's bundled Pi extension is missing. Reinstall TEOS AI Gateway."
         )
     return PreparedLaunch(
         [

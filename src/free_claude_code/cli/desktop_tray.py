@@ -16,9 +16,9 @@ class PystrayDesktopTray:
     def __init__(self, controller: DesktopController) -> None:
         self._controller = controller
         self._icon = Icon(
-            "teos-free-ai",
+            "teos-ai-gateway",
             _create_icon(),
-            "TEOS Free AI",
+            "TEOS AI Gateway",
             Menu(
                 MenuItem("Open Admin", self._open_admin, default=True),
                 MenuItem("Check Server Status", self._check_status),
@@ -44,7 +44,7 @@ class PystrayDesktopTray:
     def _check_status(self, _icon: Icon, _item: MenuItem) -> None:
         self._icon.notify(
             f"Server is {self._controller.status}.",
-            "TEOS Free AI",
+            "TEOS AI Gateway",
         )
 
     def _restart_server(self, _icon: Icon, _item: MenuItem) -> None:

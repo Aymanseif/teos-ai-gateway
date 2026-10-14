@@ -39,7 +39,7 @@ def test_launcher_config_composes_with_persistent_codex_config(
                 f"model_catalog_json = {json.dumps(str(catalog_path))}",
                 "",
                 "[model_providers.fcc]",
-                'name = "TEOS Free AI"',
+                'name = "TEOS AI Gateway"',
                 'base_url = "http://127.0.0.1:8082/v1"',
                 'wire_api = "responses"',
                 "",

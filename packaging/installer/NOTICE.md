@@ -1,6 +1,6 @@
-# NOTICE — TEOS Free AI
+# NOTICE — TEOS AI Gateway
 
-**TEOS Free AI** is a **modified version** of
+**TEOS AI Gateway** is a **modified version** of
 [Free Claude Code](https://github.com/Alishahryar1/free-claude-code),
 Copyright (c) 2026 **Ali Khokhar**, licensed under the
 **GNU Affero General Public License v3.0 only (AGPL-3.0-only)**.
@@ -10,10 +10,10 @@ The original license text is included verbatim as `LICENSE` in this bundle.
 ## Modification notice (AGPL-3.0 §5a)
 
 This distribution is a modified version of the original work. Modifications were made
-by the TEOS Free AI distributor and include, at minimum:
+by the TEOS AI Gateway distributor and include, at minimum:
 
 - Rebranding of user-visible names (Admin UI title/heading, desktop tray name,
-  `--version` banner, and coding-agent provider display names) to "TEOS Free AI".
+  `--version` banner, and coding-agent provider display names) to "TEOS AI Gateway".
 - An offline Windows installer and bundled distribution packaging (this bundle).
 - Disabling of the upstream `fcc-update` auto-update command so this build is not
   silently replaced by an upstream release.
@@ -27,7 +27,7 @@ by the TEOS Free AI distributor and include, at minimum:
 The complete Corresponding Source for this build is included in this bundle under
 `source/`, and is also published at:
 
-    https://github.com/Aymanseif/free-claude-code/tree/teos-free-ai
+    https://github.com/Aymanseif/free-claude-code/tree/teos-ai-gateway
 
 If you run a modified version of this software as a network service, AGPL-3.0 §13
 requires you to offer the Corresponding Source to the users interacting with it.

@@ -76,7 +76,7 @@ def build_hermes_managed_config(
     config: JsonObject = {
         "providers": {
             provider_key: {
-                "name": "TEOS Free AI",
+                "name": "TEOS AI Gateway",
                 "api": proxy_v1_url(proxy_root_url),
                 "key_env": key_env,
                 "extra_headers": {

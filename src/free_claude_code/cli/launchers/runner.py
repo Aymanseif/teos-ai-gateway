@@ -112,11 +112,11 @@ def launch_harness(spec: HarnessSpec, argv: Sequence[str] | None = None) -> None
         settings = get_settings()
         auth_token = settings.proxy_auth_token.strip()
         if not auth_token:
-            raise LaunchError("TEOS Free AI proxy authentication token is empty.")
+            raise LaunchError("TEOS AI Gateway proxy authentication token is empty.")
         proxy_root_url = local_proxy_root_url(settings)
         if error := preflight_proxy(proxy_root_url):
             raise LaunchError(
-                f"TEOS Free AI proxy is not reachable at {proxy_root_url}: {error}\n"
+                f"TEOS AI Gateway proxy is not reachable at {proxy_root_url}: {error}\n"
                 "Start it in another terminal with: fcc-server"
             )
         catalog = None

@@ -1,5 +1,5 @@
 name: Installation problem
-description: Report a problem before FCC has been installed successfully.
+description: Report a problem before TEOS has been installed successfully.
 labels:
   - bug
 body:

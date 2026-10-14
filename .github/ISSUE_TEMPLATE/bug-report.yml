@@ -1,5 +1,5 @@
 name: Problem after installation
-description: Report a problem using Free Claude Code after installing it.
+description: Report a problem using TEOS AI Gateway after installing it.
 labels:
   - bug
 body:
@@ -13,7 +13,7 @@ body:
   - type: textarea
     id: doctor
     attributes:
-      label: FCC doctor output
+      label: TEOS doctor output
       description: Run `fcc-doctor` and paste the JSON it copies to your clipboard. If copying is unavailable, copy the printed JSON from your terminal.
       render: json
     validations:

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "free-claude-code"
 dynamic = ["version"]
-description = "Local proxy connecting coding agents to OpenAI-compatible AI providers"
+description = "TEOS AI Gateway - a local gateway connecting coding agents to multiple AI providers"
 readme = "README.md"
 license = "AGPL-3.0-only"
 license-files = ["LICENSE"]

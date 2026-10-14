@@ -71,7 +71,7 @@ def test_invalid_document_is_never_overwritten(tmp_path, source):
 
 def test_conflict_does_not_claim_an_unmarked_group(tmp_path):
     path = tmp_path / "models.json"
-    source = '[{"name":"TEOS Free AI","vendor":"customendpoint"}]'
+    source = '[{"name":"TEOS AI Gateway","vendor":"customendpoint"}]'
     path.write_text(source)
     with pytest.raises(ValueError):
         vscode.configure(path, URL, "secret", (MODEL,))

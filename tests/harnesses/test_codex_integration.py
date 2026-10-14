@@ -27,7 +27,7 @@ def test_connect_disconnect_preserve_model_comments_and_other_providers(tmp_path
     assert data["model_provider"] == "fcc"
     assert Path(data["model_catalog_json"]) == tmp_path / "catalog.json"
     assert data["model_providers"]["fcc"] == {
-        "name": "TEOS Free AI",
+        "name": "TEOS AI Gateway",
         "base_url": URL + "/v1",
         "wire_api": "responses",
         "auth": {"command": "fcc-codex", "args": ["--print-proxy-auth-token"]},

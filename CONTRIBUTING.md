@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve Free Claude Code. Keep changes focused, test the behavior you change, and preserve the public Claude Code and Codex workflows.
+Thanks for helping improve TEOS AI Gateway. Keep changes focused, test the behavior you change, and preserve the public Claude Code and Codex workflows.
 
 ## Before Opening A Pull Request
 
