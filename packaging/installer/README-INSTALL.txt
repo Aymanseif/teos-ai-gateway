@@ -58,7 +58,13 @@ UNINSTALL
 Then delete the Desktop / Start Menu shortcuts and the folder you extracted.
 
 
-LICENSE
--------
+LICENSE & SOURCE
+----------------
 AGPL-3.0-only. This is a modified version of Free Claude Code by Ali Khokhar.
-Full source is included in the source\ folder of this bundle. See NOTICE.md.
+
+The complete Corresponding Source (AGPL-3.0 section 6) is published at:
+
+    https://github.com/Aymanseif/teos-ai-gateway
+
+The exact commit this bundle was built from is recorded in SOURCE.txt. See
+NOTICE.md for details.

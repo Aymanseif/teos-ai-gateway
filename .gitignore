@@ -17,3 +17,7 @@ llama_cache
 /test-results/
 .vscode
 packaging/dist/
+
+# --- Private business / marketing assets (not part of the AGPL source release) ---
+landing/
+packaging/gumroad/

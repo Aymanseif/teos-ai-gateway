@@ -24,9 +24,13 @@ by the TEOS AI Gateway distributor and include, at minimum:
 
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 
-The complete Corresponding Source for this build is included in this bundle under
-`source/`. Keep it with the software and pass it on to anyone who receives the
-software, as required by AGPL-3.0.
+The complete Corresponding Source for this build is published at:
+
+    https://github.com/Aymanseif/teos-ai-gateway
+
+The exact commit this build was produced from is recorded in `SOURCE.txt` next to
+this file. Keep that pointer with the software and pass it on to anyone who
+receives the software, as required by AGPL-3.0.
 
 If you run a modified version of this software as a network service, AGPL-3.0 §13
 requires you to offer the Corresponding Source to the users interacting with it.
