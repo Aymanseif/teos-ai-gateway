@@ -86,7 +86,7 @@ def _connected(document: TOMLDocument, catalog_path: Path, proxy_root_url: str) 
         _recognizes_connection(document, proxy_root_url)
         and _same_catalog(document.get("model_catalog_json"), catalog_path)
         and provider.get("wire_api") == "responses"
-        and auth.get("command") == "fcc-codex"
+        and auth.get("command") == "teos-codex"
         and auth.get("args") == [PRINT_PROXY_AUTH_TOKEN_FLAG]
     )
 

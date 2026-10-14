@@ -41,9 +41,12 @@ packaging/dist/TEOS-AI-Gateway-Windows-<version>.zip
 ## What the installer does
 
 1. Installs the bundled wheel with `uv tool install` (Python 3.14.7).
-2. **Stubs `fcc-update`** in `~/.local/bin` and the tool `Scripts` dir, so the upstream
-   auto-update can never replace this build with the original Free Claude Code.
-3. Adds a `teos` command (and `teos-server`).
+2. Replaces the `teos-update` command with a no-op stub in the bin dir and the tool
+   `Scripts` dir (and neutralises a leftover upstream `fcc-update` only if one is
+   already present), so automatic updates can never replace this build with the
+   original Free Claude Code.
+3. Adds a `teos` command, on top of the real `teos-server`, `teos-doctor` and
+   `teos-<agent>` commands that the wheel installs.
 4. Creates Desktop + Start Menu shortcuts (add `-Startup` for launch at sign-in).
 
 `-DryRun` prints the plan without changing anything.

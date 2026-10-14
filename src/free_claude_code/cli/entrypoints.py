@@ -7,7 +7,7 @@ from free_claude_code.core.version import package_version
 
 
 def serve(argv: Sequence[str] | None = None) -> None:
-    """Start the FastAPI server (registered as ``fcc-server``)."""
+    """Start the FastAPI server (registered as ``teos-server``)."""
     if _print_version_if_requested(argv):
         return
 
@@ -26,7 +26,7 @@ def _print_version_if_requested(argv: Sequence[str] | None) -> bool:
 
 
 def doctor(argv: Sequence[str] | None = None) -> None:
-    """Print and copy a local diagnostic report (registered as ``fcc-doctor``)."""
+    """Print and copy a local diagnostic report (registered as ``teos-doctor``)."""
     if _print_version_if_requested(argv):
         return
     from free_claude_code.cli.doctor import main

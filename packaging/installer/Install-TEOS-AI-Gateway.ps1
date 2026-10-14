@@ -4,9 +4,9 @@
 
 .DESCRIPTION
     Installs TEOS AI Gateway from the wheel bundled with this package, using uv.
-    Disables the upstream (Free Claude Code) auto-update mechanism so this build
-    is never silently replaced by an upstream release, adds a `teos`
-    command, and creates Desktop / Start Menu shortcuts.
+    Disables the bundled auto-updater so this build is never silently replaced
+    by an upstream release, adds a `teos` command, and creates Desktop /
+    Start Menu shortcuts.
 
     TEOS AI Gateway is a modified version of Free Claude Code (AGPL-3.0-only).
     See NOTICE.md and LICENSE in this bundle.
@@ -18,7 +18,7 @@
     Do not create Desktop / Start Menu / Startup shortcuts.
 
 .PARAMETER KeepUpdater
-    Do NOT disable the upstream auto-update command (not recommended).
+    Do NOT disable the bundled automatic-update command (not recommended).
 
 .PARAMETER DryRun
     Print the planned actions without changing the machine.
@@ -62,7 +62,7 @@ Usage:
 Options:
   -Startup        Also launch $ProductName at sign-in
   -NoShortcuts    Skip Desktop / Start Menu / Startup shortcuts
-  -KeepUpdater    Do not disable the upstream auto-update command
+  -KeepUpdater    Do not disable the automatic update command
   -DryRun         Show what would happen, change nothing
   -Help           Show this text
 "@
@@ -140,34 +140,54 @@ $toolScripts = Join-Path $toolsBase "$ToolName\Scripts"
 Write-Ok "Tool dir: $toolScripts"
 Write-Ok "Command dir: $binDir"
 
-$desktopExe = Join-Path $binDir "fcc-desktop.exe"
-$serverExe = Join-Path $binDir "fcc-server.exe"
+$desktopExe = Join-Path $binDir "teos-desktop.exe"
+$serverExe = Join-Path $binDir "teos-server.exe"
+if ($DryRun) {
+    Write-Plain "commands: $desktopExe, $serverExe"
+}
+else {
+    foreach ($exe in @($desktopExe, $serverExe)) {
+        if (-not (Test-Path -LiteralPath $exe)) {
+            Write-Warn "Expected command missing after install: $exe"
+        }
+    }
+}
 
-# --- 5. Disable the upstream auto-updater ----------------------------------
+# --- 5. Disable the bundled auto-updater -----------------------------------
 if (-not $KeepUpdater) {
-    Write-Step "Disabling upstream auto-update"
+    Write-Step "Disabling automatic updates"
     $updateStubCmd = @"
 @echo off
-echo ${ProductName}: upstream auto-update is disabled.
+echo ${ProductName}: automatic updates are disabled.
 echo Reinstall the latest $ProductName bundle to update.
 exit /b 0
 "@
     $updateStubSh = @"
 #!/bin/sh
-echo "${ProductName}: upstream auto-update is disabled. Reinstall the latest bundle to update."
+echo "${ProductName}: automatic updates are disabled. Reinstall the latest bundle to update."
 exit 0
 "@
     $updateTargets = @(
+        (Join-Path $binDir "teos-update"),
+        (Join-Path $binDir "teos-update.cmd"),
+        (Join-Path $toolScripts "teos-update"),
+        (Join-Path $toolScripts "teos-update.cmd")
+    )
+    # A machine that once carried the upstream Free Claude Code build may still
+    # have its old updater command on PATH. Neutralise it only when it already
+    # exists, so this installer never creates a command under the old name.
+    $legacyTargets = @(
         (Join-Path $binDir "fcc-update"),
         (Join-Path $binDir "fcc-update.cmd"),
         (Join-Path $toolScripts "fcc-update"),
         (Join-Path $toolScripts "fcc-update.cmd")
-    )
+    ) | Where-Object { Test-Path -LiteralPath $_ }
+    $allTargets = @($updateTargets) + @($legacyTargets)
     if ($DryRun) {
-        foreach ($target in $updateTargets) { Write-Plain "stub: $target" }
+        foreach ($target in $allTargets) { Write-Plain "stub: $target" }
     }
     else {
-        foreach ($target in $updateTargets) {
+        foreach ($target in $allTargets) {
             $parent = Split-Path -Parent $target
             if (-not (Test-Path -LiteralPath $parent)) { continue }
             if ($target.EndsWith(".cmd")) {
@@ -177,15 +197,14 @@ exit 0
                 Set-Content -LiteralPath $target -Value $updateStubSh -Encoding ASCII
             }
         }
-        Write-Ok "Upstream auto-update disabled (fcc-update is a no-op)."
+        Write-Ok "Automatic updates disabled (teos-update is a no-op)."
     }
 }
 
-# --- 6. Add the `teos` command ---------------------------------------
+# --- 6. Add the short `teos` command --------------------------------------
 Write-Step "Adding the 'teos' command"
 $shims = @{
-    "teos.cmd" = "@echo off`r`n`"%~dp0fcc-desktop.exe`" %*`r`n"
-    "teos-server.cmd" = "@echo off`r`n`"%~dp0fcc-server.exe`" %*`r`n"
+    "teos.cmd" = "@echo off`r`n`"%~dp0teos-desktop.exe`" %*`r`n"
 }
 if ($DryRun) {
     foreach ($name in $shims.Keys) { Write-Plain "write: $(Join-Path $binDir $name)" }
@@ -194,7 +213,7 @@ else {
     foreach ($name in $shims.Keys) {
         Set-Content -LiteralPath (Join-Path $binDir $name) -Value $shims[$name] -Encoding ASCII
     }
-    Write-Ok "Commands: teos, teos-server"
+    Write-Ok "Commands: teos (desktop), teos-server, teos-doctor"
 }
 
 # --- 7. Shortcuts ----------------------------------------------------------

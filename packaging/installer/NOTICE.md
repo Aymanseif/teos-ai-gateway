@@ -15,8 +15,12 @@ by the TEOS AI Gateway distributor and include, at minimum:
 - Rebranding of user-visible names (Admin UI title/heading, desktop tray name,
   `--version` banner, and coding-agent provider display names) to "TEOS AI Gateway".
 - An offline Windows installer and bundled distribution packaging (this bundle).
-- Disabling of the upstream `fcc-update` auto-update command so this build is not
-  silently replaced by an upstream release.
+- Disabling of the bundled auto-update command (`teos-update` is a no-op in this
+  build) so this build is not silently replaced by an upstream release.
+- Renaming of the installed command-line commands from the upstream `fcc-*` names to
+  the `teos-*` names (`teos`, `teos-server`, `teos-doctor`, and one command per
+  supported coding agent: `teos-claude`, `teos-codex`, `teos-opencode`, ...). The
+  Python package, distribution name, and `~/.fcc` data directory are unchanged.
 - Provider-routing, retry-budget, fallback, and crash-recovery changes carried from the
   distributor's fork.
 
@@ -24,9 +28,12 @@ by the TEOS AI Gateway distributor and include, at minimum:
 
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 
-The complete Corresponding Source for this build is delivered with your purchase:
-download `TEOS-AI-Gateway-Windows-<version>-SOURCE.zip` from the same page as this
-bundle. It contains the full source tree and the exact build commit.
+The complete Corresponding Source for this build is **included in this bundle**:
+
+    source\TEOS-AI-Gateway-Windows-<version>-source.zip
+
+It contains the full source tree and the exact build commit recorded in `SOURCE.txt`.
+When present, `dist\<sdist>` holds the matching source distribution as well.
 
 **Written offer (AGPL-3.0 §6b).** For at least three years from your purchase we
 will provide the Corresponding Source for this build, on request and at no charge.

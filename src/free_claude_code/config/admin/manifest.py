@@ -317,7 +317,7 @@ _NON_PROVIDER_FIELDS: tuple[ConfigFieldSpec, ...] = (
         "runtime",
         "boolean",
         settings_attr="open_admin_browser",
-        description="Open the Admin UI after the next fcc-server launch becomes healthy.",
+        description="Open the Admin UI after the next teos-server launch becomes healthy.",
     ),
     ConfigFieldSpec(
         "MESSAGING_PLATFORM",

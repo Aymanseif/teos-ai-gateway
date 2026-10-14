@@ -7,16 +7,18 @@
     a self-contained ZIP containing:
       - Install-TEOS-AI-Gateway.ps1   (offline installer)
       - dist\<wheel>
-      - SOURCE.txt (where to obtain the Corresponding Source, AGPL-3.0 §6)
+      - SOURCE.txt (Corresponding Source notice / AGPL-3.0 section 6)
       - LICENSE (AGPL-3.0-only, verbatim)
-      - NOTICE.md (modification notice, AGPL-3.0 §5a)
+      - NOTICE.md (modification notice, AGPL-3.0 section 5a)
       - README-INSTALL.txt
       - app-icon.ico
 
-    The full Corresponding Source is NOT bundled inside this ZIP by default; it is
-    delivered as a separate "-SOURCE.zip" on the same download page, and SOURCE.txt
-    carries the AGPL-3.0 section 6b written offer. Pass -IncludeSource to also
-    bundle dist\<sdist> plus source\<name>-source.zip inside this ZIP.
+    Pass -IncludeSource to bundle the full Corresponding Source inside this ZIP
+    (dist\<sdist> plus source\<name>-source.zip). That is the correct mode now
+    that the source repository is private: the source travels inside the paid
+    ZIP (AGPL-3.0 section 6(a)), backed by the section 6(b) written offer.
+    Without -IncludeSource the bundle relies on the written offer alone and
+    SOURCE.txt points at a repository buyers cannot reach - do not ship that.
 
 .PARAMETER RepoPath
     Path to the free-claude-code checkout to build from.
@@ -82,6 +84,10 @@ foreach ($required in @("Install-TEOS-AI-Gateway.ps1", "NOTICE.md", "README-INST
     if (-not (Test-Path -LiteralPath (Join-Path $InstallerDir $required))) {
         throw "Missing installer asset: $required"
     }
+}
+
+if (-not $IncludeSource) {
+    Write-Warn "Building WITHOUT bundled source: the Corresponding Source will not travel with this ZIP. The source repository is private, so only the AGPL-3.0 section 6(b) written offer would apply. Pass -IncludeSource before shipping."
 }
 
 $stage = Join-Path $OutDir "staging"

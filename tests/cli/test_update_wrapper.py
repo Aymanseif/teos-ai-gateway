@@ -15,7 +15,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 INSTALL_URL = "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install"
-SCRIPTS = ("fcc-update", "fcc-update.cmd")
+SCRIPTS = ("teos-update", "teos-update.cmd")
 
 
 @contextlib.contextmanager
@@ -77,7 +77,7 @@ def fixture_wheel(area, url):
             )
         archive.writestr(
             f"{dist}.dist-info/entry_points.txt",
-            "[console_scripts]\n_fcc-update-check = free_claude_code.updater.check:main\n",
+            "[console_scripts]\n_teos-update-check = free_claude_code.updater.check:main\n",
         )
         for name in ("__init__.py", "updater/__init__.py", "updater/check.py"):
             source = (ROOT / "src/free_claude_code" / name).read_text(encoding="utf-8")
@@ -121,12 +121,12 @@ def test_installed_update_delegates_and_survives_replacement(tmp_path, outcome):
         UV_NO_CONFIG="1",
         UV_PYTHON_DOWNLOADS="never",
         FCC_TEST_LAUNCHER=str(
-            area / "bin" / ("fcc-update.cmd" if os.name == "nt" else "fcc-update")
+            area / "bin" / ("teos-update.cmd" if os.name == "nt" else "teos-update")
         ),
         FCC_TEST_CHECKER=str(
             area
             / "bin"
-            / ("_fcc-update-check.exe" if os.name == "nt" else "_fcc-update-check")
+            / ("_teos-update-check.exe" if os.name == "nt" else "_teos-update-check")
         ),
     )
     if os.name == "nt":
@@ -217,4 +217,4 @@ printf 'replaced after checker exited' > "$FCC_TEST_CHECKER"
         )
         assert result.returncode == 0, result.stderr
         assert not any((area / "bin" / name).exists() for name in SCRIPTS)
-        assert not any((area / "bin").glob("_fcc-update-check*"))
+        assert not any((area / "bin").glob("_teos-update-check*"))

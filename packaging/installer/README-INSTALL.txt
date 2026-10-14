@@ -46,9 +46,20 @@ FIRST RUN
 
 UPDATING
 --------
-Upstream auto-update is disabled on purpose (it would overwrite this build with the
-original Free Claude Code release). To update, obtain a newer TEOS AI Gateway bundle and
-re-run Install-TEOS-AI-Gateway.ps1.
+Automatic updates are disabled on purpose (`teos-update` is a no-op) - the upstream
+updater would overwrite this build with the original Free Claude Code release. To
+update, obtain a newer TEOS AI Gateway bundle and re-run Install-TEOS-AI-Gateway.ps1.
+
+COMMANDS
+--------
+    teos            Launch the desktop app / server (opens the Admin UI)
+    teos-server     Run the server in the foreground
+    teos-doctor     Print and copy a diagnostics report
+    teos-claude     Start Claude Code through TEOS AI Gateway
+    teos-codex      Start Codex through TEOS AI Gateway
+    teos-opencode   Start OpenCode through TEOS AI Gateway
+    (same pattern for teos-cline, teos-hermes, teos-dsh, teos-grok, teos-muse,
+     teos-pi and teos-aider)
 
 
 UNINSTALL
@@ -63,8 +74,9 @@ LICENSE & SOURCE
 AGPL-3.0-only. This is a modified version of Free Claude Code by Ali Khokhar.
 
 The complete Corresponding Source (AGPL-3.0 section 6) for this exact build is
-delivered with your purchase: download TEOS-AI-Gateway-Windows-1.0.0-SOURCE.zip
-from the same page as this bundle.
+included in this bundle:
+
+    source\TEOS-AI-Gateway-Windows-1.0.0-source.zip
 
 Written offer (AGPL-3.0 section 6b): for at least three years we will provide the
 Corresponding Source on request at no charge - email AYMAN@TEOSEGYPT.COM, quoting

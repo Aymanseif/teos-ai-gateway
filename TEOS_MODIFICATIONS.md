@@ -12,8 +12,12 @@ trademark of Anthropic.
 
 - Rebranded the user-visible surface to **TEOS AI Gateway** (Admin UI, desktop tray,
   the `--version` banner, and coding-agent provider names).
+- Renamed the installed commands from the upstream `fcc-*` names to `teos-*` (`teos`,
+  `teos-server`, `teos-doctor`, `teos-claude`, `teos-codex`, ...). The Python package,
+  distribution name and `~/.fcc` data directory are unchanged.
 - Added an offline Windows bundle and installer (`packaging/`).
-- Disabled the upstream `fcc-update` auto-update so this build is not silently replaced.
+- Disabled the bundled auto-update command (`teos-update` is a no-op) so this build is
+  not silently replaced by an upstream release.
 - Carried provider-routing, retry-budget, model-fallback, and crash-recovery hardening.
 
 Date of modification: 2026-10-14.

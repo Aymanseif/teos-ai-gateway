@@ -69,9 +69,10 @@ powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 > source of this build is right here under **AGPL-3.0**, so you may also build the bundle
 > yourself with `packaging/Build-OfflineBundle.ps1`.
 
-The installer installs the wheel, adds the `teos` and `fcc-server` commands, creates
-Start-menu and desktop shortcuts, and pins `fcc-update` so the upstream auto-updater
-can never replace this build.
+The installer installs the wheel, adds the `teos`, `teos-server` and `teos-doctor`
+commands (plus one `teos-<agent>` command per supported coding agent), creates
+Start-menu and desktop shortcuts, and replaces the automatic updater with a no-op so
+an upstream release can never replace this build.
 
 Developers can install from source instead:
 
@@ -96,11 +97,11 @@ Open **TEOS AI Gateway** from your desktop or Applications folder.
 Run:
 
 ```bash
-fcc-server
+teos-server
 ```
 
 TEOS opens the Admin UI after starting. On Windows and macOS, use the tray or
-menu-bar icon to open Admin, restart, or quit. When using `fcc-server`, keep its
+menu-bar icon to open Admin, restart, or quit. When using `teos-server`, keep its
 terminal open.
 
 <a id="nvidia-nim-provider"></a>
@@ -125,25 +126,25 @@ in Admin.
 Claude Code:
 
 ```bash
-fcc-claude
+teos-claude
 ```
 
 Codex:
 
 ```bash
-fcc-codex
+teos-codex
 ```
 
 Pi:
 
 ```bash
-fcc-pi
+teos-pi
 ```
 
 OpenCode 2:
 
 ```bash
-fcc-opencode
+teos-opencode
 ```
 
 To upgrade from OpenCode 1, close OpenCode and rerun the TEOS installer with
@@ -154,43 +155,43 @@ first. For npm v1, run `npm uninstall -g opencode-ai`, then rerun the TEOS insta
 RTK integration is temporarily unavailable for OpenCode 2. RTK continues to work
 with the other supported agents.
 
-Use `fcc-opencode` for coding and sessions. Use plain `opencode` for commands
+Use `teos-opencode` for coding and sessions. Use plain `opencode` for commands
 such as upgrades, service management, ACP, and MCP setup.
 
 Cline:
 
 ```bash
-fcc-cline
+teos-cline
 ```
 
 Hermes:
 
 ```bash
-fcc-hermes
+teos-hermes
 ```
 
 DeepSeek Harness Web:
 
 ```bash
-fcc-dsh
+teos-dsh
 ```
 
 Grok Build:
 
 ```bash
-fcc-grok
+teos-grok
 ```
 
 Muse Code:
 
 ```bash
-fcc-muse
+teos-muse
 ```
 
 Aider:
 
 ```bash
-fcc-aider
+teos-aider
 ```
 
 <a id="model-picker"></a>
@@ -447,13 +448,13 @@ uv tool install --force "free-claude-code[voice_local]"
 Add `--torch-backend cu130` for CUDA 13.0. For a bundled install, pass the bundled
 wheel path instead of the package name.
 
-After installing local support, restart `fcc-server`. In **Admin UI → Messaging → Voice**, enable voice notes, select `cpu` or `cuda`, and choose the Whisper model. Local gated models need `HUGGINGFACE_API_KEY`.
+After installing local support, restart `teos-server`. In **Admin UI → Messaging → Voice**, enable voice notes, select `cpu` or `cuda`, and choose the Whisper model. Local gated models need `HUGGINGFACE_API_KEY`.
 
 </details>
 
 ## Manage Your Installation
 
-Run `fcc-server --version` to check the installed version without starting TEOS.
+Run `teos-server --version` to check the installed version without starting TEOS.
 
 ### Update
 
@@ -464,7 +465,7 @@ TEOS commands, then run the installer from a newer bundle:
 powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 ```
 
-`fcc-update` is intentionally a no-op stub in this build, so the upstream Free Claude
+`teos-update` is intentionally a no-op stub in this build, so the upstream Free Claude
 Code auto-updater can never replace it.
 
 ### Uninstall
@@ -488,7 +489,7 @@ Then delete the **TEOS AI Gateway** Desktop and Start-menu shortcuts if you crea
 For a problem after installation, run the command below and paste its output into your bug report. It also copies the JSON to your clipboard when available.
 
 ```bash
-fcc-doctor
+teos-doctor
 ```
 
 - [Report bugs or request features](https://github.com/Aymanseif/free-claude-code/issues)

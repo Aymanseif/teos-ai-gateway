@@ -183,7 +183,7 @@ class ServerSupervisor:
                     consecutive_failures += 1
                     logger.error(
                         "FCC server exited unexpectedly ({}) and will be restarted "
-                        "automatically. Run 'fcc-server' in a terminal to watch, or "
+                        "automatically. Run 'teos-server' in a terminal to watch, or "
                         "use the tray to quit.",
                         type(exc).__name__,
                     )

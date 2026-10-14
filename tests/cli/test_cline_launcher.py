@@ -1,4 +1,4 @@
-"""Contract tests for the installed `fcc-cline` launcher."""
+"""Contract tests for the installed `teos-cline` launcher."""
 
 import json
 from datetime import UTC, datetime
@@ -191,7 +191,7 @@ def test_cline_hub_discovery_path_overrides_stale_inherited_value(
     launch("cline", [])
     hub_path = Path(launch_capture.environments[0]["CLINE_HUB_DISCOVERY_PATH"])
     # The stale user-level discovery file must be replaced by the isolated
-    # ephemeral path, never inherited by the fcc-cline child. The hub/
+    # ephemeral path, never inherited by the teos-cline child. The hub/
     # directory is pre-created at launch (checked via on_start, since the
     # ephemeral tree is cleaned up when the launcher exits); only the file
     # itself must not be pre-created.

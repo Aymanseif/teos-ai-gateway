@@ -1361,7 +1361,7 @@ async function apply(providerId = null, customAction = null) {
     const pending = restart.required ? restart.fields || [] : result.pending_fields || [];
     await load({ providersOnly: !!providerId });
     const message = pending.length
-      ? `Applied. Restart fcc-server to use: ${pending.join(", ")}`
+      ? `Applied. Restart teos-server to use: ${pending.join(", ")}`
       : "Applied";
     showMessage([message, ...warnings].join("\n"), warnings.length ? "warn" : "ok");
   } catch (error) {

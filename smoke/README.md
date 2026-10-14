@@ -214,7 +214,7 @@ for restricted modes and never set up the sandbox or change your Codex config.
 
 Run smoke the same way you run tests (`uv run pytest smoke` from the repo). Child
 processes use the **same Python interpreter** as the test runner, not nested
-`uv run`, so Windows does not try to replace `fcc-server.exe` while it is
+`uv run`, so Windows does not try to replace `teos-server.exe` while it is
 locked.
 
 ## Failure Classes

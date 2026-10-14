@@ -38,22 +38,22 @@ def test_cli_scripts_are_registered() -> None:
     )
 
     assert pyproject["project"]["scripts"] == {
-        "_fcc-update-check": "free_claude_code.updater.check:main",
-        "fcc-server": "free_claude_code.cli.entrypoints:serve",
-        "fcc-doctor": "free_claude_code.cli.entrypoints:doctor",
-        "fcc-claude": "free_claude_code.cli.launchers.claude:launch",
-        "fcc-codex": "free_claude_code.cli.launchers.codex:launch",
-        "fcc-pi": "free_claude_code.cli.launchers.pi:launch",
-        "fcc-opencode": "free_claude_code.cli.launchers.opencode:launch",
-        "fcc-cline": "free_claude_code.cli.launchers.cline:launch",
-        "fcc-hermes": "free_claude_code.cli.launchers.hermes:launch",
-        "fcc-dsh": "free_claude_code.cli.launchers.dsh:launch",
-        "fcc-grok": "free_claude_code.cli.launchers.grok:launch",
-        "fcc-muse": "free_claude_code.cli.launchers.muse:launch",
-        "fcc-aider": "free_claude_code.cli.launchers.aider:launch",
+        "_teos-update-check": "free_claude_code.updater.check:main",
+        "teos-server": "free_claude_code.cli.entrypoints:serve",
+        "teos-doctor": "free_claude_code.cli.entrypoints:doctor",
+        "teos-claude": "free_claude_code.cli.launchers.claude:launch",
+        "teos-codex": "free_claude_code.cli.launchers.codex:launch",
+        "teos-pi": "free_claude_code.cli.launchers.pi:launch",
+        "teos-opencode": "free_claude_code.cli.launchers.opencode:launch",
+        "teos-cline": "free_claude_code.cli.launchers.cline:launch",
+        "teos-hermes": "free_claude_code.cli.launchers.hermes:launch",
+        "teos-dsh": "free_claude_code.cli.launchers.dsh:launch",
+        "teos-grok": "free_claude_code.cli.launchers.grok:launch",
+        "teos-muse": "free_claude_code.cli.launchers.muse:launch",
+        "teos-aider": "free_claude_code.cli.launchers.aider:launch",
     }
     assert pyproject["project"]["gui-scripts"] == {
-        "fcc-desktop": "free_claude_code.cli.desktop_entrypoint:launch",
+        "teos-desktop": "free_claude_code.cli.desktop_entrypoint:launch",
     }
 
 

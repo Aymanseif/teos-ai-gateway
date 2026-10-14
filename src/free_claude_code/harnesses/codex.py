@@ -41,7 +41,7 @@ def codex_config_values(
         "model_provider": "fcc",
         "model_providers.fcc.name": "TEOS AI Gateway",
         "model_providers.fcc.base_url": proxy_v1_url(api_url),
-        "model_providers.fcc.auth.command": "fcc-codex",
+        "model_providers.fcc.auth.command": "teos-codex",
         "model_providers.fcc.auth.args": [PRINT_PROXY_AUTH_TOKEN_FLAG],
         "model_providers.fcc.wire_api": "responses",
     }

@@ -141,7 +141,7 @@ jobs:
                 await github.rest.issues.createComment({
                   ...repo,
                   issue_number,
-                  body: `${invalidMarker}\nPlease run \`fcc-doctor\` and paste its complete JSON into **FCC doctor output**. For an older issue with an **FCC version** field, enter one version from \`fcc-server --version\` or exactly \`None\`. If FCC has not installed successfully, use the Installation problem form.`,
+                  body: `${invalidMarker}\nPlease run \`teos-doctor\` and paste its complete JSON into **FCC doctor output**. For an older issue with an **FCC version** field, enter one version from \`teos-server --version\` or exactly \`None\`. If FCC has not installed successfully, use the Installation problem form.`,
                 });
               }
               return;

@@ -110,7 +110,7 @@ def test_refresh_codex_merges_latest_settings_without_changing_model(tmp_path):
     assert "# Preserve my choice" in path.read_text()
     assert saved["model_catalog_json"] == str(catalog.resolve())
     assert saved["model_providers"]["fcc"]["auth"] == {
-        "command": "fcc-codex",
+        "command": "teos-codex",
         "args": ["--print-proxy-auth-token"],
     }
     assert saved["model_providers"]["other"] == {"base_url": "https://example.com/v1"}

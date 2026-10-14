@@ -111,7 +111,7 @@ async def test_factory_open_preserves_setup_and_catalog_until_process_exit(
         assert config["model_providers"]["fcc"] == {
             "name": "TEOS AI Gateway",
             "base_url": "http://127.0.0.1:8182/v1",
-            "auth": {"command": "fcc-codex", "args": ["--print-proxy-auth-token"]},
+            "auth": {"command": "teos-codex", "args": ["--print-proxy-auth-token"]},
             "wire_api": "responses",
         }
         assert factory_peer.command[-5:] == (

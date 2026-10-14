@@ -30,7 +30,7 @@ def test_connect_disconnect_preserve_model_comments_and_other_providers(tmp_path
         "name": "TEOS AI Gateway",
         "base_url": URL + "/v1",
         "wire_api": "responses",
-        "auth": {"command": "fcc-codex", "args": ["--print-proxy-auth-token"]},
+        "auth": {"command": "teos-codex", "args": ["--print-proxy-auth-token"]},
     }
     assert not (tmp_path / "catalog.json").exists()
     assert operate(path, False)["connected"] is False
@@ -81,7 +81,7 @@ def test_manual_connection_ignores_model_and_display_name(tmp_path):
         'model = "another-model"\nmodel_provider = "fcc"\n'
         f'model_catalog_json = "{(tmp_path / "catalog.json").as_posix()}"\n'
         '[model_providers.fcc]\nname = "My FCC"\nbase_url = "http://localhost:8082/v1/"\nwire_api = "responses"\n'
-        '[model_providers.fcc.auth]\ncommand = "fcc-codex"\nargs = ["--print-proxy-auth-token"]\n'
+        '[model_providers.fcc.auth]\ncommand = "teos-codex"\nargs = ["--print-proxy-auth-token"]\n'
     )
     before = path.read_bytes()
     assert operate(path)["connected"] is True
@@ -122,7 +122,7 @@ def test_valid_table_layouts_can_be_updated(tmp_path, content):
             'base_url = "http://127.0.0.1:8082/v1"',
             'base_url = "http://127.0.0.1:8083/v1"',
         ),
-        ('command = "fcc-codex"', 'command = "other"'),
+        ('command = "teos-codex"', 'command = "other"'),
         ("--print-proxy-auth-token", "--other"),
         ("catalog.json", "another-catalog.json"),
     ],

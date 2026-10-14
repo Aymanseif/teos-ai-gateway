@@ -66,7 +66,7 @@ def test_bug_forms_require_description_and_post_install_diagnostics() -> None:
     assert all(field["validations"]["required"] for field in post["body"])
     assert all(field["type"] == "textarea" for field in post["body"])
     assert post["body"][1]["attributes"]["render"] == "json"
-    assert "fcc-doctor" in post["body"][1]["attributes"]["description"]
+    assert "teos-doctor" in post["body"][1]["attributes"]["description"]
     assert len(pre["body"]) == 1
     assert pre["body"][0]["validations"]["required"]
     assert "render" not in pre["body"][0]["attributes"]
@@ -272,7 +272,7 @@ def test_field_pattern_extracts_the_issue_form_value() -> None:
 
 ### CLI
 
-Claude Code (fcc-claude)
+Claude Code (teos-claude)
 """
 
     match = re.search(_workflow_pattern("fieldPattern"), body, flags=re.MULTILINE)

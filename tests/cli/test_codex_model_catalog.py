@@ -44,7 +44,7 @@ def test_launcher_config_composes_with_persistent_codex_config(
                 'wire_api = "responses"',
                 "",
                 "[model_providers.fcc.auth]",
-                'command = "fcc-codex"',
+                'command = "teos-codex"',
                 'args = ["--print-proxy-auth-token"]',
                 "",
             )

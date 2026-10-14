@@ -60,7 +60,7 @@ def validate(directory: Path, version: str) -> None:
             if stream is not None:
                 source[file.name] = stream.read()
     wheel_info = f"{stem}.dist-info"
-    updater_names = {"fcc-update", "fcc-update.cmd"}
+    updater_names = {"teos-update", "teos-update.cmd"}
     require_files(
         set(wheel),
         {file.removeprefix("src/") for file in sources}

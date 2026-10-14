@@ -14,7 +14,7 @@ body:
     id: doctor
     attributes:
       label: TEOS doctor output
-      description: Run `fcc-doctor` and paste the JSON it copies to your clipboard. If copying is unavailable, copy the printed JSON from your terminal.
+      description: Run `teos-doctor` and paste the JSON it copies to your clipboard. If copying is unavailable, copy the printed JSON from your terminal.
       render: json
     validations:
       required: true

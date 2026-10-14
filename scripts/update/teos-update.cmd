@@ -1,5 +1,5 @@
 @echo off
-"%~dp0_fcc-update-check.exe"
+"%~dp0_teos-update-check.exe"
 if %errorlevel%==0 exit /b 0
 if not %errorlevel%==10 exit /b %errorlevel%
 (

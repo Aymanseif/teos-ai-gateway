@@ -22,7 +22,7 @@ Install [uv](https://docs.astral.sh/uv/), then run directly from the checkout. u
 ```bash
 git clone https://github.com/Alishahryar1/free-claude-code.git
 cd free-claude-code
-uv run fcc-server
+uv run teos-server
 ```
 
 Use `uv run` for Python commands. Do not run the project with a global Python interpreter.

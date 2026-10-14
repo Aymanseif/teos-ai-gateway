@@ -45,7 +45,7 @@ def test_codex_selects_the_advertised_slug_from_opaque_catalog_data(
     assert config["model_providers"]["fcc"]["wire_api"] == "responses"
     assert config["model_providers"]["fcc"]["base_url"] == "http://127.0.0.1:8182/v1"
     assert config["model_providers"]["fcc"]["auth"] == {
-        "command": "fcc-codex",
+        "command": "teos-codex",
         "args": ["--print-proxy-auth-token"],
     }
     assert command[-4:] == ["exec", "--model", "native-choice", "hello"]

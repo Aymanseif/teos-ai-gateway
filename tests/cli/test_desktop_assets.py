@@ -56,7 +56,7 @@ def test_desktop_entrypoint_rejects_unknown_arguments(
         desktop_entrypoint.launch(["--unknown"])
 
     assert exc_info.value.code == 2
-    assert "Usage: fcc-desktop" in capsys.readouterr().err
+    assert "Usage: teos-desktop" in capsys.readouterr().err
 
 
 def test_desktop_sets_scaling_before_importing_native_tray(monkeypatch):

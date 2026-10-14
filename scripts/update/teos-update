@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 status=0
-"$(dirname "$0")/_fcc-update-check" || status=$?
+"$(dirname "$0")/_teos-update-check" || status=$?
 case "$status" in
     0) exit 0 ;;
     10) ;;

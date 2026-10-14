@@ -117,7 +117,7 @@ def launch_harness(spec: HarnessSpec, argv: Sequence[str] | None = None) -> None
         if error := preflight_proxy(proxy_root_url):
             raise LaunchError(
                 f"TEOS AI Gateway proxy is not reachable at {proxy_root_url}: {error}\n"
-                "Start it in another terminal with: fcc-server"
+                "Start it in another terminal with: teos-server"
             )
         catalog = None
         if spec.catalog_view is not None:

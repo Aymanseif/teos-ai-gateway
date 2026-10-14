@@ -1,20 +1,22 @@
 # TEOS AI Gateway - local changes
 
 Changes layered on top of upstream `Alishahryar1/free-claude-code` that are not
-part of any release. `fcc-update` reinstalls from upstream and will silently drop
-everything here, so re-apply after updating.
+part of any release. Reinstalling from upstream silently drops everything here, so
+re-apply after updating.
 
 ## TEOS AI Gateway rebrand (branch `teos-ai-gateway`)
 
 The product surface is rebranded to **TEOS AI Gateway** on branch `teos-ai-gateway`
-(based on `local-hardening`). It is a *surgical* rebrand, not a package rename: internal
-names (`free_claude_code`, the `fcc-*` commands, the `free-claude-code` distribution
-name, `~/.fcc`) are unchanged, so upstream merges and the test suite stay intact. The
-LICENSE text is unchanged (AGPL-3.0-only); attribution and the Admin-UI GitHub link are
-kept. The modification notice lives in `TEOS_MODIFICATIONS.md`.
+(based on `local-hardening`). It is a *surgical* rebrand, not a package rename: the
+Python package (`free_claude_code`), the `free-claude-code` distribution name and the
+`~/.fcc` data directory are unchanged, so upstream merges and the test suite stay
+intact. Installed command names are the one deliberate exception - they were renamed
+from upstream's `fcc-*` to `teos-*` so no command under the old name appears on a
+buyer's PATH. The LICENSE text is unchanged (AGPL-3.0-only); attribution and the
+Admin-UI GitHub link are kept. The modification notice lives in `TEOS_MODIFICATIONS.md`.
 
 Changed display strings: Admin UI `<title>` / `<h1>`, desktop tray name and icon id,
-the `fcc-server --version` banner, and the harness/launcher provider names (opencode,
+the `teos-server --version` banner, and the harness/launcher provider names (opencode,
 codex, cline, hermes, dsh, vs-code, pi), plus user-facing error messages and the managed
 `.env` header. Matching test assertions were updated.
 
@@ -23,7 +25,7 @@ The distributable **offline Windows bundle** is built by
 includes the installation scripts). It stamps a clean product version via
 `SETUPTOOLS_SCM_PRETEND_VERSION`, bundles the wheel + sdist + full Corresponding Source
 (AGPL-3.0 sections 4 and 6), and ships `Install-TEOS-AI-Gateway.ps1`, which installs the
-wheel, **stubs `fcc-update`** (so upstream auto-update can never overwrite this build),
+wheel, **stubs `teos-update`** (so automatic updates can never overwrite this build),
 adds a `teos` command, and creates shortcuts.
 
 ## Current deployment
@@ -88,7 +90,8 @@ environment-sensitive of the set.
 
 ## Applying after an update
 
-`fcc-update` reinstalls from upstream. That drops both patches, resets the version to
+`uv tool install --force` (or a leftover upstream `fcc-update`) reinstalls from
+upstream. That drops both patches, resets the version to
 `0.0.0`, and points `direct_url.json` at the temp copy again. To get back to a
 patched install:
 
@@ -124,7 +127,7 @@ resetting the three touched files to upstream.
 
 ## Deploying: two things that will bite you otherwise
 
-1. **A stale process locks the install.** An abandoned `fcc-claude` session keeps
+1. **A stale process locks the install.** An abandoned `teos-claude` session keeps
    `%APPDATA%\uv\tools\free-claude-code\Scripts` open and `uv tool install` fails with
    `Access is denied (os error 5)`. Match on the tool directory, not the process name,
    so orphaned `python.exe` children are caught too. Matching on the tool directory
@@ -132,13 +135,13 @@ resetting the three touched files to upstream.
    sit outside it, survive the sweep, and can rebind port 8082 afterwards. The script
    matches both families.
 2. **The script deliberately does not start the server.** It reports whether port
-   8082 is free and stops there. An earlier version launched `fcc-server` hidden,
-   which held the port and made the next `fcc-server` typed by hand die with
+   8082 is free and stops there. An earlier version launched `teos-server` hidden,
+   which held the port and made the next `teos-server` typed by hand die with
    `[WinError 10048] Only one usage of each socket address...` while the console
    log that explained it was nowhere on screen. Start it yourself so the output is
-   visible: `fcc-server` for foreground logs, or `fcc-desktop` for the tray.
+   visible: `teos-server` for foreground logs, or `teos-desktop` for the tray.
 
-   Note that only bare `fcc-server` hard-fails on a taken port. The graceful
+   Note that only bare `teos-server` hard-fails on a taken port. The graceful
    "a healthy server already owns this" handoff in `ServerSupervisor.run()` is
    reachable only through `cli/desktop.py`, the sole caller that passes
    `existing_server=`.
@@ -310,9 +313,9 @@ installed and on `PATH`. FCC bundles none of them, so a launcher reporting
 `Could not find <Tool> CLI command` means the host CLI is absent — nothing is wrong
 with FCC, and the request never reaches the proxy.
 
-On this machine only `claude` and `pi` are installed, so only `fcc-claude` and
-`fcc-pi` work. `fcc-desktop` works because it is FCC's own admin UI and needs no host
-CLI. `fcc-opencode` was the one exception: OpenCode was installed at
+On this machine only `claude` and `pi` are installed, so only `teos-claude` and
+`teos-pi` work. `teos-desktop` works because it is FCC's own admin UI and needs no host
+CLI. `teos-opencode` was the one exception: OpenCode was installed at
 `%USERPROFILE%\.opencode\bin` but that directory was missing from `PATH`. It has been
 appended to the user `PATH`.
 
