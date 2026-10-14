@@ -21,3 +21,5 @@ packaging/dist/
 # --- Private business / marketing assets (not part of the AGPL source release) ---
 landing/
 packaging/gumroad/
+BUILDER_PROMPT_SAAS.md
+packaging/ads/

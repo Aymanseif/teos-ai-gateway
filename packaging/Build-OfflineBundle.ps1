@@ -13,9 +13,10 @@
       - README-INSTALL.txt
       - app-icon.ico
 
-    The full Corresponding Source is NOT bundled by default; it is published in
-    the public Git repository and referenced from SOURCE.txt. Pass -IncludeSource
-    to also bundle dist\<sdist> plus source\<name>-source.zip.
+    The full Corresponding Source is NOT bundled inside this ZIP by default; it is
+    delivered as a separate "-SOURCE.zip" on the same download page, and SOURCE.txt
+    carries the AGPL-3.0 section 6b written offer. Pass -IncludeSource to also
+    bundle dist\<sdist> plus source\<name>-source.zip inside this ZIP.
 
 .PARAMETER RepoPath
     Path to the free-claude-code checkout to build from.
@@ -48,7 +49,8 @@ param(
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,
-    [string] $SourceUrl = "https://github.com/Aymanseif/teos-ai-gateway"
+    [string] $SourceUrl = "https://github.com/Aymanseif/teos-ai-gateway",
+    [string] $SupportEmail = "AYMAN@TEOSEGYPT.COM"
 )
 
 Set-StrictMode -Version Latest
@@ -166,18 +168,17 @@ make your own modifications available under the same license.
 Corresponding Source (AGPL-3.0 section 6)
 -----------------------------------------
 
-The complete Corresponding Source for this exact build is published at:
+The complete Corresponding Source for this exact build is delivered with your
+purchase: download "$ProductSlug-$Version-SOURCE.zip" from the same page you
+downloaded this bundle from. It contains the full source tree for this build.
 
-    $SourceUrl
+Written offer (AGPL-3.0 section 6b): for at least three years from your purchase
+date we will provide the Corresponding Source for this build, on request and at
+no charge. Email $SupportEmail quoting the build commit below.
 
-Exact commit for this build:
+Build commit (identifies the exact source revision this ZIP was built from):
 
     $commitSha
-
-Obtain it with:
-
-    git clone $SourceUrl
-    git checkout $commitSha
 
 See LICENSE and NOTICE.md in this bundle for details.
 "@

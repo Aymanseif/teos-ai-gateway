@@ -62,9 +62,10 @@ LICENSE & SOURCE
 ----------------
 AGPL-3.0-only. This is a modified version of Free Claude Code by Ali Khokhar.
 
-The complete Corresponding Source (AGPL-3.0 section 6) is published at:
+The complete Corresponding Source (AGPL-3.0 section 6) for this exact build is
+delivered with your purchase: download TEOS-AI-Gateway-Windows-1.0.0-SOURCE.zip
+from the same page as this bundle.
 
-    https://github.com/Aymanseif/teos-ai-gateway
-
-The exact commit this bundle was built from is recorded in SOURCE.txt. See
-NOTICE.md for details.
+Written offer (AGPL-3.0 section 6b): for at least three years we will provide the
+Corresponding Source on request at no charge - email AYMAN@TEOSEGYPT.COM, quoting
+the build commit recorded in SOURCE.txt. See NOTICE.md for details.
