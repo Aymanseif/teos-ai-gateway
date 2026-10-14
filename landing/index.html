@@ -42,6 +42,7 @@
         <a href="#features" class="hover:text-white transition">Features</a>
         <a href="#included" class="hover:text-white transition">What's included</a>
         <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="#crypto" class="hover:text-white transition">Crypto</a>
         <a href="#faq" class="hover:text-white transition">FAQ</a>
       </div>
       <a href="https://gumroad.com/l/teos-ai-gateway" target="_blank" rel="noopener"
@@ -254,6 +255,44 @@
         </div>
       </div>
       <p class="text-center text-white/40 text-sm mt-8">Secure checkout &amp; instant download via Gumroad. 7-day refund if the installer can't run on a supported Windows version.</p>
+    </div>
+  </section>
+
+  <!-- ============================ CRYPTO / USDC ============================ -->
+  <section id="crypto" class="relative px-6 py-24 border-t border-white/5">
+    <div class="max-w-3xl mx-auto">
+      <!-- Crypto Payment - USDC Solana -->
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-full bg-[#2775CA] flex items-center justify-center text-white font-bold">$</div>
+          <h3 class="text-white font-semibold text-[18px]">Pay with Crypto - USDC on Solana</h3>
+          <span class="ml-auto text-[12px] px-2 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/30">Solana</span>
+        </div>
+
+        <div class="grid md:grid-cols-[160px_1fr] gap-6 items-start">
+          <!-- QR -->
+          <div class="bg-white p-3 rounded-xl">
+            <img src="./usdc-qr.png" alt="USDC Solana QR" class="w-full h-auto" />
+          </div>
+
+          <!-- Details -->
+          <div class="space-y-3">
+            <div>
+              <div class="text-[12px] text-white/50 mb-1">Address (Solana)</div>
+              <div class="flex items-center gap-2 p-3 rounded-lg bg-black/40 border border-white/10">
+                <code id="usdcAddr" class="text-[13px] text-white break-all">Aai9XYkpQMrVMLTP5CKHSin1UoJ12rU2FSupGwpNwMQ6</code>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('usdcAddr').innerText); this.innerText='Copied!'" class="ml-auto shrink-0 px-3 py-1.5 text-[12px] rounded-md bg-white text-black font-medium hover:bg-white/90">Copy</button>
+              </div>
+            </div>
+            <div class="flex gap-4 text-[12px] text-white/60">
+              <span>Network: <b class="text-white/90">Solana</b></span>
+              <span>Min: <b class="text-white/90">0.01 USDC</b></span>
+              <span>Arrival: <b class="text-white/90">~1 min</b></span>
+            </div>
+            <p class="text-[12px] text-white/40">Send only USDC on Solana network to this address. After payment, email receipt to activate license.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
