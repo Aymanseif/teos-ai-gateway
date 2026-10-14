@@ -264,4 +264,4 @@ def test_doctor_version_does_not_collect_or_copy(monkeypatch, capsys):
     monkeypatch.setattr(doctor, "collect_report", forbidden)
     monkeypatch.setattr(entrypoints, "package_version", lambda: "1.2.3")
     entrypoints.doctor(["--version"])
-    assert capsys.readouterr().out == "free-claude-code 1.2.3\n"
+    assert capsys.readouterr().out == "TEOS AI Gateway 1.2.3\n"
