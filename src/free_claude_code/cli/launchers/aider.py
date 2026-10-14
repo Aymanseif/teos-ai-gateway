@@ -1,4 +1,4 @@
-"""Installed Aider launcher using native model settings for FCC routing."""
+"""Installed Aider launcher using native model settings for TEOS routing."""
 
 from collections.abc import Sequence
 

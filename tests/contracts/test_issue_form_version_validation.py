@@ -75,42 +75,42 @@ def test_bug_forms_require_description_and_post_install_diagnostics() -> None:
 @pytest.mark.parametrize(
     "body, valid, version",
     [
-        ('### FCC doctor output\n\n```json\n{"version":"1.2.3"}\n```', True, "1.2.3"),
+        ('### TEOS doctor output\n\n```json\n{"version":"1.2.3"}\n```', True, "1.2.3"),
         (
-            '### FCC doctor output\n\n<details>\n<summary>FCC doctor output</summary>\n\n```json\n{"version":"1.2.3"}\n```\n\n</details>',
+            '### TEOS doctor output\n\n<details>\n<summary>TEOS doctor output</summary>\n\n```json\n{"version":"1.2.3"}\n```\n\n</details>',
             True,
             "1.2.3",
         ),
         (
-            '### FCC doctor output\r\n\r\n<details>\r\n<summary>Diagnostics</summary>\r\n\r\n```json\r\n{"version":"1.2.3"}\r\n```\r\n\r\n</details>',
+            '### TEOS doctor output\r\n\r\n<details>\r\n<summary>Diagnostics</summary>\r\n\r\n```json\r\n{"version":"1.2.3"}\r\n```\r\n\r\n</details>',
             True,
             "1.2.3",
         ),
         (
-            "### FCC doctor output\n\n<details>\n<summary>Diagnostics</summary>\n\n```json\n{invalid}\n```\n\n</details>",
+            "### TEOS doctor output\n\n<details>\n<summary>Diagnostics</summary>\n\n```json\n{invalid}\n```\n\n</details>",
             False,
             None,
         ),
         (
-            '### FCC doctor output\r\n\r\n```json\r\n{"version":"1.2.3"}\r\n```',
+            '### TEOS doctor output\r\n\r\n```json\r\n{"version":"1.2.3"}\r\n```',
             True,
             "1.2.3",
         ),
-        ('### FCC doctor output\n\n{"version":"0+unknown"}', True, None),
+        ('### TEOS doctor output\n\n{"version":"0+unknown"}', True, None),
         (
-            '### FCC doctor output\n\n{"version":"6.2.67.dev1+g123"}',
+            '### TEOS doctor output\n\n{"version":"6.2.67.dev1+g123"}',
             True,
             "6.2.67.dev1+g123",
         ),
         (
-            '### Describe the issue\n\nversion 9.9.9\n\n### FCC doctor output\n\n{"version":"1.2.3"}',
+            '### Describe the issue\n\nversion 9.9.9\n\n### TEOS doctor output\n\n{"version":"1.2.3"}',
             True,
             "1.2.3",
         ),
-        ("### FCC doctor output\n\n{invalid}", False, None),
-        ('### FCC doctor output\n\n{"version":123}', False, None),
-        ('### FCC doctor output\n\n{"version":"hello 1.2.3"}', False, None),
-        ("### FCC doctor output\n\n{}\n\n### FCC version\n\n1.2.3", False, None),
+        ("### TEOS doctor output\n\n{invalid}", False, None),
+        ('### TEOS doctor output\n\n{"version":123}', False, None),
+        ('### TEOS doctor output\n\n{"version":"hello 1.2.3"}', False, None),
+        ("### TEOS doctor output\n\n{}\n\n### TEOS version\n\n1.2.3", False, None),
         ("### Installation issue\n\nCannot install", True, None),
         ("unstructured issue 1.2.3", False, None),
     ],
@@ -145,9 +145,9 @@ def test_plain_doctor_report_can_be_collapsed_without_changing_its_data(
     doctor.main([])
     assert json.loads(capsys.readouterr().out) == report
     assert json.loads(copied[0]) == report
-    body = "### FCC doctor output\n\n" + copied[0]
+    body = "### TEOS doctor output\n\n" + copied[0]
     collapsed = _collapse_report(body)
-    assert collapsed.startswith("### FCC doctor output\n\n<details>\n")
+    assert collapsed.startswith("### TEOS doctor output\n\n<details>\n")
     assert json.loads(collapsed.split("```json\n", 1)[1].rsplit("```", 1)[0]) == report
     assert _parse_report(collapsed) == {"valid": True, "reportedVersion": "1.2.3"}
 
@@ -173,7 +173,7 @@ def _collapse_report(body):
 def test_collapsing_only_changes_doctor_section_and_is_idempotent(newline, fenced):
     report = '{"version":"1.2.3","model":"$&```</details>"}'
     content = f"```json\n{report}\n```" if fenced else report
-    before = "### Describe the issue\n\nMy description and ![image](https://example.com/image.png)\n\n### FCC doctor output\n\n"
+    before = "### Describe the issue\n\nMy description and ![image](https://example.com/image.png)\n\n### TEOS doctor output\n\n"
     after = "\n\n### Other details\n\nKeep this text exactly.\n"
     body = (before + content + after).replace("\n", newline)
     collapsed = _collapse_report(body)
@@ -188,9 +188,9 @@ def test_collapsing_only_changes_doctor_section_and_is_idempotent(newline, fence
     "body",
     [
         "### Installation issue\n\nCannot install",
-        "### FCC version\n\n1.2.3",
-        "### FCC doctor output\n\n{invalid}",
-        '### FCC doctor output\n\n{"version":"1.2.3"}\n\n### FCC doctor output\n\n{"version":"1.2.3"}',
+        "### TEOS version\n\n1.2.3",
+        "### TEOS doctor output\n\n{invalid}",
+        '### TEOS doctor output\n\n{"version":"1.2.3"}\n\n### TEOS doctor output\n\n{"version":"1.2.3"}',
     ],
 )
 def test_collapsing_leaves_other_or_invalid_reports_untouched(body):
@@ -266,7 +266,7 @@ def test_numeric_version_comparison_uses_all_three_components() -> None:
 
 
 def test_field_pattern_extracts_the_issue_form_value() -> None:
-    body = """### FCC version
+    body = """### TEOS version
 
 4.6.1
 
@@ -410,9 +410,9 @@ process.stdout.write(JSON.stringify({ calls, comments }));
         .replace(
             "__BODY_FOR__",
             (
-                "(value) => `### FCC version\\n\\n${value}\\n\\n### CLI\\n\\nClaude Code`"
+                "(value) => `### TEOS version\\n\\n${value}\\n\\n### CLI\\n\\nClaude Code`"
                 if form == "legacy"
-                else '(value) => value === "None" ? "### Installation issue\\n\\nCannot install" : `### FCC doctor output\\n\\n${JSON.stringify({version: value})}`'
+                else '(value) => value === "None" ? "### Installation issue\\n\\nCannot install" : `### TEOS doctor output\\n\\n${JSON.stringify({version: value})}`'
             ),
         )
     )
@@ -461,7 +461,7 @@ const github = {
   paginate: async () => [{id: 42, user: {login: "github-actions[bot]"}, body: "<!-- fcc-version-outdated -->"}],
   rest: {
     issues: {
-      get: async () => ({data: {labels: [], body: "### FCC version\\n\\n1.2.3"}}),
+      get: async () => ({data: {labels: [], body: "### TEOS version\\n\\n1.2.3"}}),
       deleteComment: async ({comment_id}) => deleted.push(comment_id),
     },
     repos: {getLatestRelease: async () => {throw {status: __STATUS__};}},
@@ -503,7 +503,7 @@ const github = {
   ],
   rest: {
     issues: {
-      get: async () => ({data: {labels: [{name: "needs-fcc-version"}], body: "### FCC version\\n\\nfree-claude-code " + __VERSION__}}),
+      get: async () => ({data: {labels: [{name: "needs-fcc-version"}], body: "### TEOS version\\n\\nfree-claude-code " + __VERSION__}}),
       removeLabel: async () => calls.push("removeLabel"),
       deleteComment: async ({comment_id}) => calls.push(comment_id),
     },

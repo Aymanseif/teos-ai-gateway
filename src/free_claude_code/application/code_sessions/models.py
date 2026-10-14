@@ -1,4 +1,4 @@
-"""FCC-owned coding conversation state and harness-neutral events."""
+"""TEOS-owned coding conversation state and harness-neutral events."""
 
 import time
 from dataclasses import dataclass, field

@@ -268,7 +268,7 @@ def test_browser_thread_start_failure_does_not_fail_fcc(monkeypatch, reuse, capl
 
 
 def _run_browser_shutdown_probe(mode, outcome, directory, setup_delay="0"):
-    """Run real FCC lifecycle owners with only OS/browser/server dependencies faked."""
+    """Run real TEOS lifecycle owners with only OS/browser/server dependencies faked."""
     from free_claude_code.cli import desktop, uvicorn_server
     from free_claude_code.runtime import bootstrap
 
@@ -410,7 +410,7 @@ def _run_browser_shutdown_probe(mode, outcome, directory, setup_delay="0"):
             finally:
                 lock.release()
     patcher.undo()
-    print("FCC exited while preserving its resource ownership", flush=True)
+    print("TEOS exited while preserving its resource ownership", flush=True)
 
 
 @pytest.mark.parametrize("mode", ["server", "desktop"])
@@ -454,7 +454,7 @@ def _assert_browser_probe_exits(tmp_path, mode, outcome, setup_delay="0"):
         check=False,
     )
     assert completed.returncode == 0, completed.stdout + completed.stderr
-    assert "FCC exited while preserving its resource ownership" in completed.stdout
+    assert "TEOS exited while preserving its resource ownership" in completed.stdout
 
 
 def test_external_probe_is_cancelled_before_any_request(monkeypatch):

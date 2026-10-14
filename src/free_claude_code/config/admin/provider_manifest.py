@@ -25,7 +25,7 @@ _PROVIDER_FIELD_OVERRIDES: dict[str, ProviderFieldOverride] = {
     "OPENAI_PROXY": {
         "description": (
             "Optional proxy used for OpenAI sign-in and ChatGPT Codex requests. "
-            "Changing it restarts FCC."
+            "Changing it restarts TEOS."
         ),
         "restart_required": True,
     },

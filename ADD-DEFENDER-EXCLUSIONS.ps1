@@ -1,9 +1,9 @@
-# Optional: cut FCC's import cost by keeping Defender out of the hot path.
+# Optional: cut TEOS's import cost by keeping Defender out of the hot path.
 #
 # Why: on this machine `import fastapi` takes ~21.5s against a ~0.5s baseline.
 # The cause is Defender real-time protection scanning every file an import
 # touches. That slows the test suite (which is what produced 20 bogus
-# TimeoutExpired failures) and also slows real FCC startup and restarts.
+# TimeoutExpired failures) and also slows real TEOS startup and restarts.
 #
 # Trade-off: these directories stop being scanned. They hold Python source and
 # virtualenvs you control, so the risk is low, but it is a real reduction in

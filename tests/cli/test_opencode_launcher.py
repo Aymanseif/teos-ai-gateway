@@ -234,4 +234,4 @@ def test_opencode_rejects_caller_control_of_server_lifetime(
 
     launch("opencode", ["run", option, "false", "hello"], exit_code=1)
     assert not launch_capture.commands
-    assert "FCC manages OpenCode standalone mode" in capsys.readouterr().err
+    assert "TEOS manages OpenCode standalone mode" in capsys.readouterr().err

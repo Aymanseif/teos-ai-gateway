@@ -16,7 +16,7 @@
     Pass -IncludeSource to bundle the full Corresponding Source inside this ZIP
     (dist\<sdist> plus source\<name>-source.zip). That is the correct mode now
     that the source repository is private: the source travels inside the paid
-    ZIP (AGPL-3.0 section 6(a)), backed by the section 6(b) written offer.
+    ZIP (AGPL-3.0 section 6), backed by a written offer.
     Without -IncludeSource the bundle relies on the written offer alone and
     SOURCE.txt points at a repository buyers cannot reach - do not ship that.
 
@@ -35,11 +35,8 @@
     Reuse an existing build\ directory instead of rebuilding.
 
 .PARAMETER IncludeSource
-    Also bundle the sdist and the full source ZIP inside the package. By default
-    no source is shipped inside the ZIP and SOURCE.txt points to the public repo.
-
-.PARAMETER SourceUrl
-    URL of the public repository hosting the Corresponding Source.
+    Also bundle the sdist and the full source ZIP inside the package. Without it
+    the ZIP carries no Corresponding Source and only the written offer applies.
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.0.0
@@ -51,7 +48,6 @@ param(
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,
-    [string] $SourceUrl = "https://github.com/Aymanseif/teos-ai-gateway",
     [string] $SupportEmail = "AYMAN@TEOSEGYPT.COM"
 )
 
@@ -87,7 +83,7 @@ foreach ($required in @("Install-TEOS-AI-Gateway.ps1", "NOTICE.md", "README-INST
 }
 
 if (-not $IncludeSource) {
-    Write-Warn "Building WITHOUT bundled source: the Corresponding Source will not travel with this ZIP. The source repository is private, so only the AGPL-3.0 section 6(b) written offer would apply. Pass -IncludeSource before shipping."
+    Write-Warn "Building WITHOUT bundled source: the Corresponding Source will not travel with this ZIP. The source repository is private, so only the AGPL-3.0 section 6 written offer would apply. Pass -IncludeSource before shipping."
 }
 
 $stage = Join-Path $OutDir "staging"
@@ -153,15 +149,13 @@ Copy-Item -LiteralPath (Join-Path $RepoPath "LICENSE") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $RepoPath "src\free_claude_code\assets\app-icon.ico") -Destination $stage
 Copy-Item -LiteralPath $wheel.FullName -Destination (Join-Path $stage "dist")
 
-# License + Corresponding Source notice (AGPL-3.0 §5, §6). The source itself is
-# NOT bundled; it is published at the public repository referenced here.
+# License + Corresponding Source notice (AGPL-3.0 §5, §6). With -IncludeSource
+# the Corresponding Source travels inside this very ZIP (AGPL-3.0 section 6).
 # The source repository is private, so the notice must never point a buyer at a
-# URL they cannot reach. With -IncludeSource the source travels inside this very
-# ZIP (AGPL-3.0 section 6(a)); otherwise the section 6(b) written offer is the
-# operative route, and that offer is stated in both cases.
+# URL they cannot reach; the standing written offer is stated in both modes.
 if ($IncludeSource) {
     $srcLines = @(
-        "Corresponding Source (AGPL-3.0 section 6(a))",
+        "Corresponding Source (AGPL-3.0 section 6)",
         "--------------------------------------------",
         "",
         "The complete Corresponding Source for this exact build is INCLUDED in this",
@@ -184,7 +178,7 @@ if ($IncludeSource) {
         "",
         "    $commitSha",
         "",
-        "Standing written offer (AGPL-3.0 section 6(b)): for at least three years",
+        "Standing written offer (AGPL-3.0 section 6): for at least three years",
         "from your purchase date we will provide the Corresponding Source for this",
         "build, on request and at no charge. Email $SupportEmail quoting the commit",
         "above."
@@ -198,7 +192,7 @@ else {
         "The complete Corresponding Source for this exact build is provided with",
         "your purchase, at no additional charge.",
         "",
-        "Written offer (AGPL-3.0 section 6(b)): for at least three years from your",
+        "Written offer (AGPL-3.0 section 6): for at least three years from your",
         "purchase date we will provide the Corresponding Source for this build, on",
         "request and at no charge. Email $SupportEmail quoting the commit below.",
         "",

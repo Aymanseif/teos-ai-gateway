@@ -1,8 +1,8 @@
 """Installed Cline launcher with private native provider settings.
 
 Sessions run with an isolated Hub discovery path so a stale or user-run Cline
-Hub can never capture an fcc-cline session: the child resolves Hub state only
-inside FCC's ephemeral configuration directory, which is deleted on exit. A
+Hub can never capture a teos-cline session: the child resolves Hub state only
+inside TEOS's ephemeral configuration directory, which is deleted on exit. A
 Hub started with ordinary cline keeps using its own discovery file.
 """
 
@@ -38,7 +38,7 @@ def _configure(
     # Interactive Cline passes backendMode:"auto" to core, which overrides
     # CLINE_SESSION_BACKEND_MODE and may attach to (or start) a detached Hub
     # that resolves provider settings from the user's global store instead of
-    # FCC's ephemeral files. Redirecting Hub discovery into the ephemeral tree
+    # TEOS's ephemeral files. Redirecting Hub discovery into the ephemeral tree
     # makes that attachment impossible without touching user-run Hub state.
     # (Verified: shipped Cline 3.0.57 honors CLINE_HUB_DISCOVERY_PATH as the
     # discovery-path override in its hub resolver.)
@@ -69,7 +69,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("--version",),
         lambda output: version_at_least(output, _VERSION_PATTERN, (3, 0, 55)),
-        "FCC requires Cline 3.0.55 or newer.",
+        "TEOS requires Cline 3.0.55 or newer.",
     ),
 )
 

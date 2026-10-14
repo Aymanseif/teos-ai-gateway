@@ -1,4 +1,4 @@
-"""Process-local Aider configuration for FCC model routing."""
+"""Process-local Aider configuration for TEOS model routing."""
 
 import re
 from dataclasses import dataclass, field
@@ -30,10 +30,10 @@ def build_aider_config(
     api_key_env: str,
     launch_id: str,
 ) -> AiderConfig:
-    """Project a non-empty FCC Messages catalog into Aider's file contracts."""
+    """Project a non-empty TEOS Messages catalog into Aider's file contracts."""
 
     if not models:
-        raise ValueError("Aider requires at least one routable FCC model")
+        raise ValueError("Aider requires at least one routable TEOS model")
     if _AIDER_API_KEY_ENV_PATTERN.fullmatch(api_key_env) is None:
         raise ValueError("invalid Aider proxy-auth environment variable name")
 

@@ -99,7 +99,7 @@ class MessageTreeGraph:
     def resolve_reference(
         self, reference_id: str
     ) -> tuple[MessageNode, MessageReferenceKind] | None:
-        """Resolve an exact prompt or FCC status reference."""
+        """Resolve an exact prompt or TEOS status reference."""
         node = self._nodes.get(reference_id)
         if node is not None:
             return node, MessageReferenceKind.PROMPT
@@ -171,7 +171,7 @@ class MessageTreeGraph:
         node.clear_status()
 
     def all_reference_ids(self) -> set[str]:
-        """Return every prompt and live FCC status reference in the tree."""
+        """Return every prompt and live TEOS status reference in the tree."""
         references = set(self._nodes)
         references.update(self._status_to_node)
         return references

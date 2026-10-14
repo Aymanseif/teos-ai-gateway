@@ -480,7 +480,7 @@ function openCustomProviderDialog(providerId = null) {
     ["base_url", "Base URL", "string", [], "Include the API path, for example https://gateway.example/v1."],
     ["api_key", "API key", "secret", [], "Optional for endpoints that do not require a key."],
     ["api_format", "API format", "select", [["openai_chat", "Chat Completions"], ["openai_responses", "Responses"], ["anthropic_messages", "Anthropic Messages"]], "Select the API exposed by your endpoint."],
-    ["reasoning_format", "Reasoning format", "select", formats.map((value) => [value, CUSTOM_LABELS[value]]), "How FCC sends reasoning controls. Provider default leaves computation to the upstream."],
+    ["reasoning_format", "Reasoning format", "select", formats.map((value) => [value, CUSTOM_LABELS[value]]), "How TEOS sends reasoning controls. Provider default leaves computation to the upstream."],
     ["reasoning_history_format", "Reasoning history format", "select", [["disabled", "Text context"], ["reasoning_content", "reasoning_content"], ["reasoning", "reasoning"], ["think_tags", "Think tags"]], "How previous reasoning is sent to a Chat Completions endpoint."],
     ["model_ids", "Model IDs", "textarea", [], "Optional, one upstream model ID per line. Leave empty to discover models automatically."],
   ];
@@ -696,7 +696,7 @@ async function cancelConnectedAccountLogin(providerId) {
 
 async function disconnectConnectedAccount(providerId) {
   const provider = connectedAccountDescriptor(providerId);
-  if (!window.confirm(`Disconnect this ${connectedAccountName(provider)} account from FCC?`)) return;
+  if (!window.confirm(`Disconnect this ${connectedAccountName(provider)} account from TEOS?`)) return;
   clearConnectedAccountPoll(providerId);
   try {
     const status = await api(`/admin/api/providers/${providerId}/auth`, { method: "DELETE" });
@@ -1647,8 +1647,8 @@ function renderClaudeIntegration() {
   byId("openClaudeIntegration").className = connected && !busy ? "danger-button" : "primary-button";
   byId("confirmClaudeIntegration").className = connected ? "danger-button" : "primary-button";
   byId("claudeIntegrationDescription").textContent = connected
-    ? "Remove FCC's VS Code settings. Claude onboarding stays completed."
-    : "Will set FCC's URL and token, enable model discovery, skip VS Code login, and complete Claude onboarding.";
+    ? "Remove TEOS's VS Code settings. Claude onboarding stays completed."
+    : "Will set TEOS's URL and token, enable model discovery, skip VS Code login, and complete Claude onboarding.";
   const files = byId("claudeIntegrationFiles");
   files.replaceChildren();
   if (paths) {
@@ -1745,8 +1745,8 @@ function renderVSCodeChatIntegration() {
   byId("openVSCodeChatIntegration").className = connected && !busy ? "danger-button" : "primary-button";
   byId("confirmVSCodeChatIntegration").className = connected ? "danger-button" : "primary-button";
   byId("vscodeChatIntegrationDescription").textContent = connected
-    ? "Remove FCC's model group from VS Code Chat."
-    : "Add FCC models to VS Code Chat. Your selected models stay unchanged.";
+    ? "Remove TEOS's model group from VS Code Chat."
+    : "Add TEOS models to VS Code Chat. Your selected models stay unchanged.";
   const files = byId("vscodeChatIntegrationFiles");
   files.replaceChildren();
   if (paths) {
@@ -1808,7 +1808,7 @@ byId("confirmVSCodeChatIntegration").addEventListener("click", async () => {
     vscodeChatIntegrationDialog.close();
     integrationMessage("vscodeChatIntegrationMessage", disconnect
       ? "Settings removed. Reload VS Code to disconnect."
-      : "Models saved. Select an FCC model in VS Code Chat. Reload VS Code if needed.");
+      : "Models saved. Select a TEOS model in VS Code Chat. Reload VS Code if needed.");
   } catch (error) {
     integrationMessage("vscodeChatIntegrationDialogMessage", error.message, true);
     integrationMessage("vscodeChatIntegrationMessage", error.message, true);
@@ -1847,8 +1847,8 @@ function renderCodexIntegration() {
   byId("openCodexIntegration").className = connected && !busy ? "danger-button" : "primary-button";
   byId("confirmCodexIntegration").className = connected ? "danger-button" : "primary-button";
   byId("codexIntegrationDescription").textContent = connected
-    ? "Remove FCC's Codex configuration. Other settings stay unchanged."
-    : "Configure Codex to use FCC. Your selected model stays unchanged.";
+    ? "Remove TEOS's Codex configuration. Other settings stay unchanged."
+    : "Configure Codex to use TEOS. Your selected model stays unchanged.";
   const files = byId("codexIntegrationFiles");
   files.replaceChildren();
   if (paths) {
@@ -1910,7 +1910,7 @@ byId("confirmCodexIntegration").addEventListener("click", async () => {
     codexIntegrationDialog.close();
     integrationMessage("codexIntegrationMessage", disconnect
       ? "Settings removed. Restart Codex to disconnect."
-      : "Settings saved. Restart Codex and select an FCC model.");
+      : "Settings saved. Restart Codex and select a TEOS model.");
   } catch (error) {
     integrationMessage("codexIntegrationDialogMessage", error.message, true);
     integrationMessage("codexIntegrationMessage", error.message, true);
@@ -1944,8 +1944,8 @@ function renderJetBrainsIntegration() {
   byId("openJetBrainsIntegration").className = connected && !busy ? "danger-button" : "primary-button";
   byId("confirmJetBrainsIntegration").className = connected ? "danger-button" : "primary-button";
   byId("jetBrainsIntegrationDescription").textContent = connected
-    ? "Remove the Claude Code (FCC) agent, including its custom settings. Finish any configuration edits first."
-    : "Add Claude Code (FCC) using JetBrains' installed Claude Agent. Start that agent once before connecting, and finish any configuration edits.";
+    ? "Remove the Claude Code (TEOS) agent, including its custom settings. Finish any configuration edits first."
+    : "Add Claude Code (TEOS) using JetBrains' installed Claude Agent. Start that agent once before connecting, and finish any configuration edits.";
   const files = byId("jetBrainsIntegrationFiles");
   files.replaceChildren();
   if (paths) {
@@ -2006,7 +2006,7 @@ byId("confirmJetBrainsIntegration").addEventListener("click", async () => {
     jetBrainsIntegrationDialog.close();
     integrationMessage("jetBrainsIntegrationMessage", disconnect
       ? "Agent removed. Reopen JetBrains to disconnect."
-      : "Settings saved. Reopen JetBrains, select Claude Code (FCC), and start a new chat.");
+      : "Settings saved. Reopen JetBrains, select Claude Code (TEOS), and start a new chat.");
   } catch (error) {
     integrationMessage("jetBrainsIntegrationDialogMessage", error.message, true);
     integrationMessage("jetBrainsIntegrationMessage", error.message, true);
@@ -2041,10 +2041,10 @@ function renderClaudeDesktopIntegration() {
   byId("openClaudeDesktopIntegration").className = disconnect && !busy ? "danger-button" : "primary-button";
   byId("confirmClaudeDesktopIntegration").className = disconnect ? "danger-button" : "primary-button";
   byId("claudeDesktopIntegrationDescription").textContent = disconnectPending
-    ? "Finish removing FCC's configuration. Fully quit Claude Desktop before retrying, then reopen it."
+    ? "Finish removing TEOS's configuration. Fully quit Claude Desktop before retrying, then reopen it."
     : connected
-    ? "Remove FCC's configuration and return to normal Claude sign-in. Fully quit Claude Desktop first, then reopen it."
-    : "Set FCC as Claude Desktop's gateway. Fully quit Claude Desktop before connecting, then reopen it.";
+    ? "Remove TEOS's configuration and return to normal Claude sign-in. Fully quit Claude Desktop first, then reopen it."
+    : "Set TEOS as Claude Desktop's gateway. Fully quit Claude Desktop before connecting, then reopen it.";
   const files = byId("claudeDesktopIntegrationFiles");
   files.replaceChildren();
   if (paths) {

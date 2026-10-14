@@ -75,7 +75,7 @@ def _recognizes_connection(document: TOMLDocument, proxy_root_url: str) -> bool:
 
 
 def recognizes_connection(path: Path, proxy_root_url: str) -> bool:
-    """Identify FCC independently of newly introduced managed settings."""
+    """Identify TEOS independently of newly introduced managed settings."""
     return _recognizes_connection(_read(path.resolve()), proxy_root_url)
 
 
@@ -112,7 +112,7 @@ def _connect(
 
 
 def refresh_connected(path: Path, catalog_path: Path, proxy_root_url: str) -> bool:
-    """Refresh an existing FCC connection without selecting a provider or model."""
+    """Refresh an existing TEOS connection without selecting a provider or model."""
     path = path.resolve()
     document = _read(path)
     if not _recognizes_connection(document, proxy_root_url):
@@ -123,7 +123,7 @@ def refresh_connected(path: Path, catalog_path: Path, proxy_root_url: str) -> bo
 def configure(
     path: Path, catalog_path: Path, proxy_root_url: str, connected: bool | None = None
 ) -> JsonObject:
-    """Inspect or edit FCC's entries without changing the user's selected model."""
+    """Inspect or edit TEOS's entries without changing the user's selected model."""
     path = path.resolve()
     catalog_path = catalog_path.resolve()
     document = _read(path)

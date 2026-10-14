@@ -1,4 +1,4 @@
-"""Installed Muse Code launcher with a native FCC connection."""
+"""Installed Muse Code launcher with a native TEOS connection."""
 
 import re
 from collections.abc import Sequence
@@ -59,7 +59,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("--version",),
         lambda output: version_at_least(output, _VERSION_PATTERN, (0, 2, 1)),
-        "FCC requires Muse Code 0.2.1 or newer.",
+        "TEOS requires Muse Code 0.2.1 or newer.",
     ),
 )
 

@@ -98,7 +98,7 @@ async def test_queued_writers_leave_workers_available_and_drain_on_close(
         with pytest.raises(sqlite3.OperationalError, match="closed"):
             await database.run(lambda c: None)
         other = database_factory(database.path, tmp_path / "fcc.lock")
-        with pytest.raises(sqlite3.OperationalError, match="another FCC"):
+        with pytest.raises(sqlite3.OperationalError, match="another TEOS"):
             await other.start()
     finally:
         release.set()
@@ -275,7 +275,7 @@ async def test_startup_failure_disposes_connections_before_releasing_owner(
         if cancel:
             starting.cancel()
         competing = sqlite_database.SQLiteDatabase(database.path, tmp_path / "fcc.lock")
-        with pytest.raises(sqlite3.OperationalError, match="another FCC"):
+        with pytest.raises(sqlite3.OperationalError, match="another TEOS"):
             await competing.start()
         await competing.close()
     finally:
@@ -378,7 +378,7 @@ async def test_disposal_failure_retains_owner_and_can_be_retried(
         with pytest.raises(sqlite3.ProgrammingError, match="closed"):
             reader_connections[0].execute("SELECT 1")
         competing = database_factory(database.path, tmp_path / "fcc.lock")
-        with pytest.raises(sqlite3.OperationalError, match="another FCC"):
+        with pytest.raises(sqlite3.OperationalError, match="another TEOS"):
             await competing.start()
     finally:
         monkeypatch.setattr(writer, "dispose", dispose)
@@ -796,7 +796,7 @@ async def test_old_owner_blocks_move_and_new_owner_uses_same_lock(
     second = SQLiteCodeStore(database_factory(target, lock, legacy_path=old))
     await first.start()
     try:
-        with pytest.raises(CodeUnavailableError, match="another FCC"):
+        with pytest.raises(CodeUnavailableError, match="another TEOS"):
             await second.start()
         assert old.exists() and not target.exists()
     finally:

@@ -1,4 +1,4 @@
-"""Direct OpenAI Platform API provider wiring across both FCC request protocols."""
+"""Direct OpenAI Platform API provider wiring across both TEOS request protocols."""
 
 import json
 from collections.abc import AsyncIterator

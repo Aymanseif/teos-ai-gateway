@@ -344,7 +344,7 @@ class FakePlatform:
         self.handler = handler
 
     def continue_message_sequence_after(self, previous: FakePlatform) -> None:
-        """Model platform-owned message IDs surviving an FCC restart."""
+        """Model platform-owned message IDs surviving a TEOS restart."""
         self._counter = previous._counter
 
     async def emit(self, incoming: IncomingMessage) -> None:

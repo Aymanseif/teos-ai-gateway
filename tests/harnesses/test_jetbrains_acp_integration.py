@@ -99,7 +99,7 @@ def test_lifecycle_preserves_other_agents_and_refreshes_owned_settings(files):
     assert jb.configure(config, "http://localhost:8082", "token", True)["connected"]
     assert registry.read_bytes() == original
     saved = json.loads(config.read_text())
-    entry = saved["agent_servers"]["Claude Code (FCC)"]
+    entry = saved["agent_servers"]["Claude Code (TEOS)"]
     assert entry["command"] == str(node)
     assert entry["args"] == [str(script), "--hide-claude-auth"]
     assert entry["env"]["ANTHROPIC_AUTH_TOKEN"] == "token"
@@ -109,7 +109,7 @@ def test_lifecycle_preserves_other_agents_and_refreshes_owned_settings(files):
     write(config, saved)
     _, updated = install(registry, systems, version="0.80.0")
     assert jb.refresh_connected(config, "http://localhost:9090", "rotated")
-    refreshed = json.loads(config.read_text())["agent_servers"]["Claude Code (FCC)"]
+    refreshed = json.loads(config.read_text())["agent_servers"]["Claude Code (TEOS)"]
     assert refreshed["args"][0] == str(updated)
     assert refreshed["env"]["ANTHROPIC_AUTH_TOKEN"] == "rotated"
     assert refreshed["env"]["KEEP"] == "yes"
@@ -145,7 +145,7 @@ def test_missing_installation_never_creates_config(files):
         "{",
         "[]",
         '{"agent_servers":[]}',
-        '{"agent_servers":{"Claude Code (FCC)":{"command":"other"}}}',
+        '{"agent_servers":{"Claude Code (TEOS)":{"command":"other"}}}',
         '{"agent_servers":{},"agent_servers":{}}',
     ],
 )
@@ -220,7 +220,7 @@ def test_platform_layout_and_launch(
     config, registry, systems = files
     node, script = install(registry, systems)
     jb.configure(config, "http://localhost:8082", "token", True)
-    entry = json.loads(config.read_text())["agent_servers"]["Claude Code (FCC)"]
+    entry = json.loads(config.read_text())["agent_servers"]["Claude Code (TEOS)"]
     assert entry["command"] == str(node)
     assert entry["args"][0] == str(script)
 
@@ -236,7 +236,7 @@ def test_previous_ide_is_preferred_and_system_node_is_fallback(files, monkeypatc
     node.unlink()
     monkeypatch.setattr(jb.shutil, "which", lambda _: str(system))
     jb.refresh_connected(config, "http://localhost:8082", "token")
-    entry = json.loads(config.read_text())["agent_servers"]["Claude Code (FCC)"]
+    entry = json.loads(config.read_text())["agent_servers"]["Claude Code (TEOS)"]
     assert entry["command"] == str(system.resolve())
     assert entry["args"][0] == str(script)
 

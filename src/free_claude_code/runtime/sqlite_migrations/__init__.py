@@ -1,4 +1,4 @@
-"""Ordered FCC database history. Published migrations are immutable.
+"""Ordered TEOS database history. Published migrations are immutable.
 
 Add the next numbered module and append its upgrade function here. The runner
 owns transactions and user_version. Migrations use explicit execute statements,

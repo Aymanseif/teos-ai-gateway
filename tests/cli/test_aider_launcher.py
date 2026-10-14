@@ -1,4 +1,4 @@
-"""Native Aider configuration replaces FCC argument rewriting."""
+"""Native Aider configuration replaces TEOS argument rewriting."""
 
 import json
 from pathlib import Path

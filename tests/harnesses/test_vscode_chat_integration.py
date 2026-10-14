@@ -23,12 +23,12 @@ def test_connect_refresh_disconnect_preserves_other_groups_and_options(tmp_path)
     data = json.loads(path.read_text())
     assert data[0] == other
     assert data[1]["models"][0]["url"] == URL + "/v1/messages"
-    data[1].update(name="My FCC", settings={"keep": True}, url="old", apiKey="old")
+    data[1].update(name="My TEOS", settings={"keep": True}, url="old", apiKey="old")
     path.write_text(json.dumps(data))
     assert vscode.configure(path, URL, "new", (MODEL,), only_existing=True)
     saved = json.loads(path.read_text())
     assert saved[1]["settings"] == {"keep": True}
-    assert saved[1]["name"] == "My FCC"
+    assert saved[1]["name"] == "My TEOS"
     assert "url" not in saved[1]
     assert "apiKey" not in saved[1]
     assert saved[1]["models"][0]["requestHeaders"] == {"x-api-key": "new"}

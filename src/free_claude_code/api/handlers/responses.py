@@ -64,7 +64,7 @@ class ResponsesHandler:
         request_id = request_id or new_request_id()
         if request_data.stream is False:
             raise InvalidRequestError(
-                "FCC /v1/responses supports streaming only; omit stream or set stream=true."
+                "TEOS /v1/responses supports streaming only; omit stream or set stream=true."
             )
         if not request_data.model.strip():
             raise InvalidRequestError("Responses request model must not be empty.")

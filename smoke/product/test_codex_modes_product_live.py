@@ -1,4 +1,4 @@
-"""Installed Codex modes through FCC; local cases never use provider credentials."""
+"""Installed Codex modes through TEOS; local cases never use provider credentials."""
 
 import asyncio
 import json
@@ -384,7 +384,7 @@ def test_codex_modes_local_e2e(smoke_config: SmokeConfig, tmp_path: Path) -> Non
                         smoke_config.timeout_s,
                     )
                 )
-            # A new FCC process must restore the original native settings when
+            # A new TEOS process must restore the original native settings when
             # resuming the conversation that last ran with Full access.
             with driver.run() as server:
                 asyncio.run(

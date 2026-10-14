@@ -1,4 +1,4 @@
-"""Process-local DeepSeek Harness configuration for FCC model routing."""
+"""Process-local DeepSeek Harness configuration for TEOS model routing."""
 
 import math
 from pathlib import Path
@@ -37,10 +37,10 @@ def build_dsh_launch_config(
     credentials_path: Path,
     provider_progress_timeout: float,
 ) -> tuple[JsonObject, ...]:
-    """Translate FCC's catalog and timeout into an isolated DSH overlay."""
+    """Translate TEOS's catalog and timeout into an isolated DSH overlay."""
 
     if not models:
-        raise ValueError("DeepSeek Harness requires at least one routable FCC model")
+        raise ValueError("DeepSeek Harness requires at least one routable TEOS model")
 
     stream_idle_timeout_ms = _stream_idle_timeout_ms(provider_progress_timeout)
     provider: JsonObject = {

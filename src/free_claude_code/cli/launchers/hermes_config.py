@@ -1,4 +1,4 @@
-"""Process-local Hermes configuration for FCC model routing."""
+"""Process-local Hermes configuration for TEOS model routing."""
 
 from dataclasses import dataclass, field
 
@@ -52,10 +52,10 @@ def build_hermes_managed_config(
     proxy_root_url: str,
     nonce: str,
 ) -> HermesManagedConfig:
-    """Translate an FCC catalog into one invocation-specific Hermes overlay."""
+    """Translate a TEOS catalog into one invocation-specific Hermes overlay."""
 
     if not models:
-        raise ValueError("Hermes requires at least one routable FCC model")
+        raise ValueError("Hermes requires at least one routable TEOS model")
     if not nonce or not nonce.isalnum():
         raise ValueError("Hermes configuration nonce must be alphanumeric")
 

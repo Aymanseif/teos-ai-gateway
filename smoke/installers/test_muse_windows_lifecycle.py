@@ -1,4 +1,4 @@
-"""Behavior contracts for FCC's standalone native-Windows Muse lifecycle."""
+"""Behavior contracts for TEOS's standalone native-Windows Muse lifecycle."""
 
 import hashlib
 import json
@@ -493,7 +493,7 @@ def test_muse_installer_rejects_file_at_managed_root_before_fetch(
     root, executable, record_path = _managed_paths(local_app_data)
 
     assert result.returncode != 0
-    assert "not owned by FCC" in result.stderr
+    assert "not owned by TEOS" in result.stderr
     assert root.read_bytes() == b"unowned file"
     assert not executable.exists()
     assert not record_path.exists()
@@ -905,7 +905,7 @@ def test_muse_uninstaller_is_idempotent_when_managed_install_is_absent(
     result, local_app_data = _run_uninstaller_lifecycle(tmp_path, powershell)
 
     assert result.returncode == 0, result.stderr
-    assert "No FCC-managed Muse Code installation" in result.stdout
+    assert "No TEOS-managed Muse Code installation" in result.stdout
     assert not local_app_data.exists()
 
 

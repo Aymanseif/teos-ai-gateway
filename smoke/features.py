@@ -123,7 +123,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "pi_cli_integration",
-        "Pi discovers FCC models and sends Anthropic Messages through the proxy",
+        "Pi discovers TEOS models and sends Anthropic Messages through the proxy",
         ("tests/cli/test_entrypoints.py",),
         ("test_probe_and_models_routes",),
         ("test_pi_cli_prompt_e2e",),
@@ -133,7 +133,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "opencode_cli_integration",
-        "OpenCode discovers FCC models and sends Responses through the proxy",
+        "OpenCode discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_opencode_launcher.py",
             "tests/application/test_model_catalog.py",
@@ -151,7 +151,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "aider_cli_integration",
-        "Aider discovers FCC models and sends Anthropic Messages through the proxy",
+        "Aider discovers TEOS models and sends Anthropic Messages through the proxy",
         (
             "tests/cli/test_aider_config.py",
             "tests/cli/test_aider_launcher.py",
@@ -170,7 +170,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "cline_cli_integration",
-        "Cline discovers FCC models and sends Responses through the proxy",
+        "Cline discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_cline_launcher.py",
             "tests/application/test_model_catalog.py",
@@ -188,7 +188,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "hermes_cli_integration",
-        "Hermes discovers FCC models and sends Responses through the proxy",
+        "Hermes discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_hermes_config.py",
             "tests/cli/test_hermes_launcher.py",
@@ -201,7 +201,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "dsh_cli_integration",
-        "DeepSeek Harness discovers FCC models and sends Responses through the proxy",
+        "DeepSeek Harness discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_dsh_config.py",
             "tests/cli/test_dsh_launcher.py",
@@ -218,7 +218,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "grok_cli_integration",
-        "Grok Build discovers FCC models and sends Responses through the proxy",
+        "Grok Build discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_grok_launcher.py",
             "tests/application/test_model_catalog.py",
@@ -233,7 +233,7 @@ FEATURE_INVENTORY: tuple[FeatureCoverage, ...] = (
     ),
     FeatureCoverage(
         "muse_cli_integration",
-        "Muse Code discovers FCC models and sends Responses through the proxy",
+        "Muse Code discovers TEOS models and sends Responses through the proxy",
         (
             "tests/cli/test_muse_launcher.py",
             "tests/api/test_model_listing.py",

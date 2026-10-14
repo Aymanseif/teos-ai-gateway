@@ -27,7 +27,7 @@ _MESSAGES_REQUEST_FIELDS = (
 
 
 def dump_messages_request(request: MessagesRequest) -> dict[str, Any]:
-    """Return JSON-ready public Messages fields without FCC routing state."""
+    """Return JSON-ready public Messages fields without TEOS routing state."""
     raw = request.model_dump(exclude_none=True)
     return {
         field: raw[field]

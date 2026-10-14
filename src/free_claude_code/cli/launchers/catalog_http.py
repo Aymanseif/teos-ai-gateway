@@ -18,7 +18,7 @@ def fetch_proxy_model_catalog(
     auth_token: str,
     view: Literal["messages", "responses"] = "responses",
 ) -> ModelCatalog:
-    """Fetch the authenticated FCC-local `/v1/models` response directly."""
+    """Fetch the authenticated TEOS-local `/v1/models` response directly."""
 
     url = f"{proxy_root_url.rstrip('/')}/v1/models?view={view}"
     request = Request(
@@ -41,7 +41,7 @@ def model_catalog_from_response(payload: Mapping[str, JsonValue]) -> ModelCatalo
     default_model_id = _nonempty_string(payload.get("default_model_id"))
     if default_model_id is None:
         raise ValueError(
-            "model catalog is missing its default; restart the FCC server after updating"
+            "model catalog is missing its default; restart the TEOS server after updating"
         )
     if not any(model.wire_slug == default_model_id for model in models):
         raise ValueError("model catalog default is not a routable model")
@@ -51,7 +51,7 @@ def model_catalog_from_response(payload: Mapping[str, JsonValue]) -> ModelCatalo
 def catalog_models_from_response(
     models_response: Mapping[str, JsonValue],
 ) -> tuple[CatalogModel, ...]:
-    """Project an FCC `/v1/models` response into direct client model records."""
+    """Project a TEOS `/v1/models` response into direct client model records."""
 
     models: list[CatalogModel] = []
     seen_slugs: set[str] = set()

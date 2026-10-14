@@ -1,4 +1,4 @@
-"""Recognize the narrow Anthropic web-tool requests FCC can execute locally."""
+"""Recognize the narrow Anthropic web-tool requests TEOS can execute locally."""
 
 import json
 import re
@@ -181,7 +181,7 @@ def plan_automatic_web_search(
 def unsupported_server_tool_error(
     request: MessagesRequest, *, web_tools_enabled: bool
 ) -> str | None:
-    """Return the user-facing error for a server-tool shape FCC does not handle."""
+    """Return the user-facing error for a server-tool shape TEOS does not handle."""
     forced = forced_server_tool_name(request)
     if forced and not web_tools_enabled:
         return (
@@ -191,7 +191,7 @@ def unsupported_server_tool_error(
         )
     if not forced and has_listed_anthropic_server_tools(request):
         return (
-            "FCC supports automatic Anthropic web_search only for Claude Code's "
+            "TEOS supports automatic Anthropic web_search only for Claude Code's "
             f"{WEB_SEARCH_TYPE} server-tool-only request. Automatic web_fetch, "
             "mixed tools, and other server-tool choices are not supported."
         )

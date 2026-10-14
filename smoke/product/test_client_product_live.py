@@ -887,7 +887,7 @@ def test_muse_cli_headless_e2e(smoke_config: SmokeConfig, tmp_path: Path) -> Non
         for row in json.loads(catalog_file.read_text(encoding="utf-8"))["rows"]
         if row["visibility"] == "visible"
     }
-    assert full_model in visible_models, "Muse hides the configured FCC model"
+    assert full_model in visible_models, "Muse hides the configured TEOS model"
     responses_count = server_log.count("POST /v1/responses")
     assert responses_count >= 1
     assert responses_count == len(provider_requests)
@@ -1332,7 +1332,7 @@ def _deliberately_failing_openai_provider() -> Iterator[tuple[str, list[str]]]:
                     "error": {
                         "type": "invalid_request_error",
                         "code": "fcc_smoke_failure",
-                        "message": "FCC smoke provider rejected the request deliberately.",
+                        "message": "TEOS smoke provider rejected the request deliberately.",
                     }
                 },
             )

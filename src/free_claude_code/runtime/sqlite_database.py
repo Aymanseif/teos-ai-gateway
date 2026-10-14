@@ -1,4 +1,4 @@
-"""Connection, transaction, and lifetime ownership of FCC's shared database.
+"""Connection, transaction, and lifetime ownership of TEOS's shared database.
 
 The application holds the owner lock until both features close and pooled
 connections are disposed. Each transaction exclusively leases one connection.
@@ -63,7 +63,7 @@ def _connect(
 def _schema_version(connection: sqlite3.Connection) -> int:
     version = connection.execute("PRAGMA user_version").fetchone()[0]
     if not 0 <= version <= MIGRATIONS[-1][0]:
-        raise sqlite3.DatabaseError(f"Unsupported FCC database version {version}.")
+        raise sqlite3.DatabaseError(f"Unsupported TEOS database version {version}.")
     tables = {
         row[0]
         for row in connection.execute(
@@ -75,7 +75,7 @@ def _schema_version(connection: sqlite3.Connection) -> int:
     columns = _BASE_COLUMNS | (_MESSAGING_COLUMNS if version >= 4 else {})
     if tables != columns.keys():
         raise sqlite3.DatabaseError(
-            "Unrecognized FCC database schema. Saved data was preserved."
+            "Unrecognized TEOS database schema. Saved data was preserved."
         )
     for table, baseline in columns.items():
         expected = set(baseline.split())
@@ -87,7 +87,7 @@ def _schema_version(connection: sqlite3.Connection) -> int:
             expected.add("context_used_tokens")
         actual = {row[1] for row in connection.execute(f"PRAGMA table_info({table})")}
         if not expected <= actual:
-            raise sqlite3.DatabaseError(f"Incomplete FCC database schema in {table}.")
+            raise sqlite3.DatabaseError(f"Incomplete TEOS database schema in {table}.")
     return version
 
 
@@ -101,11 +101,11 @@ def _sidecars(path: Path) -> bool:
 def _check_path(path: Path) -> None:
     if path.is_symlink():
         raise sqlite3.DatabaseError(
-            "FCC database path is redirected. Saved data was preserved."
+            "TEOS database path is redirected. Saved data was preserved."
         )
     if not path.exists() and _sidecars(path):
         raise sqlite3.DatabaseError(
-            "FCC database has orphan journal files. Saved data was preserved."
+            "TEOS database has orphan journal files. Saved data was preserved."
         )
 
 
@@ -118,20 +118,20 @@ def _relocate(source: Path, destination: Path) -> None:
             ).fetchone()
             if busy or pages != checkpointed:
                 raise sqlite3.DatabaseError(
-                    "FCC database checkpoint is busy. Stop FCC before updating."
+                    "TEOS database checkpoint is busy. Stop TEOS before updating."
                 )
         if connection.execute("PRAGMA journal_mode=DELETE").fetchone()[0] != "delete":
             raise sqlite3.DatabaseError(
-                "FCC database journals are still in use. Stop FCC before updating."
+                "TEOS database journals are still in use. Stop TEOS before updating."
             )
     if _sidecars(source):
         raise sqlite3.DatabaseError(
-            "FCC database journal files remain. Saved data was preserved."
+            "TEOS database journal files remain. Saved data was preserved."
         )
     _check_path(destination)
     if destination.exists():
         raise sqlite3.DatabaseError(
-            "FCC has both legacy and current databases. Resolve the file conflict before starting Code."
+            "TEOS has both legacy and current databases. Resolve the file conflict before starting Code."
         )
     source.rename(destination)
 
@@ -142,7 +142,7 @@ def initialize_database(path: Path, legacy_path: Path | None = None) -> None:
         range(1, len(MIGRATIONS) + 1)
     ):
         raise sqlite3.DatabaseError(
-            "FCC database migration versions must be contiguous."
+            "TEOS database migration versions must be contiguous."
         )
     path = path.parent.resolve() / path.name
     _check_path(path)
@@ -159,7 +159,7 @@ def initialize_database(path: Path, legacy_path: Path | None = None) -> None:
         _check_path(legacy_path)
         if legacy_path.exists() and path.exists():
             raise sqlite3.DatabaseError(
-                "FCC has both legacy and current databases. Resolve the file conflict before starting Code."
+                "TEOS has both legacy and current databases. Resolve the file conflict before starting Code."
             )
     path.parent.mkdir(parents=True, exist_ok=True)
     if legacy_path is not None and legacy_path.exists():
@@ -167,7 +167,7 @@ def initialize_database(path: Path, legacy_path: Path | None = None) -> None:
     with closing(_connect(path)) as connection:
         version = _schema_version(connection)
         if connection.execute("PRAGMA journal_mode=WAL").fetchone()[0] != "wal":
-            raise sqlite3.DatabaseError("FCC database could not enable WAL.")
+            raise sqlite3.DatabaseError("TEOS database could not enable WAL.")
         for next_version, upgrade in MIGRATIONS:
             if next_version <= version:
                 continue
@@ -179,7 +179,7 @@ def initialize_database(path: Path, legacy_path: Path | None = None) -> None:
                     is not None
                 ):
                     raise sqlite3.DatabaseError(
-                        "FCC database has an invalid record link."
+                        "TEOS database has an invalid record link."
                     )
                 connection.execute(f"PRAGMA user_version={next_version}")
                 connection.execute("COMMIT")
@@ -213,7 +213,7 @@ class SQLiteDatabase:
             if self._started:
                 return
             if self._closing:
-                raise sqlite3.OperationalError("FCC database is closing")
+                raise sqlite3.OperationalError("TEOS database is closing")
             if self._startup_error is not None:
                 raise self._startup_error
             try:
@@ -230,7 +230,7 @@ class SQLiteDatabase:
     def _initialize(self) -> None:
         if not self._owner.acquire():
             raise sqlite3.OperationalError(
-                "FCC storage is already owned by another FCC server"
+                "TEOS storage is already owned by another TEOS server"
             )
         self.path.parent.mkdir(parents=True, exist_ok=True)
         if os.name != "nt":
@@ -283,19 +283,19 @@ class SQLiteDatabase:
         write: bool,
     ) -> T:
         if pool is None:
-            raise sqlite3.OperationalError("FCC storage is closed")
+            raise sqlite3.OperationalError("TEOS storage is closed")
         try:
             lease = pool.connect()
         except PoolTimeoutError as exc:
             raise sqlite3.OperationalError(
-                "Timed out waiting for FCC storage connection capacity"
+                "Timed out waiting for TEOS storage connection capacity"
             ) from exc
         try:
             connection = lease.driver_connection
             if not isinstance(connection, sqlite3.Connection):
-                raise sqlite3.OperationalError("Invalid FCC storage connection")
+                raise sqlite3.OperationalError("Invalid TEOS storage connection")
             if connection.in_transaction:
-                raise sqlite3.OperationalError("FCC storage connection is not clean")
+                raise sqlite3.OperationalError("TEOS storage connection is not clean")
         except BaseException as exc:
             lease.invalidate(exc)
             lease.close()
@@ -311,7 +311,7 @@ class SQLiteDatabase:
                     connection.execute("ROLLBACK")
                 if connection.in_transaction:
                     raise sqlite3.OperationalError(
-                        "FCC storage rollback did not finish"
+                        "TEOS storage rollback did not finish"
                     )
             except BaseException as cleanup_error:
                 raise exc from cleanup_error
@@ -341,7 +341,7 @@ class SQLiteDatabase:
         self, operation: Callable[[], T], admission: asyncio.Semaphore
     ) -> T:
         if not self._started or self._closing:
-            raise sqlite3.OperationalError("FCC storage is closed")
+            raise sqlite3.OperationalError("TEOS storage is closed")
 
         async def admitted() -> T:
             async with admission:

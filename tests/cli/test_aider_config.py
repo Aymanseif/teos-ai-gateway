@@ -1,4 +1,4 @@
-"""Contracts for Aider's process-local FCC model files."""
+"""Contracts for Aider's process-local TEOS model files."""
 
 import json
 

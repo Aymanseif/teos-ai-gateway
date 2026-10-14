@@ -1,4 +1,4 @@
-"""Contracts for starting FCC without token-encoder network access."""
+"""Contracts for starting TEOS without token-encoder network access."""
 
 import subprocess
 import sys

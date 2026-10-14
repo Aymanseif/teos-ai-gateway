@@ -4,7 +4,7 @@ from enum import StrEnum
 
 
 class ModelInputModality(StrEnum):
-    """Input media that FCC can preserve across supported protocol paths."""
+    """Input media that TEOS can preserve across supported protocol paths."""
 
     TEXT = "text"
     IMAGE = "image"

@@ -13,7 +13,7 @@ from .clipboard import ClipboardUnavailable, copy_text
 def main(argv: Sequence[str] | None = None) -> None:
     argparse.ArgumentParser(
         prog="teos-doctor",
-        description="Print and copy FCC diagnostics for a bug report.",
+        description="Print and copy TEOS diagnostics for a bug report.",
     ).parse_args(argv)
     text = json.dumps(collect_report(), indent=2, ensure_ascii=False) + "\n"
     sys.stdout.write(text)
@@ -22,4 +22,4 @@ def main(argv: Sequence[str] | None = None) -> None:
     except ClipboardUnavailable:
         print("Clipboard unavailable. Copy the JSON above manually.", file=sys.stderr)
     else:
-        print("FCC diagnostics copied to the clipboard.", file=sys.stderr)
+        print("TEOS diagnostics copied to the clipboard.", file=sys.stderr)

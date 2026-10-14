@@ -89,7 +89,7 @@ async def test_jetbrains_startup_refresh_and_failed_discovery_allow_disconnect(
         jb.config_path(),
         {
             "agent_servers": {
-                "Claude Code (FCC)": {
+                "Claude Code (TEOS)": {
                     "command": "old-node",
                     "env": {"FCC_JETBRAINS_ACP": "1", "ANTHROPIC_AUTH_TOKEN": "old"},
                 }
@@ -103,7 +103,7 @@ async def test_jetbrains_startup_refresh_and_failed_discovery_allow_disconnect(
         assert status["connected"] is True
         assert status["update"]["changed"] is True
         entry = json.loads(jb.config_path().read_text())["agent_servers"][
-            "Claude Code (FCC)"
+            "Claude Code (TEOS)"
         ]
         assert entry["env"]["ANTHROPIC_AUTH_TOKEN"] == TOKEN
         assert entry["env"]["ANTHROPIC_BASE_URL"] == "http://127.0.0.1:8000"

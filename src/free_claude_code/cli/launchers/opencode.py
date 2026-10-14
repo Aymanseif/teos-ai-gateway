@@ -1,4 +1,4 @@
-"""Installed OpenCode launcher with process-local FCC configuration."""
+"""Installed OpenCode launcher with process-local TEOS configuration."""
 
 import json
 import re
@@ -27,7 +27,7 @@ def _standalone_args(args: list[str]) -> list[str]:
         arg.partition("=")[0] in {"--standalone", "--no-standalone"}
         for arg in args[:end]
     ):
-        raise ValueError("FCC manages OpenCode standalone mode; omit that option.")
+        raise ValueError("TEOS manages OpenCode standalone mode; omit that option.")
     # OpenCode's flag belongs to the leaf command, before literal positionals.
     return [*args[:end], "--standalone", *args[end:]]
 
@@ -66,7 +66,7 @@ SPEC = HarnessSpec(
     binary_name="opencode",
     display_name="OpenCode CLI",
     install_hint=(
-        "Install or upgrade by rerunning FCC's installer with OpenCode selected. "
+        "Install or upgrade by rerunning TEOS's installer with OpenCode selected. "
         "For external installations: https://opencode.ai/v2/docs/migrate-v1/"
     ),
     configure=_configure,
@@ -74,7 +74,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("--version",),
         lambda output: _VERSION_PATTERN.search(output) is not None,
-        "FCC requires stable OpenCode 2.",
+        "TEOS requires stable OpenCode 2.",
     ),
 )
 

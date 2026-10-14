@@ -109,7 +109,7 @@ def test_openai_proxy_override_applies_to_catalog_proxy_field() -> None:
 
     assert entry.settings_attr == "openai_proxy"
     assert entry.restart_required is True
-    assert "restarts FCC" in entry.description
+    assert "restarts TEOS" in entry.description
 
 
 def test_provider_catalog_display_names_are_admin_status_source() -> None:

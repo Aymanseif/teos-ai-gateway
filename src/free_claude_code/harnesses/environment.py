@@ -40,7 +40,7 @@ def require_unset_environment(base_env: Mapping[str, str], keys: Sequence[str]) 
 
     for key in keys:
         if base_env.get(key, "").strip():
-            raise ValueError(f"{key} is already set. Unset it before using FCC.")
+            raise ValueError(f"{key} is already set. Unset it before using TEOS.")
 
 
 def with_local_proxy_bypass(
@@ -48,7 +48,7 @@ def with_local_proxy_bypass(
     *,
     proxy_root_url: str,
 ) -> dict[str, str]:
-    """Copy an environment and keep its FCC-local destination off proxies."""
+    """Copy an environment and keep its TEOS-local destination off proxies."""
 
     host = urlsplit(proxy_root_url).hostname
     if host is None:

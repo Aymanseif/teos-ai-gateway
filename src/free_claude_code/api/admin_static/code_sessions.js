@@ -774,7 +774,7 @@
         form.append(
           element(
             "p",
-            "Choose an existing folder on the computer running FCC. You can also enter its path manually.",
+            "Choose an existing folder on the computer running TEOS. You can also enter its path manually.",
             "code-notice",
           ),
         );
@@ -865,7 +865,7 @@
         form.append(
           element(
             "p",
-            "This deletes the conversation from FCC and Codex history. Your project files stay in place.",
+            "This deletes the conversation from TEOS and Codex history. Your project files stay in place.",
           ),
         );
       },

@@ -1,4 +1,4 @@
-"""Manage FCC's own saved Claude Desktop gateway configuration."""
+"""Manage TEOS's own saved Claude Desktop gateway configuration."""
 
 import getpass
 import json
@@ -21,6 +21,10 @@ _IDENTITY = (
 FCC_ID = str(uuid5(NAMESPACE_URL, _IDENTITY))
 DEFAULT_ID = str(uuid5(NAMESPACE_URL, _IDENTITY + "/default"))
 _VIEW_HEADER = "X-FCC-Model-View"
+_PROFILE_NAME = "TEOS"
+# Name written by builds before the TEOS rename; still recognised as ours so an
+# existing install migrates cleanly instead of reporting a profile collision.
+_LEGACY_PROFILE_NAMES = frozenset({"FCC"})
 
 
 class ManagedDesktopError(ValueError):
@@ -32,7 +36,7 @@ class PendingDisconnectError(ValueError):
 
 
 class PendingMigrationError(ValueError):
-    """Desktop must move its legacy Windows data before FCC creates the new root."""
+    """Desktop must move its legacy Windows data before TEOS creates the new root."""
 
 
 def config_root() -> Path:
@@ -221,8 +225,11 @@ def _load(root: Path) -> _Library:
             entry_id = cast(str, entry["id"])
             if not re.fullmatch(r"[a-f0-9-]{36}", entry_id) or entry_id in ids:
                 raise ValueError("Invalid or duplicate Desktop entry ID")
-            if entry_id == FCC_ID and entry["name"] != "FCC":
-                raise ValueError("FCC profile ID is already used")
+            if entry_id == FCC_ID and entry["name"] not in {
+                _PROFILE_NAME,
+                *_LEGACY_PROFILE_NAMES,
+            }:
+                raise ValueError("TEOS profile ID is already used")
             ids.add(entry_id)
         applied_id = library.metadata.get("appliedId")
         if not isinstance(applied_id, str) or applied_id not in ids:
@@ -234,7 +241,7 @@ def _load(root: Path) -> _Library:
         if library.profile.get("inferenceProvider") != "gateway" or (
             not registered and not _owned(library.profile)
         ):
-            raise ValueError("FCC profile ID is already used")
+            raise ValueError("TEOS profile ID is already used")
     return library
 
 
@@ -393,7 +400,7 @@ def configure(
             library.entries = [library.ensure_default()]
         _update_profile(library, values)
         entries = [entry for entry in library.entries if entry["id"] != FCC_ID]
-        entries.append({"id": FCC_ID, "name": "FCC"})
+        entries.append({"id": FCC_ID, "name": _PROFILE_NAME})
         metadata = dict(library.metadata or {})
         metadata.update({"entries": entries, "appliedId": FCC_ID})
         metadata.pop("hybridPointer", None)

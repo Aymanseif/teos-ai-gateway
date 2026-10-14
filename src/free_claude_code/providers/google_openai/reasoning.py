@@ -23,7 +23,7 @@ _GEMINI_EFFORTS = {
     ReasoningEffort.MAX: "high",
 }
 _THINKING_CONFIG_CONFLICT = (
-    "Google extra_body.google.thinking_config cannot be combined with FCC "
+    "Google extra_body.google.thinking_config cannot be combined with TEOS "
     "reasoning controls. Use either thinking/output_config or the provider-native "
     "thinking_config."
 )

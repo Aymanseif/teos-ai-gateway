@@ -188,7 +188,7 @@ _NON_PROVIDER_FIELDS: tuple[ConfigFieldSpec, ...] = (
         "boolean",
         settings_attr="proxy_auth_enabled",
         restart_required=True,
-        description="Require the retained API/CLI token on FCC API routes.",
+        description="Require the retained API/CLI token on TEOS API routes.",
     ),
     ConfigFieldSpec(
         "ANTHROPIC_AUTH_TOKEN",
@@ -473,7 +473,7 @@ _NON_PROVIDER_FIELDS: tuple[ConfigFieldSpec, ...] = (
         "boolean",
         settings_attr="enable_web_server_tools",
         description=(
-            "Let Claude Code use WebSearch through FCC and allow forced local web "
+            "Let Claude Code use WebSearch through TEOS and allow forced local web "
             "tools. Disable to prevent local web access."
         ),
     ),

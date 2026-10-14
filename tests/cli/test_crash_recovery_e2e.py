@@ -1,4 +1,4 @@
-"""End-to-end proof that a crashed FCC server comes back by itself.
+"""End-to-end proof that a crashed TEOS server comes back by itself.
 
 This is the behaviour the patch exists to provide, exercised through the real
 `ServerSupervisor` against a real listening socket rather than a mocked run

@@ -70,7 +70,7 @@ def check_packaging(head: str) -> None:
         or "version" in project
         or "version" not in project.get("dynamic", [])
     ):
-        raise ValueError("FCC must declare a dynamic version without project.version")
+        raise ValueError("TEOS must declare a dynamic version without project.version")
     lock = tomllib.loads(git("show", f"{head}:uv.lock"))
     roots = [
         p
@@ -78,7 +78,7 @@ def check_packaging(head: str) -> None:
         if p["name"] == "free-claude-code" and p.get("source") == {"editable": "."}
     ]
     if len(roots) != 1 or "version" in roots[0]:
-        raise ValueError("uv.lock must have one editable FCC package without a version")
+        raise ValueError("uv.lock must have one editable TEOS package without a version")
 
 
 def check(base: str, head: str, title: str) -> None:

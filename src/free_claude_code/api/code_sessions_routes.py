@@ -74,7 +74,7 @@ class AnswerPayload(CommandPayload):
 
 def _code(services: ApiServices) -> CodeApplicationPort:
     if services.code is None:
-        raise CodeUnavailableError("Code sessions is unavailable in this FCC runtime.")
+        raise CodeUnavailableError("Code sessions is unavailable in this TEOS runtime.")
     return services.code
 
 

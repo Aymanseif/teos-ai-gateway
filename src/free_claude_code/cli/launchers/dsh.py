@@ -1,4 +1,4 @@
-"""Installed DeepSeek Harness launcher with an FCC connection patch."""
+"""Installed DeepSeek Harness launcher with a TEOS connection patch."""
 
 import re
 from collections.abc import Sequence
@@ -60,7 +60,7 @@ SPEC = HarnessSpec(
             bool(match := _VERSION_PATTERN.search(output))
             and match.group(1) == "0.1.0-rc.8"
         ),
-        "FCC requires DeepSeek Harness 0.1.0-rc.8.",
+        "TEOS requires DeepSeek Harness 0.1.0-rc.8.",
     ),
 )
 

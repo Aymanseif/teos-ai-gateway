@@ -21,7 +21,7 @@ CODEX_BASE_INSTRUCTIONS = (
     "tools when needed, and communicate concise progress and verification."
 )
 
-# Codex truncates oversized tool output per model. FCC advertises an
+# Codex truncates oversized tool output per model. TEOS advertises an
 # effectively unlimited token budget so native clients receive complete tool
 # results and item payloads instead of head/tail-truncated ones. The value
 # stays within signed 32-bit range so any Codex integer representation accepts

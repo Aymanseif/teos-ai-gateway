@@ -170,7 +170,7 @@ class _ResponsesChatInputBuilder:
         return self.system_parts, self.messages
 
     def encode_discovery_outputs(self, tool_names: OpenAIToolNameCodec) -> None:
-        """Encode FCC's discovery definitions with the final Chat name mapping."""
+        """Encode TEOS's discovery definitions with the final Chat name mapping."""
         if not tool_names.has_aliases:
             return
         for message in self._discovery_outputs:

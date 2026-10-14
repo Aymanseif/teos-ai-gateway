@@ -34,7 +34,7 @@ def merge_custom_provider(
     provider_id = mutation.provider_id
     if mutation.action == "create":
         if provider_id is not None:
-            raise ValueError("Provider IDs are assigned by FCC")
+            raise ValueError("Provider IDs are assigned by TEOS")
         provider_id = "custom_" + uuid4().hex
         values = {}
     else:

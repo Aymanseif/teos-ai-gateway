@@ -1,4 +1,4 @@
-"""Single production composition root for the FCC server."""
+"""Single production composition root for the TEOS server."""
 
 import os
 from functools import partial

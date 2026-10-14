@@ -1,4 +1,4 @@
-"""Installed Pi launcher using the bundled FCC provider extension."""
+"""Installed Pi launcher using the bundled TEOS provider extension."""
 
 import re
 import sys
@@ -61,7 +61,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("--version",),
         lambda output: version_at_least(output, _VERSION_PATTERN, (0, 80, 4)),
-        "FCC requires Pi 0.80.4 or newer for provider request headers.",
+        "TEOS requires Pi 0.80.4 or newer for provider request headers.",
     ),
 )
 

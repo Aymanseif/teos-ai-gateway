@@ -526,7 +526,7 @@ class MessagingWorkflow:
             return _stop_outcome(voice_results, result)
 
     async def clear_chat(self, platform: str, chat_id: str) -> frozenset[str]:
-        """Clear FCC state atomically with respect to later turn admission."""
+        """Clear TEOS state atomically with respect to later turn admission."""
         return await _finish_owned_operation(
             self._clear_chat(platform, chat_id),
             name=f"messaging-clear-{platform}-{chat_id}",
@@ -537,7 +537,7 @@ class MessagingWorkflow:
         platform: str,
         chat_id: str,
     ) -> frozenset[str]:
-        """Reset one chat's FCC state and return all tracked deletion IDs."""
+        """Reset one chat's TEOS state and return all tracked deletion IDs."""
         clear_scope = MessageScope(platform=platform, chat_id=chat_id)
         voice_results = await self._cancel_pending_voices_in_scope(clear_scope)
         async with self._state_lock:

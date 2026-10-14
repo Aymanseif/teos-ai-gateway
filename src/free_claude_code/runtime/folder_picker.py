@@ -30,7 +30,7 @@ class NativeFolderPicker:
 
     async def pick_folder(self, initial_path: str | None) -> str | None:
         if self._closed:
-            raise ApplicationUnavailableError("FCC is shutting down.")
+            raise ApplicationUnavailableError("TEOS is shutting down.")
         if self._active is not None:
             raise ApplicationUnavailableError("A folder picker is already open")
         self._stop = asyncio.Event()

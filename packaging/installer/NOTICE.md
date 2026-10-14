@@ -35,7 +35,7 @@ The complete Corresponding Source for this build is **included in this bundle**:
 It contains the full source tree and the exact build commit recorded in `SOURCE.txt`.
 When present, `dist\<sdist>` holds the matching source distribution as well.
 
-**Written offer (AGPL-3.0 §6b).** For at least three years from your purchase we
+**Written offer (AGPL-3.0 §6).** For at least three years from your purchase we
 will provide the Corresponding Source for this build, on request and at no charge.
 Email `AYMAN@TEOSEGYPT.COM` quoting the build commit recorded in `SOURCE.txt`.
 

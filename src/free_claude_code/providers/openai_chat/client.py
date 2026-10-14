@@ -18,7 +18,7 @@ def create_chat_client(
     default_headers: Mapping[str, str] | None = None,
     api_key_provider: OpenAIAsyncCredentialProvider | None = None,
 ) -> AsyncOpenAI:
-    """Create a provider-owned SDK client with FCC's existing HTTP policy."""
+    """Create a provider-owned SDK client with TEOS's existing HTTP policy."""
     if config.api_key is None and api_key_provider is None:
         raise ValueError(f"{provider_name} requires an API key or credential provider")
     timeout = httpx2.Timeout(

@@ -1,4 +1,4 @@
-"""Process-local Cline CLI configuration for FCC model routing."""
+"""Process-local Cline CLI configuration for TEOS model routing."""
 
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -11,7 +11,7 @@ from free_claude_code.config.server_urls import proxy_v1_url
 from free_claude_code.core.json_types import JsonObject
 from free_claude_code.core.model_capabilities import ModelInputModality
 
-# Cline's released session gateway only instantiates built-in providers. FCC
+# Cline's released session gateway only instantiates built-in providers. TEOS
 # replaces this process-local Responses provider's endpoint and catalog instead
 # of creating a custom provider that the picker can see but inference cannot.
 CLINE_PROVIDER_ID = "openai-native"
@@ -34,10 +34,10 @@ def build_cline_config(
     launch_id: str,
     now: datetime | None = None,
 ) -> ClineConfig:
-    """Translate a non-empty FCC model snapshot into Cline's file contracts."""
+    """Translate a non-empty TEOS model snapshot into Cline's file contracts."""
 
     if not models:
-        raise ValueError("Cline requires at least one routable FCC model")
+        raise ValueError("Cline requires at least one routable TEOS model")
 
     timestamp = (
         (now or datetime.now(UTC)).astimezone(UTC).isoformat().replace("+00:00", "Z")

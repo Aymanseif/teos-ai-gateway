@@ -203,7 +203,7 @@ class OpenAICodexProvider(BaseProvider):
 
 
 def _model_list_client_version() -> str:
-    """Format FCC's release and VCS development versions for the catalog API."""
+    """Format TEOS's release and VCS development versions for the catalog API."""
     if FCC_VERSION == "dev":
         return "0.0.0-dev"
     parsed = Version(FCC_VERSION)

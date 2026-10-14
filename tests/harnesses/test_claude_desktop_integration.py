@@ -297,7 +297,7 @@ def test_disconnect_recovers_every_failure_boundary(tmp_path, monkeypatch, failu
         meta(tmp_path),
         {
             "appliedId": desktop.FCC_ID,
-            "entries": [{"id": desktop.FCC_ID, "name": "FCC"}],
+            "entries": [{"id": desktop.FCC_ID, "name": "TEOS"}],
         },
     )
     default = tmp_path / "configLibrary" / f"{desktop.DEFAULT_ID}.json"
@@ -468,7 +468,7 @@ def test_disconnect_last_entry_creates_default(tmp_path):
         meta(tmp_path),
         {
             "appliedId": desktop.FCC_ID,
-            "entries": [{"id": desktop.FCC_ID, "name": "FCC"}],
+            "entries": [{"id": desktop.FCC_ID, "name": "TEOS"}],
         },
     )
     (tmp_path / "configLibrary" / f"{desktop.DEFAULT_ID}.json").unlink()
@@ -490,8 +490,8 @@ def test_disconnect_last_entry_creates_default(tmp_path):
         [],
         {},
         {"entries": []},
-        {"entries": [{"id": desktop.FCC_ID, "name": "FCC"}], "appliedId": []},
-        {"entries": [{"id": desktop.FCC_ID, "name": "FCC"}], "appliedId": {}},
+        {"entries": [{"id": desktop.FCC_ID, "name": "TEOS"}], "appliedId": []},
+        {"entries": [{"id": desktop.FCC_ID, "name": "TEOS"}], "appliedId": {}},
         {
             "entries": [{"id": "../../other", "name": "Other"}],
             "appliedId": "../../other",

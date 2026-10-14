@@ -1,4 +1,4 @@
-"""Lightweight entrypoint for the optional FCC desktop shell."""
+"""Lightweight entrypoint for the optional TEOS desktop shell."""
 
 import sys
 from collections.abc import Sequence
@@ -19,7 +19,7 @@ def launch(argv: Sequence[str] | None = None) -> None:
         print("Usage: teos-desktop [--export-icon PATH]", file=sys.stderr)
         raise SystemExit(2)
     if sys.platform not in {"darwin", "win32"}:
-        print("FCC Desktop is supported on Windows and macOS.", file=sys.stderr)
+        print("TEOS Desktop is supported on Windows and macOS.", file=sys.stderr)
         raise SystemExit(1)
 
     enable_dpi_awareness()

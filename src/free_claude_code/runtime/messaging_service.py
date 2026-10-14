@@ -152,7 +152,7 @@ class MessagingService:
         except ImportError as exc:
             self._messaging_state = "failed"
             self._messaging_error = (
-                "Messaging could not start. Check its configuration and restart FCC."
+                "Messaging could not start. Check its configuration and restart TEOS."
             )
             cleaned = await self.close_delivery()
             if self.settings.log_api_error_tracebacks:
@@ -167,7 +167,7 @@ class MessagingService:
         except Exception as exc:
             self._messaging_state = "failed"
             self._messaging_error = (
-                "Messaging could not start. Check its configuration and restart FCC."
+                "Messaging could not start. Check its configuration and restart TEOS."
             )
             cleaned = await self.close_delivery()
             if self.settings.log_api_error_tracebacks:

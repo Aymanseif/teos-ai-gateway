@@ -198,7 +198,7 @@ teos-aider
 
 <div align="center">
   <img src="assets/cc-model-picker.png" alt="Claude Code model picker showing TEOS models" width="700">
-  <p><em>Select an TEOS model from Claude Code's native <code>/model</code> picker.</em></p>
+  <p><em>Select a TEOS model from Claude Code's native <code>/model</code> picker.</em></p>
 </div>
 
 ## Choose A Provider
@@ -381,12 +381,12 @@ For editor and app integrations, install the client, start TEOS, then open
 **Admin UI → Integrations** and click **Connect** on its card.
 
 - **Claude Code in VS Code**: Install the [Claude Code extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code).
-- **VS Code Chat**: Install the latest [VS Code](https://code.visualstudio.com/), connect, and select an TEOS model in its built-in Chat model picker.
+- **VS Code Chat**: Install the latest [VS Code](https://code.visualstudio.com/), connect, and select a TEOS model in its built-in Chat model picker.
 - **Claude Desktop**: Install [Claude Desktop](https://claude.ai/download). Fully quit it before connecting or disconnecting, then reopen it. Disconnect returns to normal Claude sign-in.
 - **Codex in VS Code and App**: Install the [Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt) or Codex App.
 - **Claude Code in JetBrains ACP**: Install Claude Agent in JetBrains AI Assistant and start it once, then click **Connect** in TEOS. Reopen the IDE, select **Claude Code (TEOS)**, and start a new chat. After JetBrains updates the agent, restart TEOS before starting a new chat. Requires a local IDE in its standard installation locations.
 
-Reload VS Code or restart the app/IDE after connecting. In Codex and Claude Desktop, select an TEOS
+Reload VS Code or restart the app/IDE after connecting. In Codex and Claude Desktop, select a TEOS
 model from the model picker. Reload or restart the client when TEOS reports updated settings. Use
 **Disconnect** on the same card to remove the integration.
 
@@ -439,14 +439,17 @@ Configure integrations from **Admin UI → Messaging**, then click **Apply**.
 
 NVIDIA NIM transcription support is included in every installation. In **Admin UI → Messaging → Voice**, enable voice notes, select `nvidia_nim`, and choose a supported model. Configure your **NVIDIA NIM API key** on the Providers page.
 
-For local Whisper on CPU or CUDA, reinstall the tool with the local voice extra:
+For local Whisper on CPU or CUDA, reinstall the tool from the **wheel in the bundle's
+`dist` folder**, with the local voice extra:
 
-```bash
-uv tool install --force "free-claude-code[voice_local]"
+```powershell
+uv tool install --force ".\dist\free_claude_code-<version>-py3-none-any.whl[voice_local]"
 ```
 
-Add `--torch-backend cu130` for CUDA 13.0. For a bundled install, pass the bundled
-wheel path instead of the package name.
+Add `--torch-backend cu130` for CUDA 13.0.
+
+Do **not** install the bare `free-claude-code` name from PyPI: that is the upstream
+project, and it would replace this build with one that exposes the old `fcc-*` commands.
 
 After installing local support, restart `teos-server`. In **Admin UI → Messaging → Voice**, enable voice notes, select `cpu` or `cuda`, and choose the Whisper model. Local gated models need `HUGGINGFACE_API_KEY`.
 

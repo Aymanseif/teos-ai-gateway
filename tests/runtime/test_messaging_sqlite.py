@@ -712,7 +712,7 @@ async def test_code_close_does_not_release_shared_database(storage, tmp_path):
     await code.close()
     other = SQLiteDatabase(tmp_path / "fcc.db", tmp_path / "code.lock")
     try:
-        with pytest.raises(sqlite3.OperationalError, match="another FCC"):
+        with pytest.raises(sqlite3.OperationalError, match="another TEOS"):
             await other.start()
         await storage.commit_trees((tree(),))
         assert not (await storage.load_conversation_snapshot()).is_empty

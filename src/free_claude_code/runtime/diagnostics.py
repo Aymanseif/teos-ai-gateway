@@ -1,4 +1,4 @@
-"""Shareable local diagnostics, without starting or changing FCC."""
+"""Shareable local diagnostics, without starting or changing TEOS."""
 
 import importlib
 import json

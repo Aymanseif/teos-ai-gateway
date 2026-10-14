@@ -180,7 +180,7 @@ class CodexAppServer:
         model = self._model_slugs.get(selection.model)
         if not self.thread_id or model is None:
             raise CodeUnavailableError(
-                "Codex is not prepared for the selected FCC model."
+                "Codex is not prepared for the selected TEOS model."
             )
         params: JsonObject = {
             "threadId": self.thread_id,

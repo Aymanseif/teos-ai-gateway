@@ -1,4 +1,4 @@
-"""Browser contracts for FCC's advisory autofill opt-outs."""
+"""Browser contracts for TEOS's advisory autofill opt-outs."""
 
 
 def assert_autofill_opt_out(page):

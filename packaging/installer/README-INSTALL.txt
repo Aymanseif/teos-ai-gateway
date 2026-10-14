@@ -78,6 +78,6 @@ included in this bundle:
 
     source\TEOS-AI-Gateway-Windows-1.0.0-source.zip
 
-Written offer (AGPL-3.0 section 6b): for at least three years we will provide the
+Written offer (AGPL-3.0 section 6): for at least three years we will provide the
 Corresponding Source on request at no charge - email AYMAN@TEOSEGYPT.COM, quoting
 the build commit recorded in SOURCE.txt. See NOTICE.md for details.

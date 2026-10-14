@@ -15,7 +15,7 @@ class NimSettings(BaseModel):
         0.95,
         ge=0.95,
         le=0.95,
-        description="FCC's fixed NVIDIA NIM nucleus sampling probability.",
+        description="TEOS's fixed NVIDIA NIM nucleus sampling probability.",
     )
     top_k: int = -1
     max_tokens: int = Field(

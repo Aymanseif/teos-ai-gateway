@@ -1,4 +1,4 @@
-"""Platform-neutral lifecycle for the FCC desktop shell."""
+"""Platform-neutral lifecycle for the TEOS desktop shell."""
 
 import threading
 from collections.abc import Callable
@@ -46,7 +46,7 @@ class ServerOwner(Protocol):
 
 
 class DesktopController:
-    """Coordinate one tray loop with one in-process FCC server owner."""
+    """Coordinate one tray loop with one in-process TEOS server owner."""
 
     def __init__(
         self,
@@ -67,7 +67,7 @@ class DesktopController:
         return self._supervisor.status
 
     def run(self) -> None:
-        """Run the tray on this thread and the FCC server on its owned worker."""
+        """Run the tray on this thread and the TEOS server on its owned worker."""
 
         try:
             self._tray.run(self._start_server)

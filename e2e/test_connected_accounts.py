@@ -324,7 +324,7 @@ def test_connected_counts_and_modes_survive_apply_and_disconnect_independently(
     page.once("dialog", accept_disconnect)
     copilot.get_by_role("button", name="Disconnect", exact=True).click()
     expect(copilot.get_by_role("button", name="Connect", exact=True)).to_be_enabled()
-    assert confirmations == ["Disconnect this GitHub Copilot account from FCC?"]
+    assert confirmations == ["Disconnect this GitHub Copilot account from TEOS?"]
     assert accounts.disconnected == ["github_copilot"]
     expect(connected.locator(".provider-title strong")).to_have_text(
         ["OpenAI / ChatGPT"]

@@ -1,4 +1,4 @@
-"""Process-local OpenCode v2 configuration for FCC model routing."""
+"""Process-local OpenCode v2 configuration for TEOS model routing."""
 
 from dataclasses import dataclass
 
@@ -25,10 +25,10 @@ class OpenCodeConfig:
 def build_opencode_config(
     models: tuple[CatalogModel, ...], *, default_model_id: str, proxy_root_url: str
 ) -> OpenCodeConfig:
-    """Translate a non-empty FCC model snapshot into OpenCode v2 config."""
+    """Translate a non-empty TEOS model snapshot into OpenCode v2 config."""
 
     if not models:
-        raise ValueError("OpenCode requires at least one routable FCC model")
+        raise ValueError("OpenCode requires at least one routable TEOS model")
 
     model_config: JsonObject = {
         model.wire_slug: _model_config(model) for model in models

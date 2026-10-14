@@ -197,7 +197,7 @@ def test_gemini_adaptive_thinking_with_effort_does_not_emit_custom_config(
 
 
 def test_build_request_body_preserves_caller_extra_body(gemini_provider):
-    # This opaque sentinel verifies FCC's pass-through contract only; it does not
+    # This opaque sentinel verifies TEOS's pass-through contract only; it does not
     # imply that Gemini accepts an undocumented "custom_tag" wire field.
     req = make_request(extra_body={"custom_tag": {"user": "u1"}})
 
@@ -217,7 +217,7 @@ def test_build_request_body_strips_unsupported_metadata_key(gemini_provider):
     """Regression for #1548: Gemini's OpenAI-compat endpoint hard-rejects the
     whole request with "Unknown name 'metadata': Cannot find field" if this
     key is present -- whether the caller sends it as a top-level extra_body
-    entry or FCC would otherwise forward it verbatim via the SDK merge.
+    entry or TEOS would otherwise forward it verbatim via the SDK merge.
     """
     req = make_request(extra_body={"metadata": {"user_id": "u1"}})
 

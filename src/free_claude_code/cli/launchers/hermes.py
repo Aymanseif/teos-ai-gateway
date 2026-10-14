@@ -36,7 +36,7 @@ def _configure(
     catalog = ctx.require_catalog()
     require_unset_environment(ctx.base_env, ("HERMES_MANAGED_DIR",))
     if os.name != "nt" and Path("/etc/hermes").exists():
-        raise ValueError("An existing Hermes managed policy cannot be replaced by FCC.")
+        raise ValueError("An existing Hermes managed policy cannot be replaced by TEOS.")
     managed = build_hermes_managed_config(
         catalog.models,
         default_model_id=catalog.default_model_id,
@@ -61,7 +61,7 @@ def _configure(
         NativeCheck(
             ("config", "get", "model.provider", "--json"),
             lambda output: _overlay_loaded(output, managed.provider_ref),
-            "Could not activate the FCC Hermes managed provider.",
+            "Could not activate the TEOS Hermes managed provider.",
             timeout_seconds=15.0,
         ),
     )
@@ -76,7 +76,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("--version",),
         lambda output: version_at_least(output, _VERSION_PATTERN, (0, 20, 4)),
-        "FCC requires Hermes 0.20.4 or newer.",
+        "TEOS requires Hermes 0.20.4 or newer.",
     ),
 )
 

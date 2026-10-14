@@ -1,4 +1,4 @@
-"""DSH keeps its native profile grammar and receives one FCC patch."""
+"""DSH keeps its native profile grammar and receives one TEOS patch."""
 
 import json
 from pathlib import Path

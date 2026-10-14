@@ -39,7 +39,7 @@ _CRASH_RESTART_MAX_DELAY_SECONDS = 30.0
 def _start_admin_browser(
     settings: Settings, eligible: Callable[[], bool], *, instance_id: str
 ) -> threading.Event:
-    """Hand off an optional browser action without keeping FCC alive."""
+    """Hand off an optional browser action without keeping TEOS alive."""
     completed = threading.Event()
     url = local_admin_url(settings)
     browser_logger = logger.bind(instance_id=instance_id)
@@ -74,7 +74,7 @@ def serve() -> None:
     try:
         ServerSupervisor().run()
     except OSError as exc:
-        logger.error("Could not start FCC: {}", exc)
+        logger.error("Could not start TEOS: {}", exc)
         raise SystemExit(1) from None
 
 
@@ -88,7 +88,7 @@ class ServerStatus(StrEnum):
 
 
 class ServerSupervisor:
-    """Own one FCC server lifecycle, including config-driven restarts."""
+    """Own one TEOS server lifecycle, including config-driven restarts."""
 
     def __init__(self, *, console_logging: bool = True) -> None:
         self._console_logging = console_logging
@@ -139,7 +139,7 @@ class ServerSupervisor:
         with self._lock:
             self._run_scheduled = False
             if self._running:
-                raise RuntimeError("The FCC server supervisor is already running.")
+                raise RuntimeError("The TEOS server supervisor is already running.")
             if self.stop_event.is_set():
                 return
             self._running = True
@@ -182,7 +182,7 @@ class ServerSupervisor:
                         return
                     consecutive_failures += 1
                     logger.error(
-                        "FCC server exited unexpectedly ({}) and will be restarted "
+                        "TEOS server exited unexpectedly ({}) and will be restarted "
                         "automatically. Run 'teos-server' in a terminal to watch, or "
                         "use the tray to quit.",
                         type(exc).__name__,
@@ -388,7 +388,7 @@ def load_server_settings() -> Settings:
 def open_admin_when_ready(
     settings: Settings, *, stop_event: threading.Event | None = None
 ) -> bool:
-    """Recognize an external FCC instance and attempt to open its local Admin page."""
+    """Recognize an external TEOS instance and attempt to open its local Admin page."""
     stop = stop_event or threading.Event()
     deadline = time.monotonic() + 30.0
     url = f"{local_proxy_root_url(settings)}/admin/api/status"

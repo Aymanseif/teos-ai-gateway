@@ -1,4 +1,4 @@
-"""Custom endpoint resource ownership using FCC's existing wire transports."""
+"""Custom endpoint resource ownership using TEOS's existing wire transports."""
 
 from collections.abc import AsyncIterator, Mapping
 

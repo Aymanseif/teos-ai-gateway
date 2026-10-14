@@ -1,4 +1,4 @@
-"""Model-list response construction for FCC clients."""
+"""Model-list response construction for TEOS clients."""
 
 import math
 from enum import StrEnum

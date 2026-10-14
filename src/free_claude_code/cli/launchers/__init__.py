@@ -1,1 +1,1 @@
-"""Installed FCC client CLI launchers."""
+"""Installed TEOS client CLI launchers."""

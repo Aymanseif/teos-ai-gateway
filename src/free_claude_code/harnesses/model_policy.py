@@ -1,4 +1,4 @@
-"""Shared effort choices for FCC-generated native client catalogs."""
+"""Shared effort choices for TEOS-generated native client catalogs."""
 
 from free_claude_code.application.model_catalog import CatalogModel
 

@@ -1,4 +1,4 @@
-"""Native Messages preserves wire content while applying FCC-owned controls."""
+"""Native Messages preserves wire content while applying TEOS-owned controls."""
 
 import json
 from collections.abc import AsyncIterator

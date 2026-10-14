@@ -1,4 +1,4 @@
-"""FCC opt-in and interactive login over isolated native-account test doubles."""
+"""TEOS opt-in and interactive login over isolated native-account test doubles."""
 
 import asyncio
 import json
@@ -210,7 +210,7 @@ async def test_login_timeout_cleans_up_and_reports_local_deadline(
     await manager.start_login(DEVICE)
     await settled(manager)
     assert exited.is_set() and not manager.is_connected()
-    assert "FCC's time limit" in (manager.status().message or "")
+    assert "TEOS's time limit" in (manager.status().message or "")
     await manager.close()
 
 

@@ -121,7 +121,7 @@ async def test_store_has_one_process_owner_and_can_reopen_after_close(
     )
     await first.start()
     try:
-        with pytest.raises(CodeUnavailableError, match="another FCC"):
+        with pytest.raises(CodeUnavailableError, match="another TEOS"):
             await second.start()
     finally:
         await first.close()
@@ -335,7 +335,7 @@ async def test_cancelled_code_write_delivers_outcome_before_database_close(
         with pytest.raises(CodeUnavailableError):
             await store.get_session(session.id)
         other = database_factory(store.database.path, tmp_path / "code.lock")
-        with pytest.raises(sqlite3.OperationalError, match="another FCC"):
+        with pytest.raises(sqlite3.OperationalError, match="another TEOS"):
             await other.start()
         release.set()
         if fail:

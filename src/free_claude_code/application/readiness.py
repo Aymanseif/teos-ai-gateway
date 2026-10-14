@@ -17,7 +17,7 @@ class InitializationWait:
         if task.done():
             if task.cancelled():
                 raise ApplicationUnavailableError(
-                    "FCC startup was interrupted. Retry shortly."
+                    "TEOS startup was interrupted. Retry shortly."
                 )
             return task.result()
         started = asyncio.get_running_loop().time()
@@ -28,12 +28,12 @@ class InitializationWait:
                 return await asyncio.shield(task)
         except TimeoutError:
             raise ApplicationUnavailableError(
-                "FCC is still starting. Try again shortly."
+                "TEOS is still starting. Try again shortly."
             ) from None
         except asyncio.CancelledError:
             if task.cancelled() and caller and caller.cancelling() == cancellations:
                 raise ApplicationUnavailableError(
-                    "FCC startup was interrupted. Retry shortly."
+                    "TEOS startup was interrupted. Retry shortly."
                 ) from None
             raise
         finally:

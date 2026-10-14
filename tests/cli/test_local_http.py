@@ -1,4 +1,4 @@
-"""Local FCC transport must never escape through an outbound proxy."""
+"""Local TEOS transport must never escape through an outbound proxy."""
 
 import threading
 from collections.abc import Iterator

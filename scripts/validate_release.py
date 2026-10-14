@@ -1,4 +1,4 @@
-"""Check the exact FCC distributions that will be published."""
+"""Check the exact TEOS distributions that will be published."""
 
 import argparse
 import configparser
@@ -46,7 +46,7 @@ def validate(directory: Path, version: str) -> None:
     ).stdout
     sources = set(filter(None, tracked.split("\0")))
     if "src/free_claude_code/__init__.py" not in sources:
-        raise ValueError("Missing tracked FCC package sources")
+        raise ValueError("Missing tracked TEOS package sources")
     with zipfile.ZipFile(wheel_path) as archive:
         wheel = {
             file: archive.read(file)

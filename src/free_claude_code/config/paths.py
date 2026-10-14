@@ -47,7 +47,7 @@ def launcher_temp_dir_path() -> Path:
 
 
 def fcc_database_path() -> Path:
-    """Return the shared FCC database path."""
+    """Return the shared TEOS database path."""
     return config_dir_path() / FCC_DATABASE_FILENAME
 
 
@@ -94,7 +94,7 @@ def claude_desktop_disconnect_path() -> Path:
 
 
 def openai_auth_path() -> Path:
-    """Return FCC's private ChatGPT credential file path."""
+    """Return TEOS's private ChatGPT credential file path."""
 
     return config_dir_path() / AUTH_DIRNAME / OPENAI_AUTH_FILENAME
 
@@ -106,5 +106,5 @@ def openai_auth_lock_path() -> Path:
 
 
 def github_copilot_auth_path() -> Path:
-    """Return FCC connection state; native Copilot retains credentials."""
+    """Return TEOS connection state; native Copilot retains credentials."""
     return config_dir_path() / AUTH_DIRNAME / "github_copilot.json"

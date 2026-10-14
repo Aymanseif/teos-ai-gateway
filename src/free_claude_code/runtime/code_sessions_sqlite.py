@@ -1,4 +1,4 @@
-"""Relational, transaction-owned state for FCC coding conversations."""
+"""Relational, transaction-owned state for TEOS coding conversations."""
 
 import asyncio
 import json
@@ -424,7 +424,7 @@ class SQLiteCodeStore:
             "WHERE status IN ('preparing','running','stopping')",
             (
                 now_ms(),
-                "FCC restarted before this turn finished. Its input was not resent.",
+                "TEOS restarted before this turn finished. Its input was not resent.",
             ),
         )
         connection.execute(

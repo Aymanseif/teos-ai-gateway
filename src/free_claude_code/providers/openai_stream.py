@@ -1,4 +1,4 @@
-"""Adapt the OpenAI SDK stream to FCC's asynchronous cleanup contract."""
+"""Adapt the OpenAI SDK stream to TEOS's asynchronous cleanup contract."""
 
 from collections.abc import AsyncIterator
 

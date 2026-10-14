@@ -406,7 +406,7 @@ def test_create_response_relays_interleaved_reasoning_order() -> None:
             "status": "completed",
             "call_id": "call_1",
             "name": "echo",
-            "arguments": '{"value":"FCC"}',
+            "arguments": '{"value":"TEOS"}',
         },
         {
             "id": "rs_2",
@@ -464,7 +464,7 @@ def test_create_response_relays_function_call() -> None:
         "status": "completed",
         "call_id": "toolu_1",
         "name": "echo",
-        "arguments": '{"value":"FCC"}',
+        "arguments": '{"value":"TEOS"}',
     }
     provider = FakeProvider(
         [_created_event(), _terminal_event("completed", output=[call])]

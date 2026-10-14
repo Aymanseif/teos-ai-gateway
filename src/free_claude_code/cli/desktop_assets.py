@@ -1,4 +1,4 @@
-"""Packaged visual assets owned by the FCC desktop shell."""
+"""Packaged visual assets owned by the TEOS desktop shell."""
 
 from importlib.resources import files
 from pathlib import Path

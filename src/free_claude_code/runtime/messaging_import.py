@@ -1,4 +1,4 @@
-"""One-time, best-effort import of FCC's retired messaging JSON file."""
+"""One-time, best-effort import of TEOS's retired messaging JSON file."""
 
 import json
 import sqlite3
@@ -196,7 +196,7 @@ def _import_legacy(database: SQLiteDatabase, path: Path) -> str | None:
             if temporary.is_file() and not temporary.is_symlink():
                 temporary.unlink()
     except OSError:
-        warning = f"Messaging history was migrated. Old files at {path.parent} could not be removed yet. FCC will retry cleanup at startup."
+        warning = f"Messaging history was migrated. Old files at {path.parent} could not be removed yet. TEOS will retry cleanup at startup."
     else:
         database.execute(
             lambda connection: connection.execute(

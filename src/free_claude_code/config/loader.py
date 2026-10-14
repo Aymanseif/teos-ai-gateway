@@ -88,7 +88,7 @@ class ManagedConfigStore:
         if schema != CONFIG_SCHEMA_VERSION:
             raise ValueError(
                 f"Managed config {self.path} uses unsupported schema {schema!r}; "
-                f"initialize with a compatible FCC version (supports {CONFIG_SCHEMA_VERSION})."
+                f"initialize with a compatible TEOS version (supports {CONFIG_SCHEMA_VERSION})."
             )
         return managed
 

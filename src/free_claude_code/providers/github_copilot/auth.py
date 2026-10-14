@@ -1,4 +1,4 @@
-"""Opt-in FCC connection state over native Copilot account credentials."""
+"""Opt-in TEOS connection state over native Copilot account credentials."""
 
 import asyncio
 import json
@@ -308,7 +308,7 @@ class CopilotAuthManager:
     ) -> None:
         if self._enabled and revision == self._revision and broker is self._broker:
             if not self._disable():
-                message += " FCC could not save the disconnected state."
+                message += " TEOS could not save the disconnected state."
             self._last_error = message
 
     def _disable(self) -> bool:
@@ -319,7 +319,7 @@ class CopilotAuthManager:
         try:
             self._write_state(enabled=False, identity=None, revision=self._revision)
         except OSError:
-            self._last_error = "FCC could not save the disconnected state. Check state-directory permissions and retry Disconnect."
+            self._last_error = "TEOS could not save the disconnected state. Check state-directory permissions and retry Disconnect."
             return False
         finally:
             self._schedule_cleanup()
@@ -405,11 +405,11 @@ class CopilotAuthManager:
         except Exception as error:
             if self._attempt_id == attempt and not self._closed:
                 self._last_error = (
-                    "Copilot sign-in exceeded FCC's time limit. Connect again."
+                    "Copilot sign-in exceeded TEOS's time limit. Connect again."
                     if isinstance(error, TimeoutError)
                     else str(error)
                     if isinstance(error, CopilotUnavailable)
-                    else "Copilot connection failed. Check the CLI installation, selected account and FCC state-directory permissions."
+                    else "Copilot connection failed. Check the CLI installation, selected account and TEOS state-directory permissions."
                 )
         finally:
             if broker is not None and broker is not self._broker:

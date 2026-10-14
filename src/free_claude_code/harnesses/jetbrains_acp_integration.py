@@ -1,4 +1,4 @@
-"""Configure a custom FCC agent using JetBrains' installed Claude ACP adapter."""
+"""Configure a custom TEOS agent using JetBrains' installed Claude ACP adapter."""
 
 import json
 import os
@@ -13,13 +13,13 @@ from free_claude_code.core.json_types import JsonObject
 from free_claude_code.harnesses.claude import claude_proxy_values
 from free_claude_code.harnesses.config_file import atomic_write_text, decode_json
 
-_NAME = "Claude Code (FCC)"
+_NAME = "Claude Code (TEOS)"
 _MARKER = "FCC_JETBRAINS_ACP"
 _PACKAGE = "@agentclientprotocol/claude-agent-acp"
 _MISSING = (
     "Could not find a complete Claude Agent installation and compatible Node runtime. "
     "Install Claude Agent in JetBrains and start it once, then retry. "
-    "FCC supports standard local JetBrains installation locations."
+    "TEOS supports standard local JetBrains installation locations."
 )
 
 
@@ -83,7 +83,7 @@ def _entry(document: JsonObject) -> tuple[JsonObject, JsonObject | None]:
         raise ValueError("Environment values must be strings")
     if env.get(_MARKER) != "1":
         raise SetupError(
-            "An unrelated agent already uses the name Claude Code (FCC). "
+            "An unrelated agent already uses the name Claude Code (TEOS). "
             "Rename that entry in acp.json before connecting."
         )
     return agents, entry

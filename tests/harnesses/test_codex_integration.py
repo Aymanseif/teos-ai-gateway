@@ -80,7 +80,7 @@ def test_manual_connection_ignores_model_and_display_name(tmp_path):
     path.write_text(
         'model = "another-model"\nmodel_provider = "fcc"\n'
         f'model_catalog_json = "{(tmp_path / "catalog.json").as_posix()}"\n'
-        '[model_providers.fcc]\nname = "My FCC"\nbase_url = "http://localhost:8082/v1/"\nwire_api = "responses"\n'
+        '[model_providers.fcc]\nname = "My TEOS"\nbase_url = "http://localhost:8082/v1/"\nwire_api = "responses"\n'
         '[model_providers.fcc.auth]\ncommand = "teos-codex"\nargs = ["--print-proxy-auth-token"]\n'
     )
     before = path.read_bytes()

@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Validate FCC version
+      - name: Validate TEOS version
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -28,15 +28,15 @@ jobs:
               ...repo,
               issue_number,
             });
-            const fieldPattern = "^### FCC version\\r?\\n+\\s*([^\\r\\n]+)";
+            const fieldPattern = "^### TEOS version\\r?\\n+\\s*([^\\r\\n]+)";
             const releaseVersionPattern = "^v((?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*))$";
             const versionPattern = "(?:^|[^0-9A-Za-z_.])v?([0-9]+\\.[0-9]+\\.[0-9]+(?:\\.dev[0-9]+(?:\\+g[0-9a-f]+(?:\\.d[0-9]{8})?)?|\\+d[0-9]{8})?)(?![0-9A-Za-z_+-]|\\.[0-9A-Za-z_])";
             const parseReport = (body) => {
               const sections = body.split(/^### /m);
-              const doctor = sections.filter((section) => /^FCC doctor output\r?\n/.test(section));
+              const doctor = sections.filter((section) => /^TEOS doctor output\r?\n/.test(section));
               if (doctor.length) {
                 if (doctor.length !== 1) return { valid: false };
-                let text = doctor[0].replace(/^FCC doctor output\r?\n/, "").trim();
+                let text = doctor[0].replace(/^TEOS doctor output\r?\n/, "").trim();
                 const details = text.match(/^<details>\s*<summary>[^<>\r\n]*<\/summary>\s*([\s\S]*?)\s*<\/details>$/);
                 if (details) text = details[1].trim();
                 const fence = text.match(/^```(?:json)?\r?\n([\s\S]*)\r?\n```$/);
@@ -62,14 +62,14 @@ jobs:
             };
             const collapseDoctorReport = (body) => {
               const sections = body.split(/(?=^### )/m);
-              const index = sections.findIndex((section) => /^### FCC doctor output\r?\n/.test(section));
+              const index = sections.findIndex((section) => /^### TEOS doctor output\r?\n/.test(section));
               if (index === -1 || !parseReport(body).valid) return body;
               const section = sections[index];
-              const text = section.replace(/^### FCC doctor output\r?\n/, "").trim();
+              const text = section.replace(/^### TEOS doctor output\r?\n/, "").trim();
               if (text.startsWith("<details>")) return body;
               const newline = section.includes("\r\n") ? "\r\n" : "\n";
               const content = text.startsWith("```") ? text : `\`\`\`json${newline}${text}${newline}\`\`\``;
-              const wrapped = ["<details>", "<summary>FCC doctor output</summary>", "", content, "", "</details>"].join(newline);
+              const wrapped = ["<details>", "<summary>TEOS doctor output</summary>", "", content, "", "</details>"].join(newline);
               const start = section.indexOf(text);
               sections[index] = section.slice(0, start) + wrapped + section.slice(start + text.length);
               return sections.join("");
@@ -125,7 +125,7 @@ jobs:
                       ...repo,
                       name: labelName,
                       color: "d4c5f9",
-                      description: "Bug report needs valid FCC version information",
+                      description: "Bug report needs valid TEOS version information",
                     });
                   } catch (createError) {
                     if (createError.status !== 422) throw createError;
@@ -141,7 +141,7 @@ jobs:
                 await github.rest.issues.createComment({
                   ...repo,
                   issue_number,
-                  body: `${invalidMarker}\nPlease run \`teos-doctor\` and paste its complete JSON into **FCC doctor output**. For an older issue with an **FCC version** field, enter one version from \`teos-server --version\` or exactly \`None\`. If FCC has not installed successfully, use the Installation problem form.`,
+                  body: `${invalidMarker}\nPlease run \`teos-doctor\` and paste its complete JSON into **TEOS doctor output**. For an older issue with an **TEOS version** field, enter one version from \`teos-server --version\` or exactly \`None\`. If TEOS has not installed successfully, use the Installation problem form.`,
                 });
               }
               return;
@@ -180,7 +180,7 @@ jobs:
               return;
             }
 
-            const body = `${outdatedMarker}\nThis report uses FCC \`${reportedVersion}\`, while the latest published version is \`${latestVersion}\`. Please [update FCC](${context.payload.repository.html_url}#update), restart FCC, and check whether the issue still occurs. The update may already contain the fix.`;
+            const body = `${outdatedMarker}\nThis report uses TEOS \`${reportedVersion}\`, while the latest published version is \`${latestVersion}\`. Please [update TEOS](${context.payload.repository.html_url}#update), restart TEOS, and check whether the issue still occurs. The update may already contain the fix.`;
             if (outdatedComment === undefined) {
               await github.rest.issues.createComment({
                 ...repo,

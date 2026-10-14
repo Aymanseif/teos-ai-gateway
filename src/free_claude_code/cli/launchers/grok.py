@@ -1,4 +1,4 @@
-"""Installed Grok Build launcher with native FCC connection settings."""
+"""Installed Grok Build launcher with native TEOS connection settings."""
 
 import json
 import re
@@ -107,7 +107,7 @@ SPEC = HarnessSpec(
     compatibility_check=NativeCheck(
         ("version", "--json"),
         _compatible_version,
-        "FCC requires Grok Build 1.0.5 or newer.",
+        "TEOS requires Grok Build 1.0.5 or newer.",
     ),
 )
 

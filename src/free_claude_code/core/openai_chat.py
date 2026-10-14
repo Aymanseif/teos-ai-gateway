@@ -27,13 +27,13 @@ def computer_screenshot_label(call_id: str) -> str:
 
 
 class _SyntheticChatToolTurnBoundary(dict[str, JsonValue]):
-    """Identify an FCC-inserted assistant boundary until wire serialization."""
+    """Identify a TEOS-inserted assistant boundary until wire serialization."""
 
     __slots__ = ()
 
 
 def is_synthetic_chat_tool_turn_boundary(message: object) -> bool:
-    """Return whether FCC inserted this message to close a Chat tool turn."""
+    """Return whether TEOS inserted this message to close a Chat tool turn."""
     return isinstance(message, _SyntheticChatToolTurnBoundary)
 
 

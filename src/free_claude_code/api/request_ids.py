@@ -63,7 +63,7 @@ class RequestCorrelationMiddleware:
 
 
 def new_request_id() -> str:
-    """Return a new opaque FCC request identifier."""
+    """Return a new opaque TEOS request identifier."""
     return f"req_{uuid.uuid4().hex}"
 
 

@@ -1410,7 +1410,7 @@ async def test_abandoned_creation_failure_has_no_unretrieved_exception():
         del runtime
         gc.collect()
         # Python 3.14's shield explicitly logs abandoned failures even if observed.
-        # It must not also report a task exception that FCC failed to retrieve.
+        # It must not also report a task exception that TEOS failed to retrieve.
         assert all(
             error["message"] == "RuntimeError exception in shielded future"
             for error in errors

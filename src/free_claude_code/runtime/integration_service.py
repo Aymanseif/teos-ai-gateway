@@ -228,7 +228,7 @@ class IntegrationService:
                     return result
         except ValueError, UnicodeError:
             raise InvalidRequestError(
-                "Could not configure VS Code Chat. Check chatLanguageModels.json for invalid JSON or conflicting FCC groups."
+                "Could not configure VS Code Chat. Check chatLanguageModels.json for invalid JSON or conflicting TEOS groups."
             ) from None
         except OSError:
             raise ApplicationUnavailableError(
@@ -247,7 +247,7 @@ class IntegrationService:
     def _check_integration_available(self) -> None:
         if self._is_draining() or self._has_pending_restart():
             raise ApplicationUnavailableError(
-                "Wait for FCC to restart before changing the integration."
+                "Wait for TEOS to restart before changing the integration."
             )
 
     async def _read_status(
@@ -282,7 +282,7 @@ class IntegrationService:
                 result["update"] = update.snapshot()
                 return result
         raise ApplicationUnavailableError(
-            "FCC configuration changed during the check. Retry shortly."
+            "TEOS configuration changed during the check. Retry shortly."
         )
 
     async def _run_integration(
@@ -422,7 +422,7 @@ class IntegrationService:
             )
         except claude_desktop_integration.ManagedDesktopError:
             raise InvalidRequestError(
-                "Claude Desktop is managed by an organization, or its policy could not be read. FCC can configure only unmanaged Desktop installations."
+                "Claude Desktop is managed by an organization, or its policy could not be read. TEOS can configure only unmanaged Desktop installations."
             ) from None
         except claude_desktop_integration.PendingDisconnectError:
             raise InvalidRequestError(
@@ -434,11 +434,11 @@ class IntegrationService:
             ) from None
         except ValueError, UnicodeError:
             raise InvalidRequestError(
-                "Could not configure Claude Desktop. Check its configuration JSON and FCC disconnect record, and ensure FCC uses a localhost address and a nonempty managed token."
+                "Could not configure Claude Desktop. Check its configuration JSON and TEOS disconnect record, and ensure TEOS uses a localhost address and a nonempty managed token."
             ) from None
         except OSError:
             raise ApplicationUnavailableError(
-                "Could not access Claude Desktop settings or the FCC disconnect record. Fully quit Claude Desktop, check file permissions, and retry."
+                "Could not access Claude Desktop settings or the TEOS disconnect record. Fully quit Claude Desktop, check file permissions, and retry."
             ) from None
 
     async def _claude_vscode(self, action: IntegrationAction) -> JsonObject:

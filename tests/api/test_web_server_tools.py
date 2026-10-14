@@ -600,7 +600,7 @@ def test_rejects_web_search_domain_wildcards_and_url_parts(domain: str) -> None:
 async def test_service_rejects_forced_server_tool_when_local_handler_is_disabled(
     provider_id: str,
 ):
-    """Every provider needs FCC's local handler for forced server tools."""
+    """Every provider needs TEOS's local handler for forced server tools."""
     settings = Settings.model_validate({"ENABLE_WEB_SERVER_TOOLS": False})
     assert settings.enable_web_server_tools is False
     service = MessagesHandler(

@@ -45,7 +45,7 @@ def test_connect_retry_disconnect_and_modal_dismissal(
     expect(dialog).not_to_be_visible()
     expect(opener).to_have_text("Disconnect")
     assert (
-        "Claude Code (FCC)" in json.loads(jb.config_path().read_text())["agent_servers"]
+        "Claude Code (TEOS)" in json.loads(jb.config_path().read_text())["agent_servers"]
     )
     page.reload()
     expect(opener).to_have_text("Disconnect")

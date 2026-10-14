@@ -1,4 +1,4 @@
-"""Transactional messaging records in the application-owned FCC database."""
+"""Transactional messaging records in the application-owned TEOS database."""
 
 import sqlite3
 from datetime import UTC, datetime

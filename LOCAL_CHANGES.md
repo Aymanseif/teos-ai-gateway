@@ -63,7 +63,7 @@ copy, so the changes survive even if the branch is lost.
 this account has no push access to, and pushing there is not appropriate. The work
 lives in this clone; push it to your own fork if you want a remote copy.
 
-The clone has a repo-local git identity (`FCC Local <fcc-local@localhost>`) so that
+The clone has a repo-local git identity so that
 committing does not require touching a global `~/.gitconfig`. Change it with
 `git config --local user.name` / `user.email`.
 
@@ -131,7 +131,7 @@ resetting the three touched files to upstream.
    `%APPDATA%\uv\tools\free-claude-code\Scripts` open and `uv tool install` fails with
    `Access is denied (os error 5)`. Match on the tool directory, not the process name,
    so orphaned `python.exe` children are caught too. Matching on the tool directory
-   alone is *not* sufficient either: the `fcc-*` uv shims in `%USERPROFILE%\.local\bin`
+   alone is *not* sufficient either: the `teos-*` uv shims in `%USERPROFILE%\.local\bin`
    sit outside it, survive the sweep, and can rebind port 8082 afterwards. The script
    matches both families.
 2. **The script deliberately does not start the server.** It reports whether port
@@ -158,7 +158,7 @@ resetting the three touched files to upstream.
 **Defect:** `ServerSupervisor.run()` wrapped its serve loop in a `try` that only
 caught `KeyboardInterrupt` and `OSError`. Every other exception — provider
 construction failure, unreadable config, a bug on a startup path — propagated out
-of `run()`, through `serve()`, and terminated the process. Because FCC is a
+of `run()`, through `serve()`, and terminated the process. Because TEOS is a
 long-lived local proxy, that kills `/v1/messages` for Claude Code, Codex, VS Code
 and anything else attached, with no recovery and no obvious signal.
 
@@ -197,7 +197,7 @@ worth far more than any timeout change.
 ## Partly mitigated: provider throttling
 
 The throttled entries in `~/.fcc/logs/server.log` are NVIDIA NIM enforcing its own
-free-tier quota, not a fault in FCC. Observed on this machine as:
+free-tier quota, not a fault in TEOS. Observed on this machine as:
 
 ```
 POST /v1/messages?beta=true HTTP/1.1" 529
@@ -241,7 +241,7 @@ Both provider entries were confirmed with a real `/chat/completions` (HTTP 200),
 `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`, plus audio/guard models — so the obvious first
 guess `llama-3.3-70b-versatile` returns `404 model_not_found`. A raw `urllib`
 (`Python-urllib/…`) client is also rejected by Groq's Cloudflare rule with `403` and
-`error code: 1010`; that is a client-fingerprint block, not a bad key, and FCC's `httpx`
+`error code: 1010`; that is a client-fingerprint block, not a bad key, and TEOS's `httpx`
 client is unaffected.
 
 Point `MODEL` at a Groq or Mistral model instead if you would rather not route through
@@ -275,7 +275,7 @@ The model generalises beyond Groq:
   configuration state, discovery state, and runtime state are separate concerns and should
   be validated independently.
 
-For FCC specifically, Gates 1–2 surface as the Admin Providers tab ("Configured" plus an
+For TEOS specifically, Gates 1–2 surface as the Admin Providers tab ("Configured" plus an
 "N models available" count), while Gate 3 has no indicator at all and needs a real request.
 That is why a green provider list is a starting point, not proof.
 
@@ -306,15 +306,15 @@ Worst case with the defaults is about 2+4+8+16+32+64+120 ≈ 246 s of backoff, w
 inside `PROVIDER_PROGRESS_TIMEOUT` (600 s). If you raise the budget, keep the summed
 backoff below that timeout, or the progress watchdog cuts the request anyway.
 
-## Not a fault: only some `fcc-*` launchers work
+## Not a fault: only some `teos-*` launchers work
 
-Every `fcc-<tool>` is a thin launcher that requires the real `<tool>` CLI to already be
-installed and on `PATH`. FCC bundles none of them, so a launcher reporting
+Every `teos-<tool>` is a thin launcher that requires the real `<tool>` CLI to already be
+installed and on `PATH`. TEOS bundles none of them, so a launcher reporting
 `Could not find <Tool> CLI command` means the host CLI is absent — nothing is wrong
-with FCC, and the request never reaches the proxy.
+with TEOS, and the request never reaches the proxy.
 
 On this machine only `claude` and `pi` are installed, so only `teos-claude` and
-`teos-pi` work. `teos-desktop` works because it is FCC's own admin UI and needs no host
+`teos-pi` work. `teos-desktop` works because it is TEOS's own admin UI and needs no host
 CLI. `teos-opencode` was the one exception: OpenCode was installed at
 `%USERPROFILE%\.opencode\bin` but that directory was missing from `PATH`. It has been
 appended to the user `PATH`.

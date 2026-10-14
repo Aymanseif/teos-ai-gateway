@@ -23,7 +23,7 @@ class ReasoningCapability(StrEnum):
 
 
 class ReasoningEffort(StrEnum):
-    """Named reasoning effort understood at the FCC application boundary."""
+    """Named reasoning effort understood at the TEOS application boundary."""
 
     MINIMAL = "minimal"
     LOW = "low"
@@ -34,7 +34,7 @@ class ReasoningEffort(StrEnum):
 
     @property
     def budget_tokens(self) -> int:
-        """Return FCC's numeric token budget for this effort."""
+        """Return TEOS's numeric token budget for this effort."""
 
         return _EFFORT_BUDGET_TOKENS[self]
 
@@ -122,7 +122,7 @@ class ReasoningPolicy:
 
     @property
     def numeric_budget_tokens(self) -> int | None:
-        """Express this intent as an exact or FCC-mapped numeric budget."""
+        """Express this intent as an exact or TEOS-mapped numeric budget."""
 
         if self.control is ReasoningControl.OFF:
             return None

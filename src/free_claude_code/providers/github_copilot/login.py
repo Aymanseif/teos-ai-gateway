@@ -1,4 +1,4 @@
-"""Official native Copilot device login; FCC never handles the resulting token."""
+"""Official native Copilot device login; TEOS never handles the resulting token."""
 
 import asyncio
 import os

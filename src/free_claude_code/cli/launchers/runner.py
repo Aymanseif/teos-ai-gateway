@@ -89,7 +89,7 @@ def _check_native(
 
 
 def launch_harness(spec: HarnessSpec, argv: Sequence[str] | None = None) -> None:
-    """Prepare the FCC connection and leave command semantics to the harness."""
+    """Prepare the TEOS connection and leave command semantics to the harness."""
 
     args = list(sys.argv[1:] if argv is None else argv)
     base_env = dict(os.environ)

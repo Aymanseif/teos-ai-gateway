@@ -1,4 +1,4 @@
-"""One-time consolidation of legacy FCC dotenv state."""
+"""One-time consolidation of legacy TEOS dotenv state."""
 
 import os
 import re
@@ -153,7 +153,7 @@ def smoke_env_keys() -> frozenset[str]:
 
 
 def recognized_env_keys() -> frozenset[str]:
-    """Return every dotenv key FCC may import into managed configuration."""
+    """Return every dotenv key TEOS may import into managed configuration."""
 
     migrated_keys = {
         key
@@ -205,7 +205,7 @@ def consolidate_managed_config(
         if schema not in {None, ""}:
             raise ValueError(
                 f"Managed config {managed} uses unsupported schema {schema!r}; "
-                f"this FCC version supports {CONFIG_SCHEMA_VERSION}."
+                f"this TEOS version supports {CONFIG_SCHEMA_VERSION}."
             )
 
     known = recognized_env_keys()
@@ -287,7 +287,7 @@ def render_managed_config(
     *,
     mask_secrets: bool = False,
 ) -> str:
-    """Render sparse canonical FCC configuration."""
+    """Render sparse canonical TEOS configuration."""
 
     known = recognized_env_keys()
     secret_keys = secret_env_keys()
