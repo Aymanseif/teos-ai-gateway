@@ -19,11 +19,20 @@ Use OpenAI, Anthropic, Gemini, OpenRouter, Groq and 50+ more — plus Ollama and
 
 ## Price
 
-- Standard: **$19**
+Base price **$39**, with an Early Bird coupon that brings it to **$19** for the first 100 buyers.
+
+- Standard: **$39** — Early Bird **$19** with code `EARLY100` (usage limit 100)
 - Pro + Setup (I install it with you, 30-min call): **$49**
 - Team (5 machines, email support 30 days): **$99**
 
-Gumroad → *Add product* → *Digital product* → enable **"Add a variant"** for the three tiers above.
+Setup:
+1. Gumroad → *Add product* → *Digital product* → enable **"Add a variant"** for the three tiers above.
+2. Gumroad → **Discounts → New offer code** → code `EARLY100`, amount **$20 off**, **usage limit 100**.
+3. Add the Early Bird line to the description: `Early Bird: $19 for the first 100 buyers (then $39) — code EARLY100`.
+
+⚠️ Do **not** show a hard-coded "X/100 left" counter unless it mirrors the **real** remaining count.
+A fake scarcity number is deceptive advertising in most jurisdictions (FTC / EU consumer rules).
+Use Gumroad's real usage counter, or just say "first 100".
 
 ## Description (paste as-is)
 
