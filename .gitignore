@@ -16,3 +16,4 @@ llama_cache
 .smoke-results
 /test-results/
 .vscode
+packaging/dist/
