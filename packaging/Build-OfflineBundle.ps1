@@ -149,6 +149,60 @@ Copy-Item -LiteralPath $wheel.FullName -Destination (Join-Path $stage "dist")
 
 # License + Corresponding Source notice (AGPL-3.0 §5, §6). The source itself is
 # NOT bundled; it is published at the public repository referenced here.
+# The source repository is private, so the notice must never point a buyer at a
+# URL they cannot reach. With -IncludeSource the source travels inside this very
+# ZIP (AGPL-3.0 section 6(a)); otherwise the section 6(b) written offer is the
+# operative route, and that offer is stated in both cases.
+if ($IncludeSource) {
+    $srcLines = @(
+        "Corresponding Source (AGPL-3.0 section 6(a))",
+        "--------------------------------------------",
+        "",
+        "The complete Corresponding Source for this exact build is INCLUDED in this",
+        "package. You do not need to download anything else, and no network access",
+        "is required:",
+        "",
+        "    source\$ProductSlug-$Version-source.zip",
+        "        Complete source tree for this exact build."
+    )
+    if ($sdist) {
+        $srcLines += @(
+            "",
+            "    dist\$($sdist.Name)",
+            "        Source distribution (sdist) of the same revision."
+        )
+    }
+    $srcLines += @(
+        "",
+        "Exact commit for this build:",
+        "",
+        "    $commitSha",
+        "",
+        "Standing written offer (AGPL-3.0 section 6(b)): for at least three years",
+        "from your purchase date we will provide the Corresponding Source for this",
+        "build, on request and at no charge. Email $SupportEmail quoting the commit",
+        "above."
+    )
+}
+else {
+    $srcLines = @(
+        "Corresponding Source (AGPL-3.0 section 6)",
+        "-----------------------------------------",
+        "",
+        "The complete Corresponding Source for this exact build is provided with",
+        "your purchase, at no additional charge.",
+        "",
+        "Written offer (AGPL-3.0 section 6(b)): for at least three years from your",
+        "purchase date we will provide the Corresponding Source for this build, on",
+        "request and at no charge. Email $SupportEmail quoting the commit below.",
+        "",
+        "Exact commit for this build:",
+        "",
+        "    $commitSha"
+    )
+}
+$sourceSection = $srcLines -join "`r`n"
+
 $sourceTxt = @"
 TEOS AI GATEWAY - LICENSE & SOURCE NOTICE
 =========================================
@@ -165,20 +219,7 @@ no restrictions of its own.
 Standing requirement: keep the upstream copyright/license notices intact and
 make your own modifications available under the same license.
 
-Corresponding Source (AGPL-3.0 section 6)
------------------------------------------
-
-The complete Corresponding Source for this exact build is delivered with your
-purchase: download "$ProductSlug-$Version-SOURCE.zip" from the same page you
-downloaded this bundle from. It contains the full source tree for this build.
-
-Written offer (AGPL-3.0 section 6b): for at least three years from your purchase
-date we will provide the Corresponding Source for this build, on request and at
-no charge. Email $SupportEmail quoting the build commit below.
-
-Build commit (identifies the exact source revision this ZIP was built from):
-
-    $commitSha
+$sourceSection
 
 See LICENSE and NOTICE.md in this bundle for details.
 "@

@@ -266,7 +266,7 @@ def test_direct_model_views_exclude_claude_aliases_and_duplicate_variants():
     assert responses["data"][0] == {
         "object": "model",
         "created": 0,
-        "owned_by": "free-claude-code",
+        "owned_by": "teos-ai-gateway",
         "created_at": "1970-01-01T00:00:00Z",
         "display_name": "deepseek/deepseek-chat",
         "id": "deepseek/deepseek-chat",
