@@ -127,7 +127,7 @@ To protect the local proxy with a bearer token, enable **Proxy Authentication**
 in Admin.
 
 <div align="center">
-  <img src="assets/admin-page.png" alt="TEOS AI Gateway Admin UI" width="700">
+  <img src="assets/teos-ui-screenshot.png" alt="TEOS AI Gateway UI" width="800">
 </div>
 
 ### 4. Free Tier Quick Start (Recommended)
