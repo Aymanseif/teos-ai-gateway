@@ -50,6 +50,22 @@ Automatic updates are disabled on purpose (`teos-update` is a no-op) - the upstr
 updater would overwrite this build with the original Free Claude Code release. To
 update, obtain a newer TEOS AI Gateway bundle and re-run Install-TEOS-AI-Gateway.ps1.
 
+
+UPGRADING FROM AN OLDER "FREE CLAUDE CODE" INSTALL
+--------------------------------------------------
+If an older (upstream) Free Claude Code build is already installed on the machine,
+simply run this installer. It replaces that install in place:
+
+- the old `fcc-*` commands are removed and the `teos-*` commands take their place;
+- the old "Free Claude Code" Desktop / Start Menu shortcuts are removed and the
+  TEOS AI Gateway shortcuts take their place;
+- the stale `fcc-update` command is neutralised.
+
+Your provider keys and settings in `%USERPROFILE%\.fcc` are kept. After installing,
+verify you are on the TEOS build:
+
+     teos-server --version      ->  TEOS AI Gateway 1.0.0
+
 COMMANDS
 --------
     teos            Launch the desktop app / server (opens the Admin UI)
