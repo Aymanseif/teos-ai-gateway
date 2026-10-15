@@ -48,7 +48,7 @@ param(
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,
-    [string] $SupportEmail = "AYMAN@TEOSEGYPT.COM"
+    [string] $SupportEmail = "support@teos.elmahrosa.org"
 )
 
 Set-StrictMode -Version Latest

@@ -37,7 +37,7 @@ When present, `dist\<sdist>` holds the matching source distribution as well.
 
 **Written offer (AGPL-3.0 §6).** For at least three years from your purchase we
 will provide the Corresponding Source for this build, on request and at no charge.
-Email `AYMAN@TEOSEGYPT.COM` quoting the build commit recorded in `SOURCE.txt`.
+Email `support@teos.elmahrosa.org` quoting the build commit recorded in `SOURCE.txt`.
 
 Keep `LICENSE`, `NOTICE.md` and `SOURCE.txt` with the software and pass them on to
 anyone who receives it, as required by AGPL-3.0.

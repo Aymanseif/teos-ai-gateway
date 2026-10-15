@@ -510,7 +510,7 @@ For a problem after installation, run the command below and paste its output int
 teos-doctor
 ```
 
-- Report a bug or request a feature: email `AYMAN@TEOSEGYPT.COM` (include the `teos-doctor` output)
+- Report a bug or request a feature: email `support@teos.elmahrosa.org` (include the `teos-doctor` output)
 - [Modification notice](TEOS_MODIFICATIONS.md)
 - [Contributing guide](CONTRIBUTING.md)
 
