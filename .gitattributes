@@ -2,4 +2,5 @@
 # The offline bundle builds that archive with `git archive HEAD`, which honours
 # `export-ignore`. The landing site is published to Vercel from this repo, but it
 # is not part of the AGPL source release.
+landing export-ignore
 landing/** export-ignore
