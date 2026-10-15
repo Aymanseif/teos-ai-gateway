@@ -5,7 +5,6 @@ import json
 import socket
 import threading
 import time
-import webbrowser
 from collections.abc import Callable
 from enum import StrEnum
 from typing import TYPE_CHECKING
@@ -14,6 +13,7 @@ from urllib.request import Request
 
 from loguru import logger
 
+from free_claude_code.cli.desktop_window import open_admin_ui
 from free_claude_code.cli.local_http import open_local_request
 from free_claude_code.cli.process_registry import kill_all_best_effort
 from free_claude_code.config.loader import (
@@ -39,16 +39,21 @@ _CRASH_RESTART_MAX_DELAY_SECONDS = 30.0
 def _start_admin_browser(
     settings: Settings, eligible: Callable[[], bool], *, instance_id: str
 ) -> threading.Event:
-    """Hand off an optional browser action without keeping TEOS alive."""
+    """Hand off the Admin UI launch without keeping TEOS alive.
+
+    ``open_admin_ui`` prefers a native WebView2 window, then Microsoft Edge in
+    application mode, and only falls back to the user's default browser.
+    """
+
     completed = threading.Event()
     url = local_admin_url(settings)
     browser_logger = logger.bind(instance_id=instance_id)
 
     def open_browser() -> None:
         try:
-            if eligible() and not webbrowser.open(url):
+            if eligible() and not open_admin_ui(url):
                 browser_logger.warning(
-                    "Could not open Admin in a browser. Open {} manually.", url
+                    "Could not open the Admin UI. Open {} manually.", url
                 )
         except Exception as exc:
             browser_logger.warning(

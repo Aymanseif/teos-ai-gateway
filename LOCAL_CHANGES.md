@@ -28,6 +28,32 @@ includes the installation scripts). It stamps a clean product version via
 wheel, **stubs `teos-update`** (so automatic updates can never overwrite this build),
 adds a `teos` command, and creates shortcuts.
 
+## Native Admin window
+
+`cli/desktop_window.py` opens the Admin UI in a native window instead of a browser
+tab. The desktop shell keeps its pystray loop on the main thread and pywebview wants
+the main thread for its own loop, so the window is hosted in a small **detached
+helper process** (`python -m free_claude_code.cli.desktop_window --url ...`), started
+by `open_admin_ui()`. Keeping the two GUI loops in separate processes means a window
+that fails to appear can never take the tray or the running server down with it.
+
+`open_admin_ui()` is the single entry point used by `cli/commands.py`
+(`_start_admin_browser`), so both the tray's "Open Admin" action and the automatic
+open-on-start both go through it. Backends are tried in order, best first:
+
+1. **pywebview over the Edge WebView2 runtime** - a real native window.
+2. **Microsoft Edge in application mode** (`msedge --app=URL`) - a chromeless window.
+3. **The default browser** - always available.
+
+pywebview is declared for `sys_platform == 'win32'` in `pyproject.toml`. Its WebView2
+profile is pinned to `~/.fcc/webview` via `WEBVIEW2_USER_DATA_FOLDER`, because the
+runtime's default profile location is unreliable for a tool installed beneath a
+transient or read-only directory (this is the failure that produced a silent
+`E_ABORT` during development). A window is treated as successfully shown only when
+pywebview actually fires its `shown` event; otherwise the helper falls through to
+Edge. A `~/.fcc/desktop-window.lock` advisory lock keeps a single Admin window open
+per user - the OS releases it on process exit, so it cannot go stale.
+
 ## Current deployment
 
 As of 2026-10-12 the live install is built from this clone, not from upstream:

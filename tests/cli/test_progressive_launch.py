@@ -143,7 +143,7 @@ def test_existing_server_must_identify_itself_as_fcc(
         side_effect=browser_result if isinstance(browser_result, Exception) else None,
         return_value=browser_result,
     )
-    monkeypatch.setattr(commands.webbrowser, "open", browser)
+    monkeypatch.setattr(commands, "open_admin_ui", browser)
     assert commands.open_admin_when_ready(settings) is valid
     assert browser.call_count == int(valid)
     if valid and browser_result is not True:
@@ -197,7 +197,7 @@ def test_browser_warning_retains_owning_instance_after_server_exit(
     monkeypatch.setattr("free_claude_code.runtime.bootstrap.build_asgi_app", build)
     monkeypatch.setattr(uvicorn, "Config", lambda *args, **kwargs: None)
     monkeypatch.setattr("free_claude_code.cli.uvicorn_server.RuntimeServer", Server)
-    monkeypatch.setattr(commands.webbrowser, "open", browser)
+    monkeypatch.setattr(commands, "open_admin_ui", browser)
     try:
         for _ in range(2):
             entered.clear()
@@ -222,7 +222,7 @@ def test_queued_browser_rechecks_owner_before_handoff(monkeypatch, change):
     queued = []
     monkeypatch.setattr(threading.Thread, "start", lambda thread: queued.append(thread))
     browser = MagicMock(return_value=True)
-    monkeypatch.setattr(commands.webbrowser, "open", browser)
+    monkeypatch.setattr(commands, "open_admin_ui", browser)
     supervisor.request_open_admin()
     if change == "stop":
         supervisor.request_stop()
@@ -239,7 +239,7 @@ def test_queued_browser_rechecks_owner_before_handoff(monkeypatch, change):
 def test_browser_thread_start_failure_does_not_fail_fcc(monkeypatch, reuse, caplog):
     settings = Settings()
     browser = MagicMock()
-    monkeypatch.setattr(commands.webbrowser, "open", browser)
+    monkeypatch.setattr(commands, "open_admin_ui", browser)
     monkeypatch.setattr(
         threading.Thread, "start", MagicMock(side_effect=RuntimeError("no thread"))
     )
@@ -292,7 +292,7 @@ def _run_browser_shutdown_probe(mode, outcome, directory, setup_delay="0"):
             raise RuntimeError("opener failed")
         return outcome != "false"
 
-    patcher.setattr(commands.webbrowser, "open", browser)
+    patcher.setattr(commands, "open_admin_ui", browser)
     cleaned = []
     patcher.setattr(commands, "kill_all_best_effort", lambda: cleaned.append("managed"))
 
@@ -362,7 +362,7 @@ def _run_browser_shutdown_probe(mode, outcome, directory, setup_delay="0"):
                 assert url == f"http://127.0.0.1:{settings.port}/admin"
                 return browser("http://127.0.0.1:0/admin")
 
-            patcher.setattr(commands.webbrowser, "open", reuse_browser)
+            patcher.setattr(commands, "open_admin_ui", reuse_browser)
             response = MagicMock()
             response.__enter__.return_value.read.return_value = json.dumps(
                 {

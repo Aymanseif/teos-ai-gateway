@@ -19,8 +19,11 @@ trademark of Anthropic.
 - Disabled the bundled auto-update command (`teos-update` is a no-op) so this build is
   not silently replaced by an upstream release.
 - Carried provider-routing, retry-budget, model-fallback, and crash-recovery hardening.
+- Added a native Admin UI window (`teos-desktop` opens the Admin UI in a WebView2 window
+  via pywebview, falling back to Microsoft Edge in application mode, then to the default
+  browser).
 
-Date of modification: 2026-10-14.
+Date of modification: 2026-10-16.
 
 ## Planned (not yet implemented)
 

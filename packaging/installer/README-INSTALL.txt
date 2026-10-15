@@ -37,7 +37,9 @@ INSTALL
 
 FIRST RUN
 ---------
-- The server listens on a local port and the Admin UI opens in your browser.
+- The server listens on a local port and the Admin UI opens in the app window
+  (WebView2). If that window cannot start, it falls back to Microsoft Edge in
+  application mode, and then to your default browser.
 - Everything runs locally on your machine; only your own provider API calls leave it.
 - To start it in the background at logon, re-run the installer with -Startup, or
   copy the Desktop shortcut into:
@@ -68,7 +70,7 @@ verify you are on the TEOS build:
 
 COMMANDS
 --------
-    teos            Launch the desktop app / server (opens the Admin UI)
+    teos            Launch the desktop app / server (opens the Admin UI window)
     teos-server     Run the server in the foreground
     teos-doctor     Print and copy a diagnostics report
     teos-claude     Start Claude Code through TEOS AI Gateway

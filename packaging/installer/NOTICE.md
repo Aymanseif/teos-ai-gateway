@@ -23,8 +23,11 @@ by the TEOS AI Gateway distributor and include, at minimum:
   Python package, distribution name, and `~/.fcc` data directory are unchanged.
 - Provider-routing, retry-budget, fallback, and crash-recovery changes carried from the
   distributor's fork.
+- A native Admin UI window: `teos-desktop` opens the Admin UI in a WebView2 window
+  (via pywebview) instead of a browser tab, falling back to Microsoft Edge in
+  application mode and then to the default browser.
 
-**Date of modification:** 2026-10-14
+**Date of modification:** 2026-10-16
 
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 
