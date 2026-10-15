@@ -19,7 +19,9 @@ llama_cache
 packaging/dist/
 
 # --- Private business / marketing assets (not part of the AGPL source release) ---
-landing/
+# landing/ IS tracked so Vercel can deploy it, but it is excluded from the buyer's
+# source archive via `export-ignore` in .gitattributes.
+landing/.vercel/
 packaging/gumroad/
 BUILDER_PROMPT_SAAS.md
 packaging/ads/

@@ -1,3 +1,5 @@
-src/free_claude_code/core/data/cl100k_base.tiktoken -text linguist-vendored=true
-scripts/update/teos-update text eol=lf
-scripts/update/*.cmd text eol=crlf
+# Files tracked in git but excluded from the buyer's Corresponding Source archive.
+# The offline bundle builds that archive with `git archive HEAD`, which honours
+# `export-ignore`. The landing site is published to Vercel from this repo, but it
+# is not part of the AGPL source release.
+landing/** export-ignore
