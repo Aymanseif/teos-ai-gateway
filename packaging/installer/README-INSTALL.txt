@@ -26,6 +26,7 @@ INSTALL
    Useful options:
      -Startup       Also launch TEOS AI Gateway when you sign in to Windows
      -NoShortcuts   Skip Desktop / Start Menu shortcuts
+     -SkipDesktopShell  Do not install the native TEOS Desktop window
      -DryRun        Show what would happen without changing anything
 
 4. When it finishes, launch TEOS AI Gateway from the Desktop shortcut (or run
@@ -37,9 +38,11 @@ INSTALL
 
 FIRST RUN
 ---------
-- The server listens on a local port and the Admin UI opens in the app window
-  (WebView2). If that window cannot start, it falls back to Microsoft Edge in
-  application mode, and then to your default browser.
+- The server listens on a local port and the Admin UI opens in the native
+  "TEOS Desktop" window installed from the desktop\ folder of this bundle. That
+  window shows the live status of your local Gateway.
+- If the native window cannot start, it falls back to a WebView2 window, then to
+  Microsoft Edge in application mode, and then to your default browser.
 - Everything runs locally on your machine; only your own provider API calls leave it.
 - To start it in the background at logon, re-run the installer with -Startup, or
   copy the Desktop shortcut into:
@@ -85,6 +88,11 @@ UNINSTALL
     uv tool uninstall free-claude-code
 
 Then delete the Desktop / Start Menu shortcuts and the folder you extracted.
+
+The native TEOS Desktop window is a separate per-user install. Remove it in
+Windows Settings > Apps > "TEOS Desktop", or run:
+
+    %LOCALAPPDATA%\TEOS Desktop\unins000.exe
 
 
 LICENSE & SOURCE
