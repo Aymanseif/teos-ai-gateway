@@ -13,7 +13,7 @@ One installer for 57 AIs & 11 coding agents. Local. Private.
 ```
 Tired of 10 tabs, 10 keys, and 10 subscriptions just to code with AI?
 
-TEOS AI Gateway is a single 11.2 MB Windows installer that unifies your entire AI stack.
+TEOS AI Gateway is a single 12.1 MB Windows installer that unifies your entire AI stack.
 
 → 57 AI providers in one endpoint (OpenAI, Claude, Gemini, Groq, NVIDIA NIM, Ollama, OpenRouter +50 more)
 → 11 coding agents natively (Claude Code, Codex, Cline, Roo Code, Aider, OpenCode, Pi, Hermes…)
@@ -27,7 +27,7 @@ TEOS AI Gateway is a single 11.2 MB Windows installer that unifies your entire A
 ```
 Tired of 10 tabs, 10 keys, and 10 subscriptions just to code with AI?
 
-TEOS AI Gateway is a single 11.2 MB Windows installer that unifies your entire AI stack.
+TEOS AI Gateway is a single 12.1 MB Windows installer that unifies your entire AI stack.
 
 → 57 AI providers in one endpoint (OpenAI, Claude, Gemini, Groq, NVIDIA NIM, Ollama, OpenRouter +50 more)
 → 11 coding agents natively (Claude Code, Codex, Cline, Roo Code, Aider, OpenCode, Pi, Hermes…)
@@ -44,7 +44,7 @@ Source (AGPL-3.0): https://github.com/Aymanseif/teos-ai-gateway
 ```
 Tired of 10 tabs, 10 keys, and 10 subscriptions just to code with AI?
 
-TEOS AI Gateway is a single 11.2 MB Windows installer that unifies your entire AI stack.
+TEOS AI Gateway is a single 12.1 MB Windows installer that unifies your entire AI stack.
 
 → 57 AI providers in one endpoint (OpenAI, Claude, Gemini, Groq, NVIDIA NIM, Ollama, OpenRouter +50 more)
 → 11 coding agents natively (Claude Code, Codex, Cline, Roo Code, Aider, OpenCode, Pi, Hermes…)
@@ -66,7 +66,7 @@ These values are used consistently across this file, `README.md` and `landing/in
 |---|---|
 | AI providers | **57** — 7 named + "+50 more" |
 | Coding agents | **11** |
-| Installer size | **11.2 MB** |
+| Installer size | **12.1 MB** |
 | Tagline length | **60 characters** (Product Hunt's maximum) |
 | Price | **$39** for the first 50 copies, then **$99** — one-time; AGPL source is free |
 
