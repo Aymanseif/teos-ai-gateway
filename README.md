@@ -33,7 +33,7 @@
 
 ## What You Get
 
-- **56 ToS-friendly providers. One catalog.** Mix free, paid, subscription, and local models from one searchable UI without putting your account at risk. TEOS follows each provider's terms and removes integrations if they stop being allowed.
+- **57 ToS-friendly providers. One catalog.** Mix free, paid, subscription, and local models from one searchable UI without putting your account at risk. TEOS follows each provider's terms and removes integrations if they stop being allowed.
 - **11 coding agents. One model catalog.** Run [Claude Code](https://code.claude.com/docs/en/overview), [Codex](https://github.com/openai/codex), [Pi](https://github.com/earendil-works/pi), [OpenCode](https://github.com/anomalyco/opencode), [Cline](https://github.com/cline/cline), [Hermes](https://github.com/NousResearch/hermes-agent), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [Grok Build](https://github.com/xai-org/grok-build), [Muse Code](https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2/), [Aider](https://aider.chat/), or [VS Code Chat](https://code.visualstudio.com/) with your TEOS models.
 - **Keep coding through provider outages.** After retries are exhausted, TEOS automatically tries your next configured model without making you restart the turn. This works across every client.
 - **Up to 90% fewer terminal-output tokens.** Optional [RTK](https://github.com/rtk-ai/rtk) filters common command output, while five TEOS optimizations handle quota probes, command-prefix detection, titles, suggestions, and filepaths without calling a provider.
