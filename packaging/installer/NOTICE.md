@@ -26,8 +26,12 @@ by the TEOS AI Gateway distributor and include, at minimum:
 - A native Admin UI window: `teos-desktop` opens the Admin UI in a WebView2 window
   (via pywebview) instead of a browser tab, falling back to Microsoft Edge in
   application mode and then to the default browser.
+- A second, standalone desktop application ("TEOS - بوابة المحروسة", Tauri 2 + Rust +
+  SvelteKit) showing live Gateway status. Its localhost calls are made from Rust
+  (`reqwest`) because the Gateway's Admin API rejects requests carrying an `Origin`
+  header. Every number shown is read from the Gateway at runtime.
 
-**Date of modification:** 2026-10-16
+**Date of modification:** 2026-10-16 (Tauri desktop application added 2026-10-17)
 
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 

@@ -22,8 +22,15 @@ trademark of Anthropic.
 - Added a native Admin UI window (`teos-desktop` opens the Admin UI in a WebView2 window
   via pywebview, falling back to Microsoft Edge in application mode, then to the default
   browser).
+- Added a second, standalone desktop application ("TEOS - بوابة المحروسة", built with
+  Tauri 2 + Rust + SvelteKit) that shows live Gateway status. Its localhost HTTP calls
+  are issued from the Rust side (`reqwest`) rather than from the webview, because the
+  Gateway's Admin API answers `{"detail":"Admin UI is local-only"}` to any request that
+  carries an `Origin` header. All numbers it displays are read from the Gateway at
+  runtime; none are hardcoded. The pywebview window above remains available as a
+  fallback.
 
-Date of modification: 2026-10-16.
+Date of modification: 2026-10-16 (Tauri desktop application added 2026-10-17).
 
 ## Planned (not yet implemented)
 
@@ -32,7 +39,8 @@ The following are planned and are **not** part of this build yet:
 - Subscription and usage-credit (points) architecture.
 - Multi-user accounts and quota management.
 - Payment processing.
-- Arabic user interface.
+- Arabic user interface for the main Admin UI (the separate Tauri desktop shell is
+  already Arabic).
 
 ## License
 
