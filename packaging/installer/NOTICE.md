@@ -30,8 +30,13 @@ by the TEOS AI Gateway distributor and include, at minimum:
   SvelteKit) showing live Gateway status. Its localhost calls are made from Rust
   (`reqwest`) because the Gateway's Admin API rejects requests carrying an `Origin`
   header. Every number shown is read from the Gateway at runtime.
+- Making that TEOS Desktop shell the preferred window: the Admin UI launcher opens the
+  installed shell first, then falls back to the pywebview window, Edge in application
+  mode, and the default browser. This bundle carries the shell's per-user installer under
+  `desktop\` and runs it silently (`-SkipDesktopShell` opts out).
 
-**Date of modification:** 2026-10-16 (Tauri desktop application added 2026-10-17)
+**Date of modification:** 2026-10-16 (Tauri desktop application added 2026-10-17; native
+window made primary and bundled 2026-10-17)
 
 ## Corresponding Source (AGPL-3.0 §4, §6, §13)
 

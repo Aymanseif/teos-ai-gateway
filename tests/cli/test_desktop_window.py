@@ -36,8 +36,81 @@ def test_edge_executable_returns_none_off_windows() -> None:
         assert desktop_window.edge_executable() is None
 
 
+def test_tauri_desktop_executable_returns_none_off_windows() -> None:
+    with patch.object(desktop_window.sys, "platform", "linux"):
+        assert desktop_window.tauri_desktop_executable() is None
+
+
+def test_tauri_desktop_executable_honours_the_env_override(
+    tmp_path: Path,
+) -> None:
+    binary = tmp_path / "custom-shell.exe"
+    binary.write_bytes(b"")
+    with (
+        patch.object(desktop_window.sys, "platform", "win32"),
+        patch.dict(
+            desktop_window.os.environ,
+            {"TEOS_DESKTOP_EXE": str(binary)},
+            clear=True,
+        ),
+    ):
+        assert desktop_window.tauri_desktop_executable() == binary
+
+
+def test_tauri_desktop_executable_finds_the_installed_shell(
+    tmp_path: Path,
+) -> None:
+    install = tmp_path / "TEOS Desktop"
+    install.mkdir()
+    binary = install / "teos-pharaonic-desktop.exe"
+    binary.write_bytes(b"")
+    with (
+        patch.object(desktop_window.sys, "platform", "win32"),
+        patch.dict(
+            desktop_window.os.environ,
+            {"LOCALAPPDATA": str(tmp_path)},
+            clear=True,
+        ),
+        patch.object(desktop_window.shutil, "which", return_value=None),
+    ):
+        assert desktop_window.tauri_desktop_executable() == binary
+
+
+def test_tauri_desktop_executable_returns_none_when_absent(
+    tmp_path: Path,
+) -> None:
+    with (
+        patch.object(desktop_window.sys, "platform", "win32"),
+        patch.dict(
+            desktop_window.os.environ,
+            {"LOCALAPPDATA": str(tmp_path)},
+            clear=True,
+        ),
+        patch.object(desktop_window.shutil, "which", return_value=None),
+    ):
+        assert desktop_window.tauri_desktop_executable() is None
+
+
+def test_open_admin_ui_prefers_the_tauri_desktop() -> None:
+    desktop = Path("C:/Users/me/AppData/Local/TEOS Desktop/teos-pharaonic-desktop.exe")
+    with (
+        patch.object(desktop_window, "tauri_desktop_executable", return_value=desktop),
+        patch.object(desktop_window, "_spawn", return_value=True) as spawn,
+        patch.object(desktop_window, "native_window_supported") as native,
+        patch.object(desktop_window, "open_edge_app_window") as edge,
+        patch.object(desktop_window.webbrowser, "open") as browser,
+    ):
+        assert desktop_window.open_admin_ui(ADMIN_URL) is True
+
+    spawn.assert_called_once_with([str(desktop)])
+    native.assert_not_called()
+    edge.assert_not_called()
+    browser.assert_not_called()
+
+
 def test_open_admin_ui_prefers_the_native_window() -> None:
     with (
+        patch.object(desktop_window, "tauri_desktop_executable", return_value=None),
         patch.object(desktop_window, "native_window_supported", return_value=True),
         patch.object(desktop_window, "_spawn", return_value=True) as spawn,
         patch.object(desktop_window, "open_edge_app_window") as edge,
@@ -52,6 +125,7 @@ def test_open_admin_ui_prefers_the_native_window() -> None:
 
 def test_open_admin_ui_uses_edge_when_pywebview_is_missing() -> None:
     with (
+        patch.object(desktop_window, "tauri_desktop_executable", return_value=None),
         patch.object(desktop_window, "native_window_supported", return_value=False),
         patch.object(desktop_window, "_spawn") as spawn,
         patch.object(desktop_window, "open_edge_app_window", return_value=True) as edge,
@@ -66,6 +140,7 @@ def test_open_admin_ui_uses_edge_when_pywebview_is_missing() -> None:
 
 def test_open_admin_ui_falls_back_to_the_default_browser() -> None:
     with (
+        patch.object(desktop_window, "tauri_desktop_executable", return_value=None),
         patch.object(desktop_window, "native_window_supported", return_value=False),
         patch.object(desktop_window, "open_edge_app_window", return_value=False),
         patch.object(desktop_window.webbrowser, "open", return_value=True) as browser,
@@ -77,6 +152,7 @@ def test_open_admin_ui_falls_back_to_the_default_browser() -> None:
 
 def test_open_admin_ui_reports_failure_when_nothing_can_open() -> None:
     with (
+        patch.object(desktop_window, "tauri_desktop_executable", return_value=None),
         patch.object(desktop_window, "native_window_supported", return_value=False),
         patch.object(desktop_window, "open_edge_app_window", return_value=False),
         patch.object(desktop_window.webbrowser, "open", return_value=False),

@@ -20,6 +20,11 @@
 .PARAMETER KeepUpdater
     Do NOT disable the bundled automatic-update command (not recommended).
 
+.PARAMETER SkipDesktopShell
+    Do NOT install the bundled TEOS Desktop shell (the native dashboard). By
+    default the shell is installed so the Admin UI opens in a real window; the
+    gateway still works without it and falls back to a WebView2/Edge window.
+
 .PARAMETER DryRun
     Print the planned actions without changing the machine.
 
@@ -32,6 +37,7 @@ param(
     [switch] $Startup,
     [switch] $NoShortcuts,
     [switch] $KeepUpdater,
+    [switch] $SkipDesktopShell,
     [switch] $DryRun,
     [switch] $Help
 )
@@ -63,6 +69,7 @@ Options:
   -Startup        Also launch $ProductName at sign-in
   -NoShortcuts    Skip Desktop / Start Menu / Startup shortcuts
   -KeepUpdater    Do not disable the automatic update command
+  -SkipDesktopShell  Do not install the native TEOS Desktop window
   -DryRun         Show what would happen, change nothing
   -Help           Show this text
 "@
@@ -216,7 +223,44 @@ else {
     Write-Ok "Commands: teos (desktop), teos-server, teos-doctor"
 }
 
-# --- 7. Shortcuts ----------------------------------------------------------
+# --- 7. Install the TEOS Desktop shell --------------------------------------
+if ($SkipDesktopShell) {
+    Write-Step "Skipping the TEOS Desktop shell (-SkipDesktopShell)"
+}
+else {
+    $desktopDir = Join-Path $BundleRoot "desktop"
+    $desktopSetup = $null
+    if (Test-Path -LiteralPath $desktopDir) {
+        $desktopSetup = Get-ChildItem -LiteralPath $desktopDir -Filter *.exe -ErrorAction SilentlyContinue |
+            Select-Object -First 1
+    }
+    Write-Step "Installing the TEOS Desktop shell (native dashboard)"
+    if (-not $desktopSetup) {
+        Write-Warn "No shell installer in $desktopDir. The Admin UI will use a WebView2 or Edge window instead."
+    }
+    elseif ($DryRun) {
+        Write-Plain "run: $($desktopSetup.FullName) /S"
+    }
+    else {
+        # A per-user NSIS install, so no elevation is needed. The shell is only
+        # the window for the Admin UI - the gateway works without it - so a
+        # failure here must never fail the install.
+        try {
+            $process = Start-Process -FilePath $desktopSetup.FullName -ArgumentList "/S" -PassThru -Wait
+            if ($process.ExitCode -ne 0) {
+                Write-Warn "The TEOS Desktop shell installer exited with code $($process.ExitCode)."
+            }
+            else {
+                Write-Ok "TEOS Desktop shell installed."
+            }
+        }
+        catch {
+            Write-Warn "Could not install the TEOS Desktop shell: $_"
+        }
+    }
+}
+
+# --- 8. Shortcuts ----------------------------------------------------------
 if (-not $NoShortcuts) {
     Write-Step "Creating shortcuts"
     $shell = New-Object -ComObject WScript.Shell
@@ -266,11 +310,12 @@ if (-not $NoShortcuts) {
     }
 }
 
-# --- 8. Summary ------------------------------------------------------------
+# --- 9. Summary ------------------------------------------------------------
 Write-Host ""
 Write-Step "Done"
 Write-Plain "Launch $ProductName from the Desktop shortcut, or run: teos"
 Write-Plain "The Admin UI opens automatically; add your provider API keys there."
+Write-Plain "It opens in the native TEOS Desktop window when the shell is installed."
 Write-Host ""
 Write-Host "  License: AGPL-3.0-only (see LICENSE and NOTICE.md in this bundle)." -ForegroundColor DarkGray
 Write-Host "  This is a modified version of Free Claude Code by Ali Khokhar." -ForegroundColor DarkGray

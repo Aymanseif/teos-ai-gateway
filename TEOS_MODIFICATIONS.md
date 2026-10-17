@@ -29,8 +29,14 @@ trademark of Anthropic.
   carries an `Origin` header. All numbers it displays are read from the Gateway at
   runtime; none are hardcoded. The pywebview window above remains available as a
   fallback.
+- Made the TEOS Desktop (Tauri) shell the preferred window: the Admin UI launcher first
+  looks for the installed shell and opens it, and only then falls back to the pywebview
+  window, Edge in application mode, and finally the default browser. The offline installer
+  bundles the shell's per-user NSIS installer under `desktop\` and runs it silently after
+  installing the wheel (`-SkipDesktopShell` opts out).
 
-Date of modification: 2026-10-16 (Tauri desktop application added 2026-10-17).
+Date of modification: 2026-10-16 (Tauri desktop application added 2026-10-17; the native
+window became the primary window and was bundled in the offline package 2026-10-17).
 
 ## Planned (not yet implemented)
 

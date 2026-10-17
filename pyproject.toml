@@ -79,6 +79,26 @@ packages = ["src/free_claude_code"]
 "scripts/update/teos-update" = "teos-update"
 "scripts/update/teos-update.cmd" = "teos-update.cmd"
 
+[tool.hatch.build.targets.sdist]
+# The complete Corresponding Source (AGPL-3.0 section 6) ships inside the buyer
+# bundle as source\<...>-source.zip via git archive, so the Python sdist carries
+# the Python project only. Excluding the sibling Tauri app here keeps its Rust
+# target tree, node_modules and frontend build output out of the sdist, which
+# would otherwise push the buyer bundle from ~12 MB past 170 MB. (Note:
+# hatchling ignores MANIFEST.in, so this has to live here.)
+exclude = [
+    "teos-pharaonic-desktop",
+    "teos-pharaonic-desktop/**",
+    "packaging/dist",
+    "packaging/dist/**",
+    # hatchling does not honour .gitignore, so stray untracked directories in the
+    # working tree get packed too. Keep the known ones out.
+    "%TEMP%",
+    "%TEMP%/**",
+    ".venv",
+    ".venv/**",
+]
+
 [tool.uv]
 required-version = ">=0.12.13"
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]

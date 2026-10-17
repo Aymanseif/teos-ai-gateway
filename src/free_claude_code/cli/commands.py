@@ -41,8 +41,9 @@ def _start_admin_browser(
 ) -> threading.Event:
     """Hand off the Admin UI launch without keeping TEOS alive.
 
-    ``open_admin_ui`` prefers a native WebView2 window, then Microsoft Edge in
-    application mode, and only falls back to the user's default browser.
+    ``open_admin_ui`` prefers the installed TEOS Desktop shell, then a native
+    WebView2 window, then Microsoft Edge in application mode, and only falls
+    back to the user's default browser.
     """
 
     completed = threading.Event()

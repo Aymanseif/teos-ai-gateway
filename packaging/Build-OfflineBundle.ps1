@@ -12,6 +12,9 @@
       - NOTICE.md (modification notice, AGPL-3.0 section 5a)
       - README-INSTALL.txt
       - app-icon.ico
+      - desktop\TEOS Desktop_1.0.0_x64-setup.exe
+            The native TEOS Desktop shell (Tauri), installed silently by
+            Install-TEOS-AI-Gateway.ps1 unless -SkipDesktopShell is used.
 
     Pass -IncludeSource to bundle the full Corresponding Source inside this ZIP
     (dist\<sdist> plus source\<name>-source.zip). That is the correct mode now
@@ -38,6 +41,11 @@
     Also bundle the sdist and the full source ZIP inside the package. Without it
     the ZIP carries no Corresponding Source and only the written offer applies.
 
+.PARAMETER DesktopInstaller
+    Path to the TEOS Desktop (Tauri) NSIS setup.exe to bundle under desktop\.
+    By default it is discovered next to the sibling teos-pharaonic-desktop
+    build output; pass it explicitly when the shell was built elsewhere.
+
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.0.0
 #>
@@ -48,7 +56,8 @@ param(
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,
-    [string] $SupportEmail = "support@elmahrosa.org"
+    [string] $SupportEmail = "support@elmahrosa.org",
+    [string] $DesktopInstaller
 )
 
 Set-StrictMode -Version Latest
@@ -140,6 +149,23 @@ $sdist = Get-ChildItem -LiteralPath $buildDist -Filter *.tar.gz -ErrorAction Sil
 if (-not $wheel) { throw "No wheel was produced in $buildDist." }
 Write-Ok "Wheel: $($wheel.Name)"
 
+# --- Locate the TEOS Desktop shell installer --------------------------------
+# The native shell is built by the sibling teos-pharaonic-desktop project. It is
+# bundled so the product stays a single offline download: the buyer installer
+# runs it silently after installing the wheel.
+if (-not $DesktopInstaller) {
+    $shellSearchRoots = @(
+        (Join-Path $RepoPath "teos-pharaonic-desktop\src-tauri\target\release\bundle\nsis"),
+        (Join-Path $env:TEMP "tauri-release\release\bundle\nsis")
+    )
+    foreach ($root in $shellSearchRoots) {
+        if (-not (Test-Path -LiteralPath $root)) { continue }
+        $candidate = Get-ChildItem -LiteralPath $root -Filter "TEOS Desktop_*_x64-setup.exe" -ErrorAction SilentlyContinue |
+            Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        if ($candidate) { $DesktopInstaller = $candidate.FullName; break }
+    }
+}
+
 # --- Assemble ---------------------------------------------------------------
 Write-Step "Assembling bundle contents"
 Copy-Item -LiteralPath (Join-Path $InstallerDir "Install-TEOS-AI-Gateway.ps1") -Destination $stage
@@ -148,6 +174,15 @@ Copy-Item -LiteralPath (Join-Path $InstallerDir "README-INSTALL.txt") -Destinati
 Copy-Item -LiteralPath (Join-Path $RepoPath "LICENSE") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $RepoPath "src\free_claude_code\assets\app-icon.ico") -Destination $stage
 Copy-Item -LiteralPath $wheel.FullName -Destination (Join-Path $stage "dist")
+
+if ($DesktopInstaller -and (Test-Path -LiteralPath $DesktopInstaller)) {
+    New-Item -ItemType Directory -Force -Path (Join-Path $stage "desktop") | Out-Null
+    Copy-Item -LiteralPath $DesktopInstaller -Destination (Join-Path $stage "desktop")
+    Write-Ok "Desktop shell: $(Split-Path -Leaf $DesktopInstaller)"
+}
+else {
+    Write-Warn "No TEOS Desktop shell installer was bundled; buyers would get a WebView2/Edge window instead of the native dashboard."
+}
 
 # License + Corresponding Source notice (AGPL-3.0 §5, §6). With -IncludeSource
 # the Corresponding Source travels inside this very ZIP (AGPL-3.0 section 6).

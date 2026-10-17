@@ -8,9 +8,10 @@ the tray, or the running server, down with it.
 
 Windows are opened in this order, best first:
 
-1. pywebview over the Edge WebView2 runtime - a real native window.
-2. Microsoft Edge in application mode - a chromeless window.
-3. The default browser - always available.
+1. The installed TEOS Desktop shell (Tauri) - the pharaonic dashboard.
+2. pywebview over the Edge WebView2 runtime - a real native window.
+3. Microsoft Edge in application mode - a chromeless window.
+4. The default browser - always available.
 """
 
 import importlib.util
@@ -44,6 +45,16 @@ _EDGE_LOCATIONS = (
     ("LOCALAPPDATA", r"Microsoft\Edge\Application\msedge.exe"),
 )
 
+# The NSIS installer ships the Tauri shell for the current user by default, so
+# the binary lands beneath %LOCALAPPDATA%. The per-machine folders are checked
+# too, in case a build is later configured for an all-users install.
+_DESKTOP_EXE_NAME = "teos-pharaonic-desktop.exe"
+_DESKTOP_LOCATIONS = (
+    ("LOCALAPPDATA", rf"TEOS Desktop\{_DESKTOP_EXE_NAME}"),
+    ("ProgramFiles", rf"TEOS Desktop\{_DESKTOP_EXE_NAME}"),
+    ("ProgramFiles(x86)", rf"TEOS Desktop\{_DESKTOP_EXE_NAME}"),
+)
+
 
 def webview_data_dir() -> Path:
     """Return the stable WebView2 profile folder owned by the product."""
@@ -73,6 +84,32 @@ def edge_executable() -> Path | None:
         if candidate.is_file():
             return candidate
     found = shutil.which("msedge")
+    return None if found is None else Path(found)
+
+
+def tauri_desktop_executable() -> Path | None:
+    """Locate the installed TEOS Desktop shell, if this machine has one.
+
+    The Tauri dashboard talks to the same Gateway the browser window would, so
+    it is preferred when present. Nothing needs to be passed to it: the shell
+    already targets the local admin API on its own.
+    """
+
+    if sys.platform != "win32":
+        return None
+    override = os.environ.get("TEOS_DESKTOP_EXE")
+    if override:
+        candidate = Path(override)
+        if candidate.is_file():
+            return candidate
+    for variable, relative in _DESKTOP_LOCATIONS:
+        base = os.environ.get(variable)
+        if not base:
+            continue
+        candidate = Path(base) / relative
+        if candidate.is_file():
+            return candidate
+    found = shutil.which(_DESKTOP_EXE_NAME)
     return None if found is None else Path(found)
 
 
@@ -124,6 +161,9 @@ def open_edge_app_window(url: str) -> bool:
 def open_admin_ui(url: str) -> bool:
     """Open the Admin UI in the best window this machine can provide."""
 
+    desktop = tauri_desktop_executable()
+    if desktop is not None and _spawn([str(desktop)]):
+        return True
     if native_window_supported() and _spawn(window_helper_command(url)):
         return True
     if open_edge_app_window(url):
