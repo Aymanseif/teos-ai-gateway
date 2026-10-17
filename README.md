@@ -11,6 +11,10 @@
 [![Python 3.14](https://img.shields.io/badge/python-3.14-3776ab.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![Package Manager: uv](assets/package-manager-uv.svg)](https://github.com/astral-sh/uv)
 
+<a href="https://www.producthunt.com/products/teos-ai-gateway?launch=teos-ai-gateway" target="_blank" rel="noopener">
+  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1283048&theme=light" alt="TEOS AI Gateway - Featured on Product Hunt" width="250" height="54">
+</a>
+
 [Quick Start](#quick-start) · [Providers](#choose-a-provider) · [Clients](#connect-your-client) · [Integrations](#optional-integrations) · [Manage](#manage-your-installation)
 
 </div>
