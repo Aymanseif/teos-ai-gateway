@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": null,
+  "buildCommand": "echo 'static landing'",
+  "outputDirectory": "landing",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
