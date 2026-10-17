@@ -91,6 +91,12 @@ exclude = [
     "teos-pharaonic-desktop/**",
     "packaging/dist",
     "packaging/dist/**",
+    # hatchling does not honour .gitignore, so stray untracked directories in the
+    # working tree get packed too. Keep the known ones out.
+    "%TEMP%",
+    "%TEMP%/**",
+    ".venv",
+    ".venv/**",
 ]
 
 [tool.uv]
