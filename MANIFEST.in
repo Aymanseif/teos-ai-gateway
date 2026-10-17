@@ -1,0 +1,13 @@
+# The Corresponding Source (AGPL-3.0 section 6) ships in full, but build output
+# and vendored dependencies must never be packed into the sdist. The sibling
+# Tauri project's Rust target tree alone is hundreds of megabytes, and a stray
+# debug build in the working tree would otherwise balloon the buyer bundle.
+prune teos-pharaonic-desktop/src-tauri/target
+prune teos-pharaonic-desktop/node_modules
+prune teos-pharaonic-desktop/build
+prune teos-pharaonic-desktop/.svelte-kit
+prune teos-pharaonic-desktop/src-tauri/gen
+prune landing/.vercel
+prune packaging/dist
+global-exclude *.py[cod]
+global-exclude __pycache__
