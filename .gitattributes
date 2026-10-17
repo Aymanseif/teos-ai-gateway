@@ -4,3 +4,4 @@
 # is not part of the AGPL source release.
 landing export-ignore
 landing/** export-ignore
+PRODUCTHUNT_LAUNCH.md export-ignore
