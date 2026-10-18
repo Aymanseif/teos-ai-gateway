@@ -44,6 +44,7 @@ dependencies = [
 ]
 
 [project.scripts]
+teos = "free_claude_code.cli.entrypoints:teos"
 _teos-update-check = "free_claude_code.updater.check:main"
 teos-server = "free_claude_code.cli.entrypoints:serve"
 teos-doctor = "free_claude_code.cli.entrypoints:doctor"
