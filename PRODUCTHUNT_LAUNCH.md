@@ -36,7 +36,7 @@ TEOS AI Gateway is a single 11.19 MiB Windows installer that unifies your entire
 → One-time purchase, no subscription - $39 for the first 50 copies, then $99
 
 Get it here: https://aamsmith3.gumroad.com/l/teos-ai-gateway
-Source (AGPL-3.0): https://github.com/Aymanseif/teos-ai-gateway
+Source (AGPL-3.0): complete corresponding source is shipped inside the download
 ```
 
 ## 4. Social / build-in-public post
@@ -53,7 +53,7 @@ TEOS AI Gateway is a single 11.19 MiB Windows installer that unifies your entire
 → One-time purchase, no subscription - $39 for the first 50 copies, then $99
 
 Get it here: https://aamsmith3.gumroad.com/l/teos-ai-gateway
-Source (AGPL-3.0): https://github.com/Aymanseif/teos-ai-gateway
+Source (AGPL-3.0): complete corresponding source is shipped inside the download
 
 #AIAgents #ClaudeCode #OpenCode #Cline #Aider #Tauri #Rust #BuildInPublic
 ```
