@@ -32,3 +32,32 @@ def doctor(argv: Sequence[str] | None = None) -> None:
     from free_claude_code.cli.doctor import main
 
     main(argv)
+
+
+def teos(argv: Sequence[str] | None = None) -> None:
+    """Umbrella: ``teos <command>`` -> dispatch to the matching ``teos-*`` script."""
+    import sys
+    from importlib.metadata import entry_points
+
+    args = list(sys.argv[1:] if argv is None else argv)
+    table = {
+        ep.name[len("teos-"):]: ep
+        for group in ("console_scripts", "gui_scripts")
+        for ep in entry_points(group=group)
+        if ep.name.startswith("teos-")
+    }
+
+    if not args or args[0] in ("-h", "--help", "help"):
+        print("TEOS AI Gateway\n")
+        print("Usage: teos <command> [args]\n")
+        print("Commands: " + ", ".join(sorted(table)))
+        return
+
+    name, rest = args[0], args[1:]
+    ep = table.get(name)
+    if ep is None:
+        print(f"teos: unknown command '{name}'")
+        print("Available: " + ", ".join(sorted(table)))
+        sys.exit(2)
+
+    ep.load()(rest)  # every teos-* target takes argv
