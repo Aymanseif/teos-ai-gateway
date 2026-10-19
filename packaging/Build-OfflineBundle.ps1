@@ -12,7 +12,7 @@
       - NOTICE.md (modification notice, AGPL-3.0 section 5a)
       - README-INSTALL.txt
       - app-icon.ico
-      - desktop\TEOS Desktop_1.0.0_x64-setup.exe
+      - desktop\TEOS Desktop_1.1.0_x64-setup.exe
             The native TEOS Desktop shell (Tauri), installed silently by
             Install-TEOS-AI-Gateway.ps1 unless -SkipDesktopShell is used.
 
@@ -28,7 +28,7 @@
     Default: ..\free-claude-code relative to this script.
 
 .PARAMETER Version
-    Product version stamped into the build (default 1.0.0). This overrides the
+    Product version stamped into the build (default 1.1.0). This overrides the
     git-derived development version so the sold product has a clean version.
 
 .PARAMETER OutDir
@@ -47,12 +47,12 @@
     build output; pass it explicitly when the shell was built elsewhere.
 
 .EXAMPLE
-    powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.0.0
+    powershell -ExecutionPolicy Bypass -File .\Build-OfflineBundle.ps1 -Version 1.1.0
 #>
 [CmdletBinding()]
 param(
     [string] $RepoPath,
-    [string] $Version = "1.0.0",
+    [string] $Version = "1.1.0",
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,

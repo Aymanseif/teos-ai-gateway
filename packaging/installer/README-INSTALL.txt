@@ -75,7 +75,7 @@ simply run this installer. It replaces that install in place:
 Your provider keys and settings in `%USERPROFILE%\.fcc` are kept. After installing,
 verify you are on the TEOS build:
 
-     teos-server --version      ->  TEOS AI Gateway 1.0.0
+     teos-server --version      ->  TEOS AI Gateway 1.1.0
 
 COMMANDS
 --------
@@ -108,7 +108,7 @@ AGPL-3.0-only. This is a modified version of Free Claude Code by Ali Khokhar.
 The complete Corresponding Source (AGPL-3.0 section 6) for this exact build is
 included in this bundle:
 
-    source\TEOS-AI-Gateway-Windows-1.0.0-source.zip
+    source\TEOS-AI-Gateway-Windows-1.1.0-source.zip
 
 Written offer (AGPL-3.0 section 6): for at least three years we will provide the
 Corresponding Source on request at no charge - email support@teos.elmahrosa.org, quoting

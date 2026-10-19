@@ -158,7 +158,7 @@
     {#if st?.error}
       <span class="dim">آخر خطأ: {st.error}</span>
     {:else}
-      <span class="dim">TEOS AI Gateway · v1.0.0 · offline-first</span>
+      <span class="dim">TEOS AI Gateway · v1.1.0 · offline-first</span>
     {/if}
   </footer>
 </div>
