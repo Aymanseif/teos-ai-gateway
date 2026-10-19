@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050505;
+  overflow-x: hidden;
+}
+
+@layer components {
+  /* Gold foil text treatment */
+  .text-gold-foil {
+    background-image: linear-gradient(
+      100deg,
+      #8a6e1f 0%,
+      #d4af37 25%,
+      #ffeaa0 45%,
+      #ffd700 55%,
+      #d4af37 70%,
+      #8a6e1f 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+
+  .text-gold-foil-static {
+    background-image: linear-gradient(135deg, #b8860b, #d4af37 40%, #ffd700 60%, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline gold border used on cards */
+  .border-gold-hair {
+    border: 1px solid rgba(212, 175, 55, 0.22);
+  }
+
+  .card-surface {
+    background:
+      radial-gradient(120% 100% at 50% 0%, rgba(212, 175, 55, 0.06), transparent 60%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .btn-gold {
+    background-image: linear-gradient(135deg, #b8860b, #d4af37 45%, #ffd700 60%, #d4af37);
+    color: #0a0a0a;
+    box-shadow:
+      0 0 0 1px rgba(255, 215, 0, 0.35),
+      0 10px 35px -10px rgba(212, 175, 55, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow:
+      0 0 0 1px rgba(255, 215, 0, 0.55),
+      0 18px 45px -12px rgba(212, 175, 55, 0.75);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37;
+    transition: all 0.2s ease;
+  }
+  .btn-outline:hover {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(255, 215, 0, 0.7);
+    transform: translateY(-2px);
+  }
+
+  /* Fine hieroglyphic-ish grid backdrop */
+  .pattern-gate {
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+}
+
+@layer utilities {
+  .rtl {
+    direction: rtl;
+    unicode-bidi: isolate;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Framer Motion respects reduced motion; mirror it for CSS animations too */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

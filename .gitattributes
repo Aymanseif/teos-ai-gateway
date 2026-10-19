@@ -5,3 +5,5 @@
 landing export-ignore
 landing/** export-ignore
 PRODUCTHUNT_LAUNCH.md export-ignore
+pharaoh-portal export-ignore
+pharaoh-portal/** export-ignore

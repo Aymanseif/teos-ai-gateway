@@ -1,0 +1,5 @@
+# Next.js build artifacts (never commit these)
+node_modules/
+.next/
+out/
+*.log
