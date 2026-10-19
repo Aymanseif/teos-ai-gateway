@@ -38,6 +38,48 @@ trademark of Anthropic.
 Date of modification: 2026-10-16 (Tauri desktop application added 2026-10-17; the native
 window became the primary window and was bundled in the offline package 2026-10-17).
 
+## Hardening your `.fcc` directory (Windows)
+
+Your provider API keys are stored in plaintext in `%USERPROFILE%\.fcc\.env`. By
+default that folder inherits the permissions of your user profile, which is usually
+fine on a single-user machine, but it is worth tightening - and worth checking - on a
+shared or multi-account PC.
+
+To see the current permissions:
+
+```powershell
+icacls "$env:USERPROFILE\.fcc"
+```
+
+To restrict the folder to your account only, while keeping your own access intact:
+
+```powershell
+$me = "$env:USERDOMAIN\$env:USERNAME"
+icacls "$env:USERPROFILE\.fcc" /inheritance:r
+icacls "$env:USERPROFILE\.fcc" /grant:r "${me}:(OI)(CI)F"
+icacls "$env:USERPROFILE\.fcc\.env" /inheritance:r
+icacls "$env:USERPROFILE\.fcc\.env" /grant:r "${me}:F"
+```
+
+Two details matter here:
+
+- `${me}` needs the braces. In `"$env:USERNAME:(OI)(CI)F"` PowerShell reads the
+  variable name as `USERNAME:` and splices a malformed value, and `icacls` then fails.
+- `/inheritance:r` removes the inherited entries; the `/grant:r` lines replace them
+  with a single grant for your account. Using `/inheritance:d` instead only converts
+  the inherited entries to explicit ones and leaves other accounts with access, so it
+  does not actually restrict anything.
+
+If you ever need to undo this, reset the folder and restore inheritance:
+
+```powershell
+icacls "$env:USERPROFILE\.fcc" /reset /T
+icacls "$env:USERPROFILE\.fcc" /inheritance:e
+```
+
+Do not commit or sync `.fcc` to git or to a shared/cloud folder: it holds credentials
+in plaintext.
+
 ## Planned (not yet implemented)
 
 The following are planned and are **not** part of this build yet:
