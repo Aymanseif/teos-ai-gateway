@@ -11,7 +11,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-const PAYLOAD = 'SHA256:31B82FF8DD70FEF4DDB1784C3BA127F116A6B03D12C2250FEE9CBDE188C049D7';
+const PAYLOAD = 'SHA256:AAD854983D7A1A1A1B2E330B24EC5A86C73660CCB38E52513FB2055065450056';
 
 const here = dirname(fileURLToPath(import.meta.url));
 

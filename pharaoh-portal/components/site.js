@@ -16,10 +16,10 @@ export const PRICE_CTA = 'Get Lifetime License — $299';
 
 export const VERSION = 'v5.1.0';
 
-/** Real SHA-256 of TEOS-AI-Gateway-Windows-1.0.0.zip — what the QR encodes. */
-export const RELEASE_FILE = 'TEOS-AI-Gateway-Windows-1.0.0.zip';
+/** Real SHA-256 of TEOS-AI-Gateway-Windows-1.1.0.zip — what the QR encodes. */
+export const RELEASE_FILE = 'TEOS-AI-Gateway-Windows-1.1.0.zip';
 export const RELEASE_SHA256 =
-  '31B82FF8DD70FEF4DDB1784C3BA127F116A6B03D12C2250FEE9CBDE188C049D7';
+  'AAD854983D7A1A1A1B2E330B24EC5A86C73660CCB38E52513FB2055065450056';
 export const QR_PAYLOAD = `SHA256:${RELEASE_SHA256}`;
 
 export const BADGE_ID = 'f14c9ae0-c594-4cf8-af37-398545f5b75f';
