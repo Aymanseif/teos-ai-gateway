@@ -93,7 +93,7 @@ No paid API key needed to start:
 - **Local models FREE forever** — Ollama, LM Studio, llama.cpp. Run Llama, CodeLlama, Mistral fully offline, no key at all.
 - **Other free tiers** — OpenRouter FREE models, Groq FREE tier, Gemini FREE tier — all from one UI.
 
-> TEOS AI Gateway itself is a one-time purchase ($39 for the first 50 copies, then $99). Using free tiers from providers is subject to each provider's limits and terms.
+> TEOS AI Gateway itself is a one-time lifetime purchase ($299 — no subscription, no usage markup). Using free tiers from providers is subject to each provider's limits and terms.
 
 ### 2. Start TEOS
 
