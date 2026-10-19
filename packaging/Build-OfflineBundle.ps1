@@ -56,7 +56,7 @@ param(
     [string] $OutDir,
     [switch] $SkipBuild,
     [switch] $IncludeSource,
-    [string] $SupportEmail = "support@elmahrosa.org",
+    [string] $SupportEmail = "support@teos.elmahrosa.org",
     [string] $DesktopInstaller
 )
 
@@ -85,7 +85,7 @@ $InstallerDir = Join-Path $PSScriptRoot "installer"
 if (-not (Test-Path -LiteralPath (Join-Path $RepoPath "pyproject.toml"))) {
     throw "RepoPath does not look like the free-claude-code checkout: $RepoPath"
 }
-foreach ($required in @("Install-TEOS-AI-Gateway.ps1", "NOTICE.md", "README-INSTALL.txt")) {
+foreach ($required in @("Install-TEOS-AI-Gateway.ps1", "Install-TEOS.cmd", "NOTICE.md", "README-INSTALL.txt")) {
     if (-not (Test-Path -LiteralPath (Join-Path $InstallerDir $required))) {
         throw "Missing installer asset: $required"
     }
@@ -169,6 +169,7 @@ if (-not $DesktopInstaller) {
 # --- Assemble ---------------------------------------------------------------
 Write-Step "Assembling bundle contents"
 Copy-Item -LiteralPath (Join-Path $InstallerDir "Install-TEOS-AI-Gateway.ps1") -Destination $stage
+Copy-Item -LiteralPath (Join-Path $InstallerDir "Install-TEOS.cmd") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $InstallerDir "NOTICE.md") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $InstallerDir "README-INSTALL.txt") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $RepoPath "LICENSE") -Destination $stage
@@ -284,4 +285,5 @@ Write-Ok "Bundle:  $zipPath"
 Write-Ok "Size:    $sizeMb MB"
 Write-Ok "Version: $Version"
 Write-Host ""
-Write-Host "Ship this ZIP. Buyers extract it and run Install-TEOS-AI-Gateway.ps1." -ForegroundColor DarkGray
+Write-Host "Ship this ZIP. Buyers extract it and double-click Install-TEOS.cmd" -ForegroundColor DarkGray
+Write-Host "(or run Install-TEOS-AI-Gateway.ps1 from PowerShell)." -ForegroundColor DarkGray

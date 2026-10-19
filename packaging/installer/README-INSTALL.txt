@@ -18,8 +18,14 @@ REQUIREMENTS
 INSTALL
 -------
 1. Extract this ZIP somewhere permanent, e.g. C:\TEOS-AI-Gateway\
-2. Open PowerShell in that folder.
-3. Run:
+2. Double-click:
+
+     Install-TEOS.cmd
+
+   That is all. If Windows SmartScreen asks, choose "More info" then
+   "Run anyway" (the file is signed only by you, not a commercial CA).
+
+   Prefer the terminal, or need an option? Open PowerShell in this folder and run:
 
      powershell -ExecutionPolicy Bypass -File .\Install-TEOS-AI-Gateway.ps1
 
@@ -105,5 +111,5 @@ included in this bundle:
     source\TEOS-AI-Gateway-Windows-1.0.0-source.zip
 
 Written offer (AGPL-3.0 section 6): for at least three years we will provide the
-Corresponding Source on request at no charge - email support@elmahrosa.org, quoting
+Corresponding Source on request at no charge - email support@teos.elmahrosa.org, quoting
 the build commit recorded in SOURCE.txt. See NOTICE.md for details.

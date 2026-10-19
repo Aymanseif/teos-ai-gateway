@@ -24,7 +24,7 @@ Corresponding Source must travel inside the ZIP (see the release checklist below
 | `-OutDir` | `.\packaging\dist` | output directory |
 | `-SkipBuild` | — | reuse an existing `dist\build` |
 | `-IncludeSource` | off | bundle the sdist + full source ZIP inside the package |
-| `-SupportEmail` | `support@elmahrosa.org` | support address written into the license notices |
+| `-SupportEmail` | `support@teos.elmahrosa.org` | support address written into the license notices |
 
 The script builds a wheel + sdist with `SETUPTOOLS_SCM_PRETEND_VERSION=<Version>` so the
 sold product carries a clean version instead of the git-derived development version,

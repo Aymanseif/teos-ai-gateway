@@ -90,6 +90,8 @@ packages = ["src/free_claude_code"]
 exclude = [
     "teos-pharaonic-desktop",
     "teos-pharaonic-desktop/**",
+    "pharaoh-portal",
+    "pharaoh-portal/**",
     "packaging/dist",
     "packaging/dist/**",
     # hatchling does not honour .gitignore, so stray untracked directories in the

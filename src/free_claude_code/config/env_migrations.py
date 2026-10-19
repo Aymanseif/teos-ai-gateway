@@ -1,5 +1,6 @@
 """One-time consolidation of legacy TEOS dotenv state."""
 
+import json
 import os
 import re
 import uuid
@@ -24,6 +25,14 @@ from .provider_catalog import PROVIDER_CATALOG
 from .settings import Settings
 
 CONFIG_SCHEMA_VERSION = "1"
+# Newer upstream releases bumped the managed-config schema to "2" and began
+# storing provider credentials as JSON arrays ("credential lists"). This build
+# speaks schema "1" (one key per provider), so a schema-2 file is flattened on
+# read: the first non-empty entry of a credential list is kept and the rest are
+# discarded. Keys this build does not recognise are preserved verbatim by
+# render_managed_config, so nothing else is lost.
+DOWNGRADABLE_CONFIG_SCHEMAS = ("2",)
+_CREDENTIAL_LIST_SUFFIXES = ("_API_KEY", "_API_KEYS", "_TOKEN", "_TOKENS", "_KEYS")
 LEGACY_HUGGINGFACE_TOKEN_ENV = "HF_TOKEN"
 HUGGINGFACE_API_KEY_ENV = "HUGGINGFACE_API_KEY"
 LEGACY_OPENCODE_PROXY_ENV = "OPENCODE_PROXY"
@@ -202,6 +211,11 @@ def consolidate_managed_config(
             atomic_write_managed_config(normalized, path=managed)
             _log_model_repairs(base_values, normalized)
             return ConfigMigrationResult(changed=True)
+        if schema in DOWNGRADABLE_CONFIG_SCHEMAS:
+            downgraded = _downgrade_schema2(base_values)
+            atomic_write_managed_config(downgraded, path=managed)
+            _log_model_repairs(base_values, downgraded)
+            return ConfigMigrationResult(changed=True)
         if schema not in {None, ""}:
             raise ValueError(
                 f"Managed config {managed} uses unsupported schema {schema!r}; "
@@ -250,6 +264,50 @@ def _log_model_repairs(before: Mapping[str, str], after: Mapping[str, str]) -> N
             "Repaired retired provider selections in managed config: {}",
             ", ".join(changed),
         )
+
+
+def _downgrade_schema2(values: Mapping[str, str]) -> dict[str, str]:
+    """Convert a newer schema-2 config to this build's schema-1 shape.
+
+    Schema 2 stores credentials as JSON arrays ("credential lists") and
+    ``MODEL_FALLBACKS`` as an array of ``{model, reasoning, api_key_number}``
+    objects. This build reads one key per provider and a comma-separated
+    fallback list, so both are flattened here. Any other value is preserved
+    verbatim.
+    """
+
+    downgraded: dict[str, str] = {}
+    for key, value in values.items():
+        text = value.strip()
+        if key == FCC_CONFIG_SCHEMA_ENV or not text.startswith("["):
+            downgraded[key] = value
+            continue
+        try:
+            items = json.loads(text)
+        except ValueError:
+            downgraded[key] = value
+            continue
+        if not isinstance(items, list):
+            downgraded[key] = value
+            continue
+        if key.upper().endswith(_CREDENTIAL_LIST_SUFFIXES):
+            first = next(
+                (str(item).strip() for item in items if str(item).strip()), ""
+            )
+            if first:
+                downgraded[key] = first
+            continue
+        if key.upper() == "MODEL_FALLBACKS":
+            refs = [
+                str(item.get("model") if isinstance(item, Mapping) else item).strip()
+                for item in items
+            ]
+            refs = [ref for ref in refs if ref]
+            if refs:
+                downgraded[key] = ",".join(refs)
+            continue
+        downgraded[key] = value
+    return downgraded
 
 
 def atomic_write_managed_config(
