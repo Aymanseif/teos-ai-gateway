@@ -29,3 +29,5 @@ packaging/video/
 
 # --- Scratch / broken backups (e.g. lib.rs.broken) ---
 *.broken
+.vercel
+.env*
