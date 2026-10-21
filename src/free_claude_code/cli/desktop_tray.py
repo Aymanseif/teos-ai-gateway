@@ -20,7 +20,7 @@ class PystrayDesktopTray:
             _create_icon(),
             "TEOS AI Gateway",
             Menu(
-                MenuItem("Open Admin", self._open_admin, default=True),
+                MenuItem("Add Your API Keys\u2026", self._open_admin, default=True),
                 MenuItem("Check Server Status", self._check_status),
                 MenuItem("Restart Server", self._restart_server),
                 Menu.SEPARATOR,
