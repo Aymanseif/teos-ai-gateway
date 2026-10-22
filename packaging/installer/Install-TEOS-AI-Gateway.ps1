@@ -264,6 +264,8 @@ else {
 if (-not $NoShortcuts) {
     Write-Step "Creating shortcuts"
     $shell = New-Object -ComObject WScript.Shell
+    # Honor a Desktop folder redirected to OneDrive (common on Windows 11).
+    $desktopDir = [Environment]::GetFolderPath("Desktop")
     $startMenuDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs"
     $startupDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\Startup"
 
@@ -271,7 +273,7 @@ if (-not $NoShortcuts) {
     # have its old launch shortcuts. Remove only the ones that already exist so
     # the pre-rebrand product cannot be launched from a stale icon.
     $legacyShortcuts = @(
-        (Join-Path $env:USERPROFILE "Desktop\Free Claude Code.lnk"),
+        (Join-Path $desktopDir "Free Claude Code.lnk"),
         (Join-Path $startMenuDir "Free Claude Code.lnk"),
         (Join-Path $startupDir "Free Claude Code.lnk")
     ) | Where-Object { Test-Path -LiteralPath $_ }
@@ -286,7 +288,7 @@ if (-not $NoShortcuts) {
     }
 
     $shortcutDefs = @(
-        @{ Path = (Join-Path $env:USERPROFILE "Desktop\$ProductName.lnk"); Target = $desktopExe }
+        @{ Path = (Join-Path $desktopDir "$ProductName.lnk"); Target = $desktopExe }
     )
     $shortcutDefs += @{ Path = (Join-Path $startMenuDir "$ProductName.lnk"); Target = $desktopExe }
     if ($Startup) {

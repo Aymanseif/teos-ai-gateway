@@ -254,8 +254,9 @@ function Test-FccDesktopShortcutTarget {
 }
 
 function Remove-FccDesktopShortcuts {
+    $desktopDir = [Environment]::GetFolderPath("Desktop")
     $shortcutPaths = @(
-        (Join-Path $env:USERPROFILE "Desktop\Free Claude Code.lnk"),
+        (Join-Path $desktopDir "Free Claude Code.lnk"),
         (Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\Free Claude Code.lnk")
     )
     $shell = New-Object -ComObject WScript.Shell
