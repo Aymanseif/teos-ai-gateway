@@ -67,7 +67,7 @@ def native_window_supported() -> bool:
 
     try:
         return importlib.util.find_spec("webview") is not None
-    except ImportError, ValueError:
+    except (ImportError, ValueError):
         return False
 
 

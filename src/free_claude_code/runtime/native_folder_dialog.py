@@ -39,7 +39,7 @@ def _initial_directory(value: str) -> str | None:
             path = Path(value).expanduser().resolve(strict=True)
             if path.is_dir():
                 return str(path)
-        except OSError, ValueError:
+        except (OSError, ValueError):
             pass
     return None
 

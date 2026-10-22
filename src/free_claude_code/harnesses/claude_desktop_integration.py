@@ -320,7 +320,7 @@ def _disconnect_intent(path: Path, root: Path) -> bool | None:
 def _empty_profile(path: Path) -> bool:
     try:
         return _read(path) == {}
-    except ValueError, UnicodeError:
+    except (ValueError, UnicodeError):
         # A user may change the neutral profile between a failure and retry.
         return False
 

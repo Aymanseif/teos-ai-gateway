@@ -425,9 +425,9 @@ def open_admin_when_ready(
                     if remaining <= 0 or completed.wait(min(0.05, remaining)):
                         break
                 return True
-        except HTTPError, ValueError, UnicodeError:
+        except (HTTPError, ValueError, UnicodeError):
             return False
-        except URLError, OSError:
+        except (URLError, OSError):
             pass
         stop.wait(0.15)
     return False

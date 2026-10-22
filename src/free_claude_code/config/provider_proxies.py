@@ -36,7 +36,7 @@ def invalid_provider_proxy_keys(values: Mapping[str, str]) -> tuple[str, ...]:
             continue
         try:
             proxy = httpx.Proxy(value)
-        except httpx.InvalidURL, ValueError:
+        except (httpx.InvalidURL, ValueError):
             invalid.append(key)
             continue
         if not proxy.url.host:

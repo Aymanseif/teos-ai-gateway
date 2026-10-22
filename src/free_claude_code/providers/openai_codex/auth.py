@@ -150,7 +150,7 @@ def saved_connection_state() -> str:
             if _read_saved_credentials(openai_auth_path())
             else "disconnected"
         )
-    except OSError, ValueError:
+    except (OSError, ValueError):
         return "unavailable"
 
 

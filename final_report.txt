@@ -1,1 +1,71 @@
-TEOS 9-layer audit - PASSED - 10/18/2026 18:32:01
+TEOS AI Gateway - pre-install audit
+Date: 2026-10-22
+Repository: D:\elmahrosa-repos\teos-ai-gateway @ 44e58745
+
+RESULT: REPAIRED - the source now compiles and is safe to build.
+The previous line ("TEOS 9-layer audit - PASSED - 10/18/2026") was not
+accurate: the tree did not compile when this audit started.
+
+WHAT WAS WRONG
+- 46 Python exception clauses used Python 2 syntax in 29 files, e.g.
+  "except OSError, ValueError:" instead of
+  "except (OSError, ValueError):". Importing/building those modules
+  failed with SyntaxError.
+  Fixed in:
+    api/code_sessions_routes.py
+    application/code_sessions/service.py
+    cli/commands.py
+    cli/desktop_window.py
+    cli/launchers/catalog_http.py
+    cli/launchers/runner.py
+    config/provider_proxies.py
+    core/anthropic/tokens.py
+    core/gateway_model_ids.py
+    core/tool_schema_patterns.py
+    harnesses/claude_desktop_integration.py
+    harnesses/jetbrains_acp_integration.py
+    messaging/platforms/discord_io.py
+    messaging/rendering/discord_markdown.py
+    messaging/rendering/telegram_markdown.py
+    messaging/voice.py
+    providers/admission.py
+    providers/anthropic_messages/transport.py
+    providers/credential_validation.py
+    providers/github_copilot/auth.py
+    providers/github_copilot/sdk.py
+    providers/openai_chat/transport.py
+    providers/openai_codex/auth.py
+    providers/openai_codex/login.py
+    providers/openai_responses/transport.py
+    runtime/diagnostics.py
+    runtime/integration_service.py
+    runtime/messaging_import.py
+    runtime/native_folder_dialog.py
+
+VERIFIED AFTER FIX
+- python -m compileall over src, tests, smoke, scripts, conftest.py: PASS
+- All 9 PowerShell scripts parse with the PowerShell AST parser: PASS
+- pyproject.toml parses: PASS
+- No remaining Python 2 "except" clauses: PASS
+- Tauri/Rust shell only talks to http://127.0.0.1:8082; no credential
+  exfiltration found.
+
+BEFORE YOU INSTALL (important)
+1) Do NOT trust the "ruff 0.17.1" available from the current package
+   index. It accepts invalid Python and proposes removing required
+   parentheses. uv.lock pins the real ruff 0.16.8 with SHA-256 hashes;
+   use "uv sync --locked" / "uv run --locked".
+2) scripts/update/teos-update and teos-update.cmd download and execute
+   code from GitHub. The bundled installer stubs them, but a source
+   install ("uv tool install .") leaves them active.
+3) scripts/install.ps1 and scripts/install.sh are upstream Free Claude
+   Code installers: they install the PyPI package, not this TEOS build.
+   Use the offline bundle installer or "uv tool install .".
+4) ADD-DEFENDER-EXCLUSIONS.ps1 disables Defender scanning for the repo
+   and uv directories. Only run it if you accept that trade-off.
+5) DEPLOY.ps1 still contains a hard-coded OneDrive path that does not
+   match this checkout; it will fail as-is.
+
+NOT DONE
+- No dependency installation, wheel build, or app launch was performed,
+  so runtime/pytest results are not claimed.

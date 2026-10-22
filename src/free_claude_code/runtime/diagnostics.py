@@ -240,7 +240,7 @@ def integration_report(settings: Settings) -> dict[str, Any]:
             result[name] = {"status": "available", "connected": status["connected"]}
             if "disconnect_pending" in status:
                 result[name]["disconnect_pending"] = status["disconnect_pending"]
-        except OSError, ValueError:
+        except (OSError, ValueError):
             result[name] = {"status": "unavailable", "connected": None}
     return result
 

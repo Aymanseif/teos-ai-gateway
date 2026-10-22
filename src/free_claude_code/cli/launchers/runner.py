@@ -80,7 +80,7 @@ def _check_native(
         )
         if result.returncode == 0 and check.accepts(result.stdout):
             return
-    except OSError, subprocess.TimeoutExpired:
+    except (OSError, subprocess.TimeoutExpired):
         pass
     message = check.failure_message
     if install_hint:

@@ -277,7 +277,7 @@ async def _check_one(settings: Settings, key: str, probe: _Probe) -> CredentialC
             ) as client:
                 response = await client.get(url, headers=headers)
                 return _interpret(key, probe, response)
-    except TimeoutError, httpx.RequestError, UnicodeError:
+    except (TimeoutError, httpx.RequestError, UnicodeError):
         return _unverified(key, "Could not reach the provider to verify this key.")
 
 

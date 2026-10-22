@@ -254,7 +254,7 @@ class AnthropicMessagesTransport:
         try:
             async for event in run:
                 yield event
-        except asyncio.CancelledError, GeneratorExit:
+        except (asyncio.CancelledError, GeneratorExit):
             raise
         except Exception as error:
             execution.fail(error)
@@ -355,7 +355,7 @@ class AnthropicMessagesTransport:
                 for event in recovery.flush():
                     yield event
                 return
-            except asyncio.CancelledError, GeneratorExit:
+            except (asyncio.CancelledError, GeneratorExit):
                 raise
             except Exception as raw_error:
                 error = (
